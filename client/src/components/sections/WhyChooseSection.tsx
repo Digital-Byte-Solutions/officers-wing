@@ -4,86 +4,132 @@ import { animate, stagger } from 'animejs';
 
 export const WhyChooseSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const cardsRef   = useRef<HTMLDivElement>(null);
+  const headRef    = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && cardsRef.current) {
-            animate(cardsRef.current.children, {
-              translateY: [40, 0],
-              opacity: [0, 1],
-              scale: [0.95, 1],
-              duration: 800,
-              delay: stagger(200),
-              ease: 'outCubic'
+        if (entries[0].isIntersecting) {
+          if (headRef.current) {
+            animate(headRef.current.children, {
+              translateY: [32, 0],
+              opacity:    [0, 1],
+              duration:   900,
+              delay:      stagger(120),
+              ease:       'outCubic',
             });
           }
-        });
+          if (cardsRef.current) {
+            animate(cardsRef.current.children, {
+              translateY: [48, 0],
+              opacity:    [0, 1],
+              scale:      [0.96, 1],
+              duration:   800,
+              delay:      stagger(180, { start: 300 }),
+              ease:       'outCubic',
+            });
+          }
+        }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   const features = [
     {
-      icon: <UserCheck className="w-10 h-10 text-[#0F2C59]" />,
-      title: "Experienced Faculty: Learn from Industry Veterans",
-      description: "Coaching for Written Test (online / offline) and interviews for Deck Cadets / TME / GME / GP Rating openings."
+      Icon: UserCheck,
+      title: 'Expert Facilitators',
+      body:  'Seasoned coaching for Written Tests (online / offline) and interviews for Deck Cadet, TME, GME, and GP Rating placements across top shipping companies.',
     },
     {
-      icon: <Trophy className="w-10 h-10 text-[#0F2C59]" />,
-      title: "Proven Track Record: Hundreds of Students Placed",
-      description: "Helping students convert their dreams into reality since 2016 with 970+ successful cadets placed across fleets."
+      Icon: Trophy,
+      title: 'Proven Track Record',
+      body:  '970+ cadets successfully placed in global merchant-navy fleets since 2016. Every batch has achieved outstanding selection rates.',
     },
     {
-      icon: <ClipboardList className="w-10 h-10 text-[#0F2C59]" />,
-      title: "Comprehensive Training: Written, Interview & Physical Prep",
-      description: "Classes covering Seamanship, Ship Construction, Duties, Fire Fighting, Basic Marine Engineering & Safety."
-    }
+      Icon: ClipboardList,
+      title: 'Full-Spectrum Preparation',
+      body:  'Seamanship, Ship Construction, Fire Fighting, Basic Marine Engineering, Personal Safety, Ship Organisation, and Merchant Navy interview readiness.',
+    },
   ];
 
   return (
-    <section ref={sectionRef} className="w-full py-20 bg-white flex flex-col justify-center items-center">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 w-full text-center space-y-12">
-        
-        {/* Section Title & Official About Text */}
-        <div className="max-w-4xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#0F2C59] text-xs font-bold uppercase tracking-wider">
-            <BookOpen className="w-3.5 h-3.5 text-[#E87500]" /> About Our Academy
+    <section
+      ref={sectionRef}
+      className="relative w-full py-28 bg-midnight overflow-hidden"
+    >
+      {/* Subtle radial bloom — top right */}
+      <div
+        className="absolute top-0 right-0 w-[50vw] h-[50vh] pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at 90% 5%, rgba(232,117,0,0.08) 0%, transparent 60%)' }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12">
+
+        {/* ── Heading block ── */}
+        <div ref={headRef} className="text-center mb-16 space-y-4">
+          <div style={{ opacity: 0 }}>
+            <span className="section-label section-label-dark">
+              <BookOpen className="w-3.5 h-3.5" />
+              About Our Academy
+            </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F2C59] font-serif-heading">
+          <h2
+            style={{ opacity: 0 }}
+            className="font-display text-4xl sm:text-5xl font-black text-white heading-route-line mx-auto inline-block"
+          >
             Why Choose Officers Wing?
           </h2>
 
-          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-slate-50 p-6 rounded-xl border border-slate-200 text-left">
-            Officers Wing has established its name in merchant navy industry for providing career guidance and preparatory classes for merchant navy aspirants in all over India. Officers Wing's Journey was started in 2016 with the aim of creating awareness among the students who are seeking their career at sea and it has helped many students convert their dreams into reality. We at Officers Wing equally committed to merchant navy industry by providing trained professional. Officers Wing is a coaching institute who provides coaching for Written Test (on line / off line) and interviews for various opening for Deck Cadets / TME / GME/ GP Rating etc. Genuine guide for those, who wants to join Merchant Navy after passing 12th class. Apart from Written Test / Interview, Officers Wing is also conducting classes for basic knowledge of shipping, which include Seamanship, Ship Constructions, various Duties, Fire Fighting and Fire Prevention, Basic Marine Engineering, Personal Safety and Social Responsibilities, Ship Organization, Basic Terms in Shipping, Types of Ship, Ship Safety and Security, Loyalty towards Ship, Respecting Senior and Do's and Don't, in Merchant Navy etc.
+          <p style={{ opacity: 0 }} className="text-slate-400 text-sm max-w-3xl mx-auto leading-relaxed">
+            Officers Wing has established its name in the merchant navy industry for providing career guidance and
+            preparatory classes for aspirants across India. Since 2016 we have helped hundreds of students convert
+            their dreams into reality — for Deck Cadets, TME, GME, GP Rating and beyond.
           </p>
         </div>
 
-        {/* 3-Column Feature Cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {features.map((item, idx) => (
+        {/* ── Official About text — serif pull-quote ── */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <blockquote className="glass-card rounded-2xl p-8 border-l-4 border-[#C8922A] text-left">
+            <p className="font-display text-base sm:text-lg italic text-slate-200 leading-relaxed">
+              "Officers Wing is a coaching institute who provides coaching for Written Test (on line / off line)
+              and interviews for various openings for Deck Cadets / TME / GME / GP Rating etc. Genuine guide for
+              those who want to join Merchant Navy after passing 12th class."
+            </p>
+            <footer className="mt-4 text-xs font-bold uppercase tracking-widest text-[#C8922A]">
+              — officerswing.com
+            </footer>
+          </blockquote>
+        </div>
+
+        {/* ── Feature Cards (glassmorphic) ── */}
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {features.map(({ Icon, title, body }, idx) => (
             <div
               key={idx}
-              className="bg-white p-8 rounded-xl border border-slate-200 card-hover-effect flex flex-col items-center group cursor-pointer"
+              style={{ opacity: 0 }}
+              className="glass-card rounded-2xl p-8 flex flex-col gap-5 card-hover-effect group"
             >
-              <div className="w-20 h-20 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-[#0F2C59] transition-all duration-300">
-                {item.icon}
+              {/* Icon with gradient circle */}
+              <div
+                className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0"
+                style={{ background: 'linear-gradient(135deg, #E87500 0%, #0A1E3F 100%)' }}
+              >
+                <Icon className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-[#0F2C59] mb-3 leading-snug">
-                {item.title}
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {item.description}
-              </p>
+
+              <div>
+                <h3 className="font-display text-lg font-bold text-white mb-2 leading-snug">
+                  {title}
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {body}
+                </p>
+              </div>
             </div>
           ))}
         </div>

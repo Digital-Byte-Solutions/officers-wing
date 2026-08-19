@@ -5,9 +5,10 @@ interface StatItemProps {
   target: number;
   suffix?: string;
   label: string;
+  isLast?: boolean;
 }
 
-const CounterItem: React.FC<StatItemProps> = ({ target, suffix = '', label }) => {
+const CounterItem: React.FC<StatItemProps> = ({ target, suffix = '', label, isLast }) => {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
@@ -18,54 +19,56 @@ const CounterItem: React.FC<StatItemProps> = ({ target, suffix = '', label }) =>
         if (entries[0].isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
           const obj = { value: 0 };
-          
-          // Anime.js v4 rapid count-up animation
           animate(obj, {
             value: target,
-            duration: 1800,
+            duration: 2000,
             ease: 'outExpo',
-            onUpdate: () => {
-              setCount(Math.round(obj.value));
-            }
+            onUpdate: () => setCount(Math.round(obj.value)),
           });
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.4 }
     );
-
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [target]);
 
   return (
-    <div ref={ref} className="text-center py-2">
-      <div className="text-4xl sm:text-5xl font-black text-[#F59E0B] tracking-tight font-sans">
-        {count}{suffix}
+    <div ref={ref} className="flex items-stretch">
+      <div className="flex-1 flex flex-col items-center justify-center py-10 px-6 text-center">
+        <span className="font-display text-5xl sm:text-6xl font-black text-[#0A1E3F] leading-none">
+          {count}{suffix}
+        </span>
+        <span className="mt-3 text-xs font-bold uppercase tracking-widest text-[#64748B]">
+          {label}
+        </span>
       </div>
-      <div className="text-xs sm:text-sm text-slate-200 font-semibold mt-2 tracking-wide">
-        {label}
-      </div>
+      {/* Gold hairline separator — hide after last item */}
+      {!isLast && (
+        <div className="self-stretch w-px my-6 gold-separator" />
+      )}
     </div>
   );
 };
 
 export const StatsCounterBar: React.FC = () => {
   const stats = [
-    { target: 970, suffix: '+', label: 'Students+' },
-    { target: 10, suffix: '+', label: 'Courses+' },
-    { target: 15, suffix: '+', label: 'Events+' },
-    { target: 10, suffix: '+', label: 'Trainers+' }
+    { target: 970,  suffix: '+', label: 'Students Placed' },
+    { target: 10,   suffix: '+', label: 'Courses Offered' },
+    { target: 15,   suffix: '+', label: 'Events Conducted' },
+    { target: 10,   suffix: '+', label: 'Expert Trainers' },
   ];
 
   return (
-    <div className="bg-[#0A1E3F] text-white py-12 px-6 border-y border-blue-900/60 shadow-2xl">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+    <div className="bg-white border-y border-[#DDE3ED] shadow-sm">
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4">
         {stats.map((stat, idx) => (
           <CounterItem
             key={idx}
             target={stat.target}
             suffix={stat.suffix}
             label={stat.label}
+            isLast={idx === stats.length - 1}
           />
         ))}
       </div>

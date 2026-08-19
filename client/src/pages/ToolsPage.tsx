@@ -59,7 +59,7 @@ export const ToolsPage: React.FC = () => {
   return (
     <div className="pt-28 min-h-screen bg-slate-50 text-slate-800 text-left">
       {/* Header Banner */}
-      <div className="bg-[#0F2C59] text-white py-16 px-6 text-center">
+      <div className="page-banner bg-[#060F1E] text-white py-20 px-6 text-center">
         <div className="max-w-4xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase">
             <Calculator className="w-4 h-4" /> Pre-Medical & Eligibility Calculators
@@ -228,3 +228,4 @@ export const ToolsPage: React.FC = () => {
     </div>
   );
 };
+

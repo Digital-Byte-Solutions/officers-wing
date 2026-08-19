@@ -1,102 +1,127 @@
 import React, { useEffect, useRef } from 'react';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { coursesData } from '../../data/coursesData';
 import { animate, stagger } from 'animejs';
 
 export const CoursesSection: React.FC = () => {
-  const navigate = useNavigate();
+  const navigate   = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const headRef    = useRef<HTMLDivElement>(null);
+  const gridRef    = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && gridRef.current) {
-            animate(gridRef.current.children, {
-              translateY: [40, 0],
-              opacity: [0, 1],
-              scale: [0.95, 1],
-              duration: 800,
-              delay: stagger(150),
-              ease: 'outCubic'
+        if (entries[0].isIntersecting) {
+          if (headRef.current) {
+            animate(headRef.current.children, {
+              translateY: [28, 0],
+              opacity:    [0, 1],
+              duration:   800,
+              delay:      stagger(100),
+              ease:       'outCubic',
             });
           }
-        });
+          if (gridRef.current) {
+            animate(gridRef.current.children, {
+              translateY: [50, 0],
+              opacity:    [0, 1],
+              scale:      [0.95, 1],
+              duration:   800,
+              delay:      stagger(140, { start: 250 }),
+              ease:       'outCubic',
+            });
+          }
+        }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} className="snap-section w-full min-h-screen py-20 bg-[#F8FAFC] flex flex-col justify-center items-center">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 w-full text-center">
-        
-        {/* Section Title */}
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F2C59] mb-4 font-serif-heading">
-          Our Courses
-        </h2>
-        <p className="text-slate-600 text-sm max-w-2xl mx-auto mb-14">
-          Tailored pre-sea preparation programs engineered for every educational background.
-        </p>
+    <section ref={sectionRef} className="relative w-full py-28 bg-[#EFF2F7] overflow-hidden">
+      {/* Subtle navy blob — bottom left */}
+      <div
+        className="absolute bottom-0 left-0 w-[40vw] h-[40vh] pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at 0% 100%, rgba(10,30,63,0.06) 0%, transparent 65%)' }}
+      />
 
-        {/* 4-Column Grid */}
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-          {coursesData.map((course) => {
-            const isOrangeHoverDemo = course.isHighlighted; // Demonstrating hover state as requested
-            
-            return (
-              <div
-                key={course.id}
-                className="bg-white p-7 rounded-xl border border-slate-200 card-hover-effect flex flex-col justify-between items-center h-full group"
-              >
-                <div className="flex flex-col items-center space-y-4">
-                  {/* Icon */}
-                  <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-[#0F2C59] group-hover:bg-[#0F2C59] group-hover:text-white transition-colors duration-300">
-                    <GraduationCap className="w-8 h-8" />
-                  </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12">
 
-                  {/* Title */}
-                  <h3 className="text-lg font-extrabold text-[#0F2C59]">
-                    {course.title}
-                  </h3>
+        {/* ── Heading ── */}
+        <div ref={headRef} className="text-center mb-16 space-y-3">
+          <div style={{ opacity: 0 }}>
+            <span className="section-label section-label-light">
+              <GraduationCap className="w-3.5 h-3.5" />
+              Pre-Sea Programmes
+            </span>
+          </div>
+          <h2 style={{ opacity: 0 }} className="font-display text-4xl sm:text-5xl font-black text-[#0A1E3F]">
+            Our Courses
+          </h2>
+          <p style={{ opacity: 0 }} className="text-[#64748B] text-sm max-w-xl mx-auto">
+            Tailored preparation programs engineered for every educational background — 10th, 12th, Graduate, and B.Tech.
+          </p>
+        </div>
 
-                  {/* Category Pill */}
-                  <span className="text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full">
-                    {course.category}
-                  </span>
+        {/* ── 4-Column Card Grid ── */}
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {coursesData.map((course) => (
+            <div
+              key={course.id}
+              style={{ opacity: 0 }}
+              className="card-gradient-bar card-hover-effect bg-white rounded-2xl flex flex-col justify-between overflow-hidden group relative"
+            >
+              {/* Most Popular badge */}
+              {course.isHighlighted && (
+                <div className="absolute top-4 right-4 flex items-center gap-1 bg-[#E87500] text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-md z-10">
+                  <Star className="w-3 h-3 fill-white" /> Most Popular
+                </div>
+              )}
 
-                  {/* Description */}
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {course.description}
-                  </p>
+              <div className="p-7 flex flex-col items-start gap-4 flex-1">
+                {/* Icon */}
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                  style={{ background: 'linear-gradient(135deg, #0A1E3F 0%, #0F2C59 100%)' }}
+                >
+                  <GraduationCap className="w-6 h-6 text-white" />
                 </div>
 
-                {/* Bottom Button */}
-                <div className="w-full pt-6 mt-4">
-                  {isOrangeHoverDemo ? (
-                    <button
-                      onClick={() => navigate(`/courses/${course.id}`)}
-                      className="w-full bg-[#E87500] hover:bg-[#F59E0B] text-white text-xs font-bold py-2.5 rounded-[6px] transition-all shadow-md cursor-pointer"
-                    >
-                      Learn More
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => navigate(`/courses/${course.id}`)}
-                      className="w-full border-2 border-[#0F2C59] text-[#0F2C59] hover:bg-[#0F2C59] hover:text-white text-xs font-bold py-2.5 rounded-[6px] transition-all duration-300 cursor-pointer"
-                    >
-                      Learn More
-                    </button>
-                  )}
-                </div>
+                {/* Category chip */}
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#C8922A] bg-amber-50 border border-amber-200/60 px-2.5 py-1 rounded-full">
+                  {course.category}
+                </span>
+
+                {/* Title */}
+                <h3 className="font-display text-xl font-bold text-[#0A1E3F] leading-snug">
+                  {course.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-xs text-[#64748B] leading-relaxed flex-1">
+                  {course.description}
+                </p>
               </div>
-            );
-          })}
+
+              {/* Bottom CTA */}
+              <div className="px-7 pb-7">
+                <button
+                  onClick={() => navigate(`/courses/${course.id}`)}
+                  className={`w-full text-xs font-bold py-3 rounded-xl transition-all duration-300 cursor-pointer ${
+                    course.isHighlighted
+                      ? 'btn-glow-orange text-white'
+                      : 'border-2 border-[#0A1E3F] text-[#0A1E3F] hover:bg-[#0A1E3F] hover:text-white'
+                  }`}
+                >
+                  Learn More →
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>

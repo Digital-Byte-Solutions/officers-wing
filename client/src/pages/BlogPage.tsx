@@ -41,7 +41,7 @@ export const BlogPage: React.FC = () => {
   return (
     <div className="pt-28 min-h-screen bg-slate-50 text-slate-800">
       {/* Top Banner */}
-      <div className="bg-[#0F2C59] text-white py-16 px-6 text-center">
+      <div className="page-banner bg-[#060F1E] text-white py-20 px-6 text-center">
         <div className="max-w-4xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase">
             <BookOpen className="w-4 h-4" /> Merchant Navy Knowledge Hub
@@ -93,3 +93,4 @@ export const BlogPage: React.FC = () => {
     </div>
   );
 };
+

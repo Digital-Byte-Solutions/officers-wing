@@ -8,7 +8,7 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="pt-28 min-h-screen bg-white text-slate-800">
       {/* Header Banner */}
-      <div className="bg-[#0F2C59] text-white py-16 px-6 text-center">
+      <div className="page-banner bg-[#060F1E] text-white py-20 px-6 text-center">
         <div className="max-w-4xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase">
             <Compass className="w-4 h-4" /> About Officers Wing Academy
@@ -73,3 +73,4 @@ export const AboutPage: React.FC = () => {
     </div>
   );
 };
+
