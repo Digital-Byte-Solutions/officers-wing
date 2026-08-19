@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
+
+    /* Maritime Color Tokens */
+    --color-midnight:   #060F1E;
+    --color-navy:       #0A1E3F;
+    --color-navy-mid:   #0F2C59;
+    --color-navy-light: #1A3D73;
+    --color-orange:     #E87500;
+    --color-orange-lt:  #F09030;
+    --color-gold:       #C8922A;
+    --color-gold-lt:    #D4A840;
+    --color-fog:        #EFF2F7;
+    --color-mist:       #F8FAFC;
+    --color-slate:      #334155;
+    --color-slate-lt:   #64748B;
+    --color-white:      #FFFFFF;
+
+    /* Shadows */
+    --shadow-card:   0 4px 24px 0 rgba(6,15,30,0.08), 0 1px 4px 0 rgba(6,15,30,0.04);
+    --shadow-hover:  0 16px 48px 0 rgba(6,15,30,0.16), 0 4px 12px 0 rgba(6,15,30,0.08);
+    --shadow-glow-orange: 0 0 0 4px rgba(232,117,0,0.18), 0 8px 24px 0 rgba(232,117,0,0.32);
+    --shadow-glow-gold:   0 0 0 4px rgba(200,146,42,0.18), 0 8px 24px 0 rgba(200,146,42,0.28);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-white);
+    color: var(--color-slate);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--color-navy);
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-sans);
+    color: var(--color-navy);
+  }
+}
+
+/* ─── Page Banner — dark navy top section on every sub-page ─── */
+/* Overrides global heading colour so text is readable on dark backgrounds */
+.page-banner h1,
+.page-banner h2,
+.page-banner h3,
+.page-banner h4,
+.page-banner p,
+.page-banner span {
+  color: #ffffff;
+}
+
+.page-banner p {
+  color: rgba(203, 213, 225, 0.9); /* slate-300 tint */
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ─── Gradient clip headline text ─── */
+.text-gradient-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #fcd89a 50%, #E87500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Section clip-path dividers ─── */
+.clip-top-diagonal {
+  clip-path: polygon(0 4%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.clip-bottom-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+}
+
+.clip-both-diagonal {
+  clip-path: polygon(0 3%, 100% 0%, 100% 97%, 0 100%);
+}
+
+/* ─── Glassmorphic card ─── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(6, 15, 30, 0.36);
+}
+
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow-card);
+}
+
+/* ─── Premium card hover effect ─── */
+.card-hover-effect {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  box-shadow: var(--shadow-card);
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ─── Gradient top-border card ─── */
+.card-gradient-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-gradient-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-navy) 0%, var(--color-orange) 100%);
+  transition: height 0.35s ease, opacity 0.35s ease;
+}
+
+.card-gradient-bar:hover::before {
+  height: 4px;
+  opacity: 1;
+}
+
+/* ─── Glow CTA Buttons ─── */
+.btn-glow-orange {
+  background: var(--color-orange);
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px 0 rgba(232, 117, 0, 0.35);
+}
+
+.btn-glow-orange:hover {
+  background: var(--color-orange-lt);
+  box-shadow: var(--shadow-glow-orange);
+  transform: translateY(-2px);
+}
+
+.btn-glow-navy {
+  background: var(--color-navy);
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px 0 rgba(10, 30, 63, 0.25);
+}
+
+.btn-glow-navy:hover {
+  background: var(--color-navy-light);
+  box-shadow: 0 8px 28px 0 rgba(10, 30, 63, 0.40);
+  transform: translateY(-2px);
+}
+
+/* ─── Heading route-line decorator ─── */
+.heading-route-line {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-route-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-orange), var(--color-gold));
+  border-radius: 2px;
+}
+
+/* ─── Section label pill ─── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-label-dark {
+  background: rgba(232, 117, 0, 0.15);
+  color: var(--color-gold-lt);
+  border: 1px solid rgba(200, 146, 42, 0.30);
+}
+
+.section-label-light {
+  background: rgba(10, 30, 63, 0.07);
+  color: var(--color-navy-mid);
+  border: 1px solid rgba(10, 30, 63, 0.15);
+}
+
+/* ─── Gold separator hairline ─── */
+.gold-separator {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--color-gold), transparent);
+}
+
+/* ─── Infinite Marquee ─── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Hero gradient mesh animation ─── */
+@keyframes meshShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* ─── Floating badge pulse ─── */
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-4px); }
+}
+
+.float-badge {
+  animation: floatBadge 3s ease-in-out infinite;
+}
+
+/* ─── Scroll chevron bounce ─── */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%       { transform: translateY(6px); opacity: 1; }
+}
+
+.scroll-bounce {
+  animation: scrollBounce 1.6s ease-in-out infinite;
+}
+
+/* ─── Native CSS View Transitions ─── */
+@keyframes view-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.985); }
+}
+
+@keyframes view-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+::view-transition-old(root) {
+  animation: 450ms cubic-bezier(0.4, 0, 0.2, 1) both view-fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 700ms cubic-bezier(0, 0, 0.2, 1) 150ms both view-fade-in;
+}
+
+/* ─── Utility overrides ─── */
+.bg-midnight  { background-color: var(--color-midnight); }
+.bg-navy      { background-color: var(--color-navy); }
+.bg-navy-mid  { background-color: var(--color-navy-mid); }
+.bg-fog       { background-color: var(--color-fog); }
+.text-gold    { color: var(--color-gold); }
+.text-gold-lt { color: var(--color-gold-lt); }
+.border-gold  { border-color: var(--color-gold); }
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-fog); }
+::-webkit-scrollbar-thumb { background: var(--color-navy-mid); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-orange); }

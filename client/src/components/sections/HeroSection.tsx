@@ -1,0 +1,139 @@
+import React, { useEffect, useRef } from 'react';
+import { ChevronDown, Shield, Anchor } from 'lucide-react';
+import { animate, stagger } from 'animejs';
+
+interface HeroSectionProps {
+  onExploreCourses: () => void;
+  onCheckEligibility: () => void;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreCourses, onCheckEligibility }) => {
+  const badgeRef   = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const subRef     = useRef<HTMLParagraphElement>(null);
+  const ctaRef     = useRef<HTMLDivElement>(null);
+  const statsRef   = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const targets = [
+      badgeRef.current,
+      headlineRef.current,
+      subRef.current,
+      ctaRef.current,
+      statsRef.current,
+    ].filter(Boolean);
+
+    animate(targets, {
+      translateY: [48, 0],
+      opacity:    [0, 1],
+      duration:   1100,
+      delay:      stagger(160, { start: 200 }),
+      ease:       'outCubic',
+    });
+  }, []);
+
+  return (
+    <section className="relative w-full h-screen min-h-[680px] flex items-center overflow-hidden bg-[#060F1E]">
+
+      {/* ── Background Video ── */}
+      <video
+        autoPlay loop muted playsInline
+        className="absolute inset-0 w-full h-full object-cover scale-105 opacity-40"
+        poster="/images/Hero_image.png"
+      >
+        <source src="/video/hero.webm" type="video/webm" />
+        <source src="/video/hero.mp4"  type="video/mp4" />
+        <source src="/videos/Hero_video.webm" type="video/webm" />
+        <source src="/videos/Hero_video.mp4"  type="video/mp4" />
+      </video>
+
+      {/* ── Gradient Mesh Overlay ── */}
+      <div className="absolute inset-0 z-10"
+        style={{
+          background: 'linear-gradient(115deg, #060F1E 0%, #0A1E3F cc 45%, rgba(10,30,63,0.55) 65%, rgba(6,15,30,0.15) 100%)'
+        }}
+      />
+      {/* Subtle teal-blue radial bloom, top-right */}
+      <div className="absolute top-0 right-0 w-[60vw] h-[60vh] z-10 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at 80% 10%, rgba(30,80,140,0.22) 0%, transparent 65%)' }}
+      />
+
+      {/* ── Content ── */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 sm:px-12 w-full pt-24 pb-16">
+        <div className="max-w-3xl space-y-7">
+
+          {/* Floating DG Approved Badge */}
+          <div ref={badgeRef} style={{ opacity: 0 }}>
+            <span className="float-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase border border-[#C8922A]/40 bg-[#C8922A]/10 text-[#D4A840]">
+              <Shield className="w-3.5 h-3.5" />
+              DG Shipping Approved Guidance Academy
+            </span>
+          </div>
+
+          {/* Display Headline — Playfair Display serif */}
+          <h1
+            ref={headlineRef}
+            style={{ opacity: 0 }}
+            className="font-display text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight"
+          >
+            <span className="text-gradient-hero">
+              Chart Your Course<br />to the Merchant Navy
+            </span>
+          </h1>
+
+          {/* Subheadline */}
+          <p
+            ref={subRef}
+            style={{ opacity: 0 }}
+            className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-xl"
+          >
+            Dehradun's premier coaching institute — trusted by <span className="text-[#D4A840] font-semibold">970+ cadets</span> since 2016.
+            Expert guidance for DNS, GME, GP Rating & IMU-CET.
+          </p>
+
+          {/* CTA Buttons */}
+          <div ref={ctaRef} style={{ opacity: 0 }} className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={onExploreCourses}
+              className="btn-glow-orange font-bold text-sm px-8 py-3.5 rounded-lg cursor-pointer"
+            >
+              Explore Courses
+            </button>
+            <button
+              onClick={onCheckEligibility}
+              className="font-bold text-sm px-8 py-3.5 rounded-lg border border-white/25 text-white hover:bg-white/10 transition-all duration-300 cursor-pointer backdrop-blur-sm"
+            >
+              Check Eligibility
+            </button>
+          </div>
+
+          {/* Inline mini stats row */}
+          <div
+            ref={statsRef}
+            style={{ opacity: 0 }}
+            className="flex flex-wrap gap-6 pt-2 border-t border-white/10"
+          >
+            {[
+              { num: '970+', label: 'Cadets Placed' },
+              { num: '95%+', label: 'IMU-CET Success' },
+              { num: '10+',  label: 'Shipping Fleets' },
+            ].map((s, i) => (
+              <div key={i} className="flex items-baseline gap-2">
+                <span className="font-display text-2xl font-black text-[#C8922A]">{s.num}</span>
+                <span className="text-xs text-slate-400 font-medium">{s.label}</span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── Anchor icon & scroll chevron ── */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/50">
+        <Anchor className="w-4 h-4 text-[#C8922A]" />
+        <ChevronDown className="w-5 h-5 scroll-bounce" />
+      </div>
+
+    </section>
+  );
+};
