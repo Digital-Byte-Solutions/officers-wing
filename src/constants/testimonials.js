@@ -1,0 +1,61 @@
+// ============================================================
+// Testimonials data — alumni success stories
+// ============================================================
+
+export const TESTIMONIALS = [
+  {
+    name: 'Arjun Mehta',
+    role: 'GPS Rating Officer',
+    company: 'Maersk Line',
+    course: 'GPS Rating',
+    image: '👨‍✈️',
+    rating: 5,
+    text: "Officer's Wing Academy completely transformed my life. I was a fisherman's son with big dreams. The faculty here treated me like family, helped me clear all exams, and within 8 months of completing the course, I was onboard a Maersk vessel sailing to Rotterdam. Today I earn 6 times what I did before.",
+    salary: '₹45,000/month',
+    location: 'Mumbai → Rotterdam',
+  },
+  {
+    name: 'Priya Sharma',
+    role: 'Deck Cadet (DNS)',
+    company: 'Scorpio Tankers',
+    course: 'DNS Program',
+    image: '👩‍✈️',
+    rating: 5,
+    text: "As a woman in merchant navy, I faced doubts from everyone — except Officer's Wing. The faculty was incredibly supportive, and the training was world-class. I cleared DG Shipping medical and joined Scorpio Tankers as a Deck Cadet. OWA made the impossible possible!",
+    salary: '₹95,000/month',
+    location: 'Delhi → Global Voyager',
+  },
+  {
+    name: 'Rahul Singh',
+    role: 'ETO (Electro-Technical Officer)',
+    company: 'CMA CGM',
+    course: 'ETO Course',
+    image: '👨‍🔧',
+    rating: 5,
+    text: "I had a diploma in electrical engineering and wasn't sure about merchant navy. OWA's ETO course was exactly what I needed — hands-on, practical, and with direct industry connections. Got placed with CMA CGM within 3 months of completing the course. The ROI is incredible.",
+    salary: '₹2,20,000/month',
+    location: 'Pune → Mediterranean Routes',
+  },
+  {
+    name: 'Suresh Kumar',
+    role: 'Engine Rating',
+    company: 'Shipping Corp. of India',
+    course: 'Engine Rating',
+    image: '👨‍🏭',
+    rating: 5,
+    text: "Coming from a small village in Bihar, I never thought I'd work on an international ship. OWA's engine rating course was affordable, the hostel was good, and the trainers were genuine professionals. Placed within 60 days. Now I'm sending money home every month — my family is proud!",
+    salary: '₹38,000/month',
+    location: 'Bihar → Indian Ocean',
+  },
+  {
+    name: 'Deepak Nair',
+    role: 'Third Officer',
+    company: 'Anglo-Eastern',
+    course: 'DNS Program',
+    image: '🧑‍✈️',
+    rating: 5,
+    text: "The DNS program at OWA is simply the best in India. The simulators, navigation labs, and GMDSS equipment are top-notch. My batch had 100% placement. I'm now a Third Officer with Anglo-Eastern and working towards my Second Mate certificate.",
+    salary: '₹1,80,000/month',
+    location: 'Kerala → Pacific Trade',
+  },
+]
