@@ -6,7 +6,7 @@ export const FloatingWhatsAppPill: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+    <div className="fixed bottom-24 sm:bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end gap-3">
       {/* Expanded Quick Action Card */}
       <AnimatePresence>
         {isOpen && (
@@ -64,19 +64,19 @@ export const FloatingWhatsAppPill: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Main Floating Trigger Button */}
+      {/* Main Floating Trigger Button — Positioned above mobile bottom bar */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Contact Admissions"
-        className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500 text-white shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:bg-emerald-600 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+        className="group relative flex items-center justify-center w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-emerald-500 text-white shadow-[0_4px_20px_rgba(16,185,129,0.45)] hover:bg-emerald-600 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
       >
         {/* Pulse ring */}
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40"></span>
         
         {isOpen ? (
-          <X className="w-6 h-6 text-white relative z-10" />
+          <X className="w-5 sm:w-6 h-5 sm:h-6 text-white relative z-10" />
         ) : (
-          <MessageCircle className="w-7 h-7 text-white relative z-10" />
+          <MessageCircle className="w-6 sm:w-7 h-6 sm:h-7 text-white relative z-10" />
         )}
       </button>
     </div>
