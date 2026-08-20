@@ -26,7 +26,7 @@ const FAQS: FAQItem[] = [
   },
   {
     question: 'Can I join the Merchant Navy right after passing 10th Standard?',
-    answer: 'Yes! After 10th standard, you can enrol in the 6-Month General Purpose (GP) Rating pre-sea course. Upon completion, you join cargo ships as a Trainee Rating/Motorman with initial sea salaries ranging from $400 to $700/month.',
+    answer: 'Yes! After 10th standard, you can enrol in the 6-Month General Purpose (GP) Rating pre-sea course. Upon completion, you join cargo ships as a Trainee Rating/Motorman with initial sea salaries ranging from ₹35,000 to ₹60,000/month.',
     category: 'Eligibility'
   },
   {
@@ -36,7 +36,7 @@ const FAQS: FAQItem[] = [
   },
   {
     question: 'What is the starting salary after completing merchant navy training?',
-    answer: 'Trainee Deck Cadets (DNS) earn $400 to $800/month. Upon passing the 2nd Mate COC examination to become a 3rd Officer, monthly salaries range from $2,500 to $4,500/month (tax-free in international waters). Chief Engineers and Captains earn $10,000 to $15,000+/month.',
+    answer: 'Trainee Deck Cadets (DNS) earn ₹35,000 to ₹70,000/month. Upon passing the 2nd Mate COC examination to become a 3rd Officer, monthly salaries range from ₹2,00,000 to ₹3,80,000/month (tax-free in international waters). Chief Engineers and Captains earn ₹8,50,000 to ₹12,50,000+/month.',
     category: 'Career & Pay'
   }
 ];

@@ -28,8 +28,8 @@ const PATHWAYS: Pathway[] = [
     color: '#C8922A',
     eligibility: 'Pass 10th Std • Age 15–25 • 40% aggregate',
     streams: [
-      { name: 'GP Rating (Deck)', tag: 'Most Accessible', salary: '$400–$700/mo', duration: '6 Months', exam: 'DG Shipping Medical', badge: 'DG Approved' },
-      { name: 'Saloon / Engine Rating', tag: 'Engine Track', salary: '$350–$600/mo', duration: '6 Months', exam: 'Board Test' },
+      { name: 'GP Rating (Deck)', tag: 'Most Accessible', salary: '₹35,000–₹60,000/mo', duration: '6 Months', exam: 'DG Shipping Medical', badge: 'DG Approved' },
+      { name: 'Saloon / Engine Rating', tag: 'Engine Track', salary: '₹30,000–₹50,000/mo', duration: '6 Months', exam: 'Board Test' },
     ],
   },
   {
@@ -39,8 +39,8 @@ const PATHWAYS: Pathway[] = [
     color: '#E87500',
     eligibility: '10+2 PCM ≥60% • English ≥50% • Age 17–25',
     streams: [
-      { name: 'DNS / B.Sc Nautical Science', tag: '⭐ Most Popular', salary: '$1,200–$3,000/mo', duration: '3 Years (IMU-CET)', exam: 'IMU-CET + Company Sponsorship', badge: 'Highest Demand' },
-      { name: 'B.Tech Marine Engineering', tag: 'Engineering Track', salary: '$1,000–$2,500/mo', duration: '4 Years', exam: 'IMU-CET' },
+      { name: 'DNS / B.Sc Nautical Science', tag: '⭐ Most Popular', salary: '₹1,00,000–₹2,50,000/mo', duration: '3 Years (IMU-CET)', exam: 'IMU-CET + Company Sponsorship', badge: 'Highest Demand' },
+      { name: 'B.Tech Marine Engineering', tag: 'Engineering Track', salary: '₹85,000–₹2,00,000/mo', duration: '4 Years', exam: 'IMU-CET' },
     ],
   },
   {
@@ -50,9 +50,9 @@ const PATHWAYS: Pathway[] = [
     color: '#0F2C59',
     eligibility: 'BE/B.Tech Mechanical / Naval Arch ≥60%',
     streams: [
-      { name: 'GME (Graduate Marine Engineering)', tag: 'Fast Track', salary: '$1,500–$3,500/mo', duration: '1 Year', exam: 'DG Shipping Entrance + Marine Interview', badge: 'High Salary' },
-      { name: 'ETO (Electro-Technical Officer)', tag: 'Tech Specialist', salary: '$1,200–$2,800/mo', duration: '4 Months + Sea Time', exam: 'ETO Entrance' },
-      { name: 'Transport Officer (TO)', tag: 'Management Track', salary: '$800–$2,000/mo', duration: '6 Months', exam: 'IMO STCW Certification' },
+      { name: 'GME (Graduate Marine Engineering)', tag: 'Fast Track', salary: '₹1,25,000–₹3,00,000/mo', duration: '1 Year', exam: 'DG Shipping Entrance + Marine Interview', badge: 'High Salary' },
+      { name: 'ETO (Electro-Technical Officer)', tag: 'Tech Specialist', salary: '₹1,00,000–₹2,30,000/mo', duration: '4 Months + Sea Time', exam: 'ETO Entrance' },
+      { name: 'Transport Officer (TO)', tag: 'Management Track', salary: '₹70,000–₹1,60,000/mo', duration: '6 Months', exam: 'IMO STCW Certification' },
     ],
   },
   {
@@ -62,8 +62,8 @@ const PATHWAYS: Pathway[] = [
     color: '#64748B',
     eligibility: 'Diploma in Mechanical / Electrical / Marine',
     streams: [
-      { name: 'Engine Rating / Motorman', tag: 'Engine Room', salary: '$400–$750/mo', duration: '6 Months', exam: 'DG Shipping Certificate' },
-      { name: 'Electrical Rating', tag: 'Electrical Track', salary: '$400–$700/mo', duration: '4 Months', exam: 'Basic Safety STCW' },
+      { name: 'Engine Rating / Motorman', tag: 'Engine Room', salary: '₹35,000–₹65,000/mo', duration: '6 Months', exam: 'DG Shipping Certificate' },
+      { name: 'Electrical Rating', tag: 'Electrical Track', salary: '₹35,000–₹60,000/mo', duration: '4 Months', exam: 'Basic Safety STCW' },
     ],
   },
 ];
