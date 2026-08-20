@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Trophy, Building2, Star } from 'lucide-react';
-
 import { animate, stagger } from 'animejs';
 
 interface Cadet {
@@ -10,22 +9,23 @@ interface Cadet {
   company: string;
   filter: string;
   year: string;
+  avatarUrl: string;
   highlight?: string;
 }
 
 const CADETS: Cadet[] = [
-  { name: 'Kuldeep Pal',      course: 'DNS / B.Sc Nautical Science', rank: 'AIR 47 — IMU-CET', company: 'Fleet Management Ltd.', filter: 'Fleet Management', year: '2024', highlight: 'Top 50 AIR' },
-  { name: 'Pankaj Sajwan',    course: 'DNS / IMU-CET',               rank: 'AIR 112 — IMU-CET', company: 'Synergy Marine Group',  filter: 'Synergy',          year: '2024' },
-  { name: 'Madan Kala',       course: 'GP Rating',                   rank: 'Direct Sponsorship', company: 'Thome Ship Mgmt',     filter: 'Thome',            year: '2023' },
-  { name: 'Ankit Rawat',      course: 'DNS (IMU-CET)',               rank: 'AIR 89',             company: 'Synergy Marine Group', filter: 'Synergy',          year: '2024', highlight: 'Batch Topper' },
-  { name: 'Vikram Negi',      course: 'GME',                         rank: 'Direct Entry',       company: 'Columbia Shipman.',   filter: 'Columbia',         year: '2023' },
-  { name: 'Rahul Bisht',      course: 'DNS (IMU-CET)',               rank: 'AIR 203',            company: 'Fleet Management Ltd.', filter: 'Fleet Management', year: '2024' },
-  { name: 'Priyanka Negi',    course: 'B.Sc Nautical Science',       rank: 'AIR 61 — IMU-CET',  company: 'Great Eastern Shipping', filter: 'Great Eastern',  year: '2024', highlight: 'First Lady Cadet' },
-  { name: 'Deepak Koranga',   course: 'GP Rating',                   rank: 'DG Sponsor',         company: 'ESM (India) Pvt Ltd', filter: 'ESM',              year: '2023' },
-  { name: 'Saurabh Panwar',   course: 'DNS',                         rank: 'AIR 145',            company: 'Synergy Marine Group', filter: 'Synergy',          year: '2025' },
-  { name: 'Tarun Singh',      course: 'GME',                         rank: 'Direct Sponsor',     company: 'Thome Ship Mgmt',     filter: 'Thome',            year: '2025' },
-  { name: 'Harsh Chamoli',    course: 'ETO',                         rank: 'Technical Interview', company: 'OM Ship Mgmt',       filter: 'Columbia',         year: '2025' },
-  { name: 'Nitin Lohani',     course: 'DNS (IMU-CET)',               rank: 'AIR 78',             company: 'Graig Ship Mgmt',     filter: 'All',              year: '2025', highlight: 'Scholarship' },
+  { name: 'Kuldeep Pal',      course: 'DNS / B.Sc Nautical Science', rank: 'AIR 47 — IMU-CET', company: 'Fleet Management Ltd.', filter: 'Fleet Management', year: '2024', avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80', highlight: 'Top 50 AIR' },
+  { name: 'Pankaj Sajwan',    course: 'DNS / IMU-CET',               rank: 'AIR 112 — IMU-CET', company: 'Synergy Marine Group',  filter: 'Synergy',          year: '2024', avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80' },
+  { name: 'Madan Kala',       course: 'GP Rating',                   rank: 'Direct Sponsorship', company: 'Thome Ship Mgmt',     filter: 'Thome',            year: '2023', avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80' },
+  { name: 'Ankit Rawat',      course: 'DNS (IMU-CET)',               rank: 'AIR 89',             company: 'Synergy Marine Group', filter: 'Synergy',          year: '2024', avatarUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&auto=format&fit=crop&q=80', highlight: 'Batch Topper' },
+  { name: 'Vikram Negi',      course: 'GME',                         rank: 'Direct Entry',       company: 'Columbia Shipman.',   filter: 'Columbia',         year: '2023', avatarUrl: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=80' },
+  { name: 'Rahul Bisht',      course: 'DNS (IMU-CET)',               rank: 'AIR 203',            company: 'Fleet Management Ltd.', filter: 'Fleet Management', year: '2024', avatarUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&auto=format&fit=crop&q=80' },
+  { name: 'Priyanka Negi',    course: 'B.Sc Nautical Science',       rank: 'AIR 61 — IMU-CET',  company: 'Great Eastern Shipping', filter: 'Great Eastern',  year: '2024', avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80', highlight: 'First Lady Cadet' },
+  { name: 'Deepak Koranga',   course: 'GP Rating',                   rank: 'DG Sponsor',         company: 'ESM (India) Pvt Ltd', filter: 'ESM',              year: '2023', avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&auto=format&fit=crop&q=80' },
+  { name: 'Saurabh Panwar',   course: 'DNS',                         rank: 'AIR 145',            company: 'Synergy Marine Group', filter: 'Synergy',          year: '2025', avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&auto=format&fit=crop&q=80' },
+  { name: 'Tarun Singh',      course: 'GME',                         rank: 'Direct Sponsor',     company: 'Thome Ship Mgmt',     filter: 'Thome',            year: '2025', avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80' },
+  { name: 'Harsh Chamoli',    course: 'ETO',                         rank: 'Technical Interview', company: 'OM Ship Mgmt',       filter: 'Columbia',         year: '2025', avatarUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80' },
+  { name: 'Nitin Lohani',     course: 'DNS (IMU-CET)',               rank: 'AIR 78',             company: 'Graig Ship Mgmt',     filter: 'All',              year: '2025', avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80', highlight: 'Scholarship' },
 ];
 
 const FILTERS = ['All Selections', 'Synergy', 'Fleet Management', 'Thome', 'Columbia', 'Great Eastern', 'ESM'];
@@ -106,15 +106,28 @@ export const SelectionWall: React.FC = () => {
           {displayed.map((cadet, idx) => (
             <div
               key={`${cadet.name}-${idx}`}
-              className="glass-card rounded-xl p-4 sm:p-5 border border-white/10 hover:border-[#C8922A]/40 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group"
+              className="glass-card rounded-2xl p-4 sm:p-5 border border-white/10 hover:border-[#C8922A]/40 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group"
             >
               {cadet.highlight && (
-                <div className="absolute top-3 right-3">
-                  <span className="text-[9px] font-black text-[#D4A840] bg-[#C8922A]/15 px-2 py-0.5 rounded-full border border-[#C8922A]/30">
+                <div className="absolute top-3 right-3 z-10">
+                  <span className="text-[9px] font-black text-[#D4A840] bg-[#C8922A]/20 px-2 py-0.5 rounded-full border border-[#C8922A]/40">
                     {cadet.highlight}
                   </span>
                 </div>
               )}
+
+              {/* Cadet Header with Avatar */}
+              <div className="flex items-center gap-3 mb-3">
+                <img
+                  src={cadet.avatarUrl}
+                  alt={cadet.name}
+                  className="w-12 h-12 rounded-full object-cover border-2 border-[#C8922A]/60 shadow-md shrink-0"
+                />
+                <div className="min-w-0 flex-1">
+                  <h4 className="font-bold text-white text-sm truncate">{cadet.name}</h4>
+                  <p className="text-[10px] text-slate-400 truncate">{cadet.course} · {cadet.year}</p>
+                </div>
+              </div>
 
               {/* Stars */}
               <div className="flex gap-0.5 mb-3">
@@ -123,10 +136,7 @@ export const SelectionWall: React.FC = () => {
                 ))}
               </div>
 
-              <h4 className="font-bold text-white text-sm sm:text-base mb-0.5">{cadet.name}</h4>
-              <p className="text-[10px] text-slate-400 mb-3">{cadet.course} · {cadet.year}</p>
-
-              <div className="space-y-1.5">
+              <div className="space-y-1.5 pt-2 border-t border-white/10">
                 <div className="flex items-center gap-2">
                   <Trophy className="w-3 h-3 text-[#C8922A] shrink-0" />
                   <span className="text-[10px] font-semibold text-[#D4A840]">{cadet.rank}</span>

@@ -38,13 +38,23 @@ export const WhyChooseSection: React.FC = () => {
           </p>
         </div>
 
-        {/* ── High-End Bento Grid ── */}
+        {/* ── High-End Bento Grid with Stock Media ── */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
 
           {/* Bento Card 1: Featured 7-Column Span */}
           <div
-            className="md:col-span-7 bento-card-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden"
+            className="md:col-span-7 bento-card-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group"
           >
+            {/* Stock background overlay */}
+            <div className="absolute inset-0 z-0">
+              <img
+                src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1000&auto=format&fit=crop&q=80"
+                alt="DG Shipping Guidance"
+                className="w-full h-full object-cover opacity-15 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060F1E] via-[#060F1E]/90 to-[#060F1E]/70" />
+            </div>
+
             <div className="space-y-4 relative z-10 text-left">
               <div className="flex items-center justify-between">
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-[#E87500] text-white flex items-center justify-center shadow-lg">
@@ -80,7 +90,7 @@ export const WhyChooseSection: React.FC = () => {
             </div>
 
             {/* Bottom highlight bar */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 relative z-10">
               <span className="flex items-center gap-1.5 text-amber-300 font-semibold">
                 <Sparkles className="w-3.5 h-3.5" /> Zero false promises
               </span>
@@ -90,9 +100,19 @@ export const WhyChooseSection: React.FC = () => {
 
           {/* Bento Card 2: 5-Column Span (Selection Track Record) */}
           <div
-            className="md:col-span-5 bento-card-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden bg-gradient-to-br from-[#0F2C59]/60 to-[#0A1E3F]/80"
+            className="md:col-span-5 bento-card-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group bg-gradient-to-br from-[#0F2C59]/60 to-[#0A1E3F]/80"
           >
-            <div className="space-y-4 text-left">
+            {/* Stock background overlay */}
+            <div className="absolute inset-0 z-0">
+              <img
+                src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&auto=format&fit=crop&q=80"
+                alt="Seamanship & Placement Record"
+                className="w-full h-full object-cover opacity-15 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1E3F] via-[#0A1E3F]/85 to-[#0F2C59]/70" />
+            </div>
+
+            <div className="space-y-4 text-left relative z-10">
               <div className="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-400/30 flex items-center justify-center">
                 <Trophy className="w-6 h-6" />
               </div>
@@ -122,7 +142,7 @@ export const WhyChooseSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 text-[11px] text-slate-400 flex items-center gap-2">
+            <div className="mt-6 pt-4 border-t border-white/10 text-[11px] text-slate-400 flex items-center gap-2 relative z-10">
               <Award className="w-4 h-4 text-[#E87500]" />
               <span>Highest DNS &amp; GME Selections in Uttarakhand</span>
             </div>
@@ -130,9 +150,19 @@ export const WhyChooseSection: React.FC = () => {
 
           {/* Bento Card 3: 5-Column Span (Full-Spectrum Prep & Simulators) */}
           <div
-            className="md:col-span-5 bento-card-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between"
+            className="md:col-span-5 bento-card-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group"
           >
-            <div className="space-y-4 text-left">
+            {/* Stock background overlay */}
+            <div className="absolute inset-0 z-0">
+              <img
+                src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80"
+                alt="Simulator Training"
+                className="w-full h-full object-cover opacity-15 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060F1E] via-[#060F1E]/90 to-[#060F1E]/75" />
+            </div>
+
+            <div className="space-y-4 text-left relative z-10">
               <div className="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 border border-blue-400/30 flex items-center justify-center">
                 <Navigation className="w-6 h-6" />
               </div>
@@ -154,7 +184,7 @@ export const WhyChooseSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 text-xs text-slate-400 flex items-center gap-2">
+            <div className="mt-6 pt-4 border-t border-white/10 text-xs text-slate-400 flex items-center gap-2 relative z-10">
               <BookOpen className="w-4 h-4 text-amber-400" />
               <span>Updated 2024-2025 Company Syllabus</span>
             </div>
@@ -162,9 +192,19 @@ export const WhyChooseSection: React.FC = () => {
 
           {/* Bento Card 4: 7-Column Span (Mentorship Quote & Cadets-First Philosophy) */}
           <div
-            className="md:col-span-7 bento-card-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-l-4 border-l-amber-500 bg-gradient-to-r from-white/05 to-white/02"
+            className="md:col-span-7 bento-card-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-l-4 border-l-amber-500 bg-gradient-to-r from-white/05 to-white/02 relative overflow-hidden group"
           >
-            <div className="space-y-4 text-left">
+            {/* Stock background overlay */}
+            <div className="absolute inset-0 z-0">
+              <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1000&auto=format&fit=crop&q=80"
+                alt="Mentorship Philosophy"
+                className="w-full h-full object-cover opacity-10 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060F1E] via-[#060F1E]/90 to-[#060F1E]/80" />
+            </div>
+
+            <div className="space-y-4 text-left relative z-10">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
                   <Users2 className="w-5 h-5" />
@@ -180,7 +220,7 @@ export const WhyChooseSection: React.FC = () => {
               </blockquote>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+            <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400 relative z-10">
               <div className="flex items-center gap-2">
                 <Anchor className="w-4 h-4 text-amber-400" />
                 <span className="text-slate-300 font-medium">Lifetime Cadets Alumni Network</span>

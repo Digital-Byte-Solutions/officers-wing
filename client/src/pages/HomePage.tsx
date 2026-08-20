@@ -6,8 +6,9 @@ import { ProspectusDownloadCard } from '../components/sections/ProspectusDownloa
 import { WhyChooseSection } from '../components/sections/WhyChooseSection';
 import { FacultySection } from '../components/sections/FacultySection';
 import { CoursesSection } from '../components/sections/CoursesSection';
+import { CampusLifeSection } from '../components/sections/CampusLifeSection';
 import { SelectionWall } from '../components/sections/SelectionWall';
-import { CampusLifeGallery } from '../components/sections/CampusLifeGallery';
+import { LifeAtSeaSection } from '../components/sections/LifeAtSeaSection';
 import { PlacementsSection } from '../components/sections/PlacementsSection';
 import { BatchCalendar } from '../components/sections/BatchCalendar';
 import { FAQSection } from '../components/sections/FAQSection';
@@ -49,48 +50,51 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquire }) => {
       {/* 4. Prospectus Download Lead Magnet */}
       <ProspectusDownloadCard />
 
-      {/* 5. Why Choose Officers Wing */}
+      {/* 5. Why Choose Officers Wing (With Stock Media Bento Cards) */}
       <div id="why-choose-section">
         <WhyChooseSection />
       </div>
 
-      {/* 6. Expert Faculty & Master Mariners */}
+      {/* 6. Campus Life & Simulator Facilities Showcase (PROMINENT MEDIA SECTION) */}
+      <CampusLifeSection />
+
+      {/* 7. Expert Faculty & Master Mariners */}
       <div id="faculty-section">
         <FacultySection />
       </div>
 
-      {/* 7. Courses Section */}
+      {/* 8. Courses Section (With Stock Image Headers) */}
       <div id="courses-section">
         <CoursesSection />
       </div>
 
-      {/* 8. Selection Wall */}
+      {/* 9. Life at Sea & Commercial Cargo Fleets Showcase (PROMINENT MEDIA SECTION) */}
+      <LifeAtSeaSection />
+
+      {/* 10. Cadet Selection Wall (With Cadet Avatars) */}
       <div id="selection-wall-section">
         <SelectionWall />
       </div>
 
-      {/* 9. Life at Officers Wing — Campus & Simulator Gallery */}
-      <CampusLifeGallery />
-
-      {/* 10. Alumni Placements & Video Testimonials */}
+      {/* 11. Alumni Placements & Video Testimonials */}
       <div id="placements-section">
         <PlacementsSection />
       </div>
 
-      {/* 11. Live Batch Calendar */}
+      {/* 12. Live Batch Calendar */}
       <div id="batch-calendar-section">
         <BatchCalendar />
       </div>
 
-      {/* 12. Frequently Asked Questions (FAQ) */}
+      {/* 13. Frequently Asked Questions (FAQ) */}
       <FAQSection />
 
-      {/* 13. Founder's Message */}
+      {/* 14. Founder's Message */}
       <div id="founder-section">
         <FounderSection />
       </div>
 
-      {/* 14. Footer */}
+      {/* 15. Footer */}
       <div id="footer-section">
         <Footer />
       </div>
