@@ -4,9 +4,27 @@ import { ChevronLeft, ChevronRight, Quote, Building2, Star, Play, X, CheckCircle
 import { shippingCompanies, testimonialsData } from '../../data/placementsData';
 
 const VIDEO_TESTIMONIALS = [
-  { name: 'Pankaj Sajwan', course: 'DNS Cadet — Synergy Marine', thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', ytId: 'dQw4w9WgXcQ', quote: 'Officers Wing changed my life completely. From struggling with PCM to getting AIR 112 in IMU-CET!' },
-  { name: 'Kuldeep Pal', course: 'DNS — Fleet Management Ltd.', thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', ytId: 'dQw4w9WgXcQ', quote: 'Capt. Anurag Sir\'s mentorship is unparalleled. He personally guided me through every step.' },
-  { name: 'Priyanka Negi', course: 'B.Sc Nautical Science — Great Eastern', thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', ytId: 'dQw4w9WgXcQ', quote: 'As the first female cadet from Uttarakhand in this batch, I am proud to represent Officers Wing.' },
+  {
+    name: 'Pankaj Sajwan',
+    course: 'DNS Cadet — Synergy Marine Group',
+    thumb: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&auto=format&fit=crop&q=80',
+    ytId: 'L_LUpnjgPso',
+    quote: 'Officers Wing changed my life completely. From struggling with PCM to getting AIR 112 in IMU-CET!'
+  },
+  {
+    name: 'Kuldeep Pal',
+    course: 'DNS Cadet — Fleet Management Ltd.',
+    thumb: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600&auto=format&fit=crop&q=80',
+    ytId: 'd-diB65scQU',
+    quote: 'Capt. Anurag Sir\'s mentorship is unparalleled. He personally guided me through every step.'
+  },
+  {
+    name: 'Priyanka Negi',
+    course: 'B.Sc Nautical Science — Great Eastern',
+    thumb: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80',
+    ytId: 'vS3_728-E3E',
+    quote: 'As the first female cadet from Uttarakhand in this batch, I am proud to represent Officers Wing.'
+  },
 ];
 
 

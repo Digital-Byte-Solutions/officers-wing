@@ -157,12 +157,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreCourses, onCh
                 <p className="text-slate-400 text-[10px]">Dehradun, Uttarakhand — See Our Facilities & Faculty</p>
               </div>
             </div>
-            {/* YouTube Embed Placeholder — Replace src with actual campus tour video ID */}
+            {/* Campus & Maritime Academy Tour YouTube Video Embed */}
             <div className="relative pt-[56.25%] bg-black">
               <iframe
                 className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
-                title="Officers Wing Campus Tour"
+                src="https://www.youtube.com/embed/L_LUpnjgPso?autoplay=1&rel=0"
+                title="Officers Wing Campus & Maritime Academy Tour"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
