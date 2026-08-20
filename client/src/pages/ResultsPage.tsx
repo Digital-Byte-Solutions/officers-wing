@@ -1,21 +1,26 @@
 import React from 'react';
 import { PlacementsSection } from '../components/sections/PlacementsSection';
 import { Footer } from '../components/layout/Footer';
-import { Trophy } from 'lucide-react';
+import { Trophy, Award, Building2, CheckCircle2 } from 'lucide-react';
 
 export const ResultsPage: React.FC = () => {
   return (
-    <div className="pt-28 min-h-screen bg-white text-slate-800">
+    <div className="pt-20 sm:pt-24 min-h-screen bg-white text-slate-800">
       {/* Top Banner */}
-      <div className="page-banner bg-[#060F1E] text-white py-20 px-6 text-center">
-        <div className="max-w-4xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase">
-            <Trophy className="w-4 h-4" /> Proven Track Record
+      <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(200, 146, 42, 0.3) 0%, transparent 70%)' }}
+        />
+        <div className="relative z-10 max-w-4xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <Trophy className="w-3.5 h-3.5 text-amber-400" />
+            Proven Selection Record
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-serif-heading">
-            Alumni Selections & Placements
+          <h1 className="text-3xl sm:text-5xl font-black font-display text-white">
+            Alumni Selections &amp; Placements
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Hundreds of Officers Wing cadets actively serving on international commercial vessels across the globe.
           </p>
         </div>
@@ -25,29 +30,53 @@ export const ResultsPage: React.FC = () => {
       <PlacementsSection />
 
       {/* Batch Placement Highlights */}
-      <div className="py-16 bg-slate-50 border-t border-slate-200 text-left">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-2xl font-bold text-[#0F2C59] mb-8 font-serif-heading text-center">
-            Recent Selection Highlights (2023 - 2024)
-          </h2>
+      <div className="py-16 sm:py-20 bg-[#F8FAFC] border-t border-slate-200 text-left">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="text-center mb-10">
+            <span className="section-label section-label-light mb-2">
+              <Award className="w-3.5 h-3.5 text-[#0A1E3F]" />
+              Verified Company Drives
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-[#0A1E3F] font-display">
+              Recent Selection Highlights
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
-              <div className="text-3xl font-extrabold text-[#E87500]">45+ Cadets</div>
-              <div className="font-bold text-sm text-[#0F2C59]">Selected at Fleet Management Ltd</div>
-              <p className="text-xs text-slate-600">Highest selections in Dehradun region for DNS and GME batches.</p>
+            <div className="bento-card-light rounded-3xl p-6 sm:p-7 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-black font-display text-[#E87500]">45+ Cadets</span>
+                <Building2 className="w-6 h-6 text-[#0A1E3F]" />
+              </div>
+              <div className="font-bold text-sm text-[#0A1E3F]">Selected at Fleet Management Ltd</div>
+              <p className="text-xs text-slate-600 leading-relaxed">Highest selections in Dehradun region for DNS and GME batches.</p>
+              <div className="pt-2 flex items-center gap-1.5 text-[11px] text-emerald-600 font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5" /> 100% Joining Clearance
+              </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
-              <div className="text-3xl font-extrabold text-[#E87500]">38 Cadets</div>
-              <div className="font-bold text-sm text-[#0F2C59]">Selected at Synergy Marine Group</div>
-              <p className="text-xs text-slate-600">Cleared IMU-CET written exam & oral interviews in first attempt.</p>
+            <div className="bento-card-light rounded-3xl p-6 sm:p-7 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-black font-display text-[#E87500]">38 Cadets</span>
+                <Building2 className="w-6 h-6 text-[#0A1E3F]" />
+              </div>
+              <div className="font-bold text-sm text-[#0A1E3F]">Selected at Synergy Marine Group</div>
+              <p className="text-xs text-slate-600 leading-relaxed">Cleared IMU-CET written exam &amp; oral interviews in first attempt.</p>
+              <div className="pt-2 flex items-center gap-1.5 text-[11px] text-emerald-600 font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5" /> Direct Deck Cadet Sponsorship
+              </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
-              <div className="text-3xl font-extrabold text-[#E87500]">29 Cadets</div>
-              <div className="font-bold text-sm text-[#0F2C59]">Selected at Thome & ESM</div>
-              <p className="text-xs text-slate-600">Specialized GME and ETO cadet sponsorships secured.</p>
+            <div className="bento-card-light rounded-3xl p-6 sm:p-7 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-black font-display text-[#E87500]">29 Cadets</span>
+                <Building2 className="w-6 h-6 text-[#0A1E3F]" />
+              </div>
+              <div className="font-bold text-sm text-[#0A1E3F]">Selected at Thome &amp; ESM</div>
+              <p className="text-xs text-slate-600 leading-relaxed">Specialized GME and ETO cadet sponsorships secured.</p>
+              <div className="pt-2 flex items-center gap-1.5 text-[11px] text-emerald-600 font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5" /> Junior Engineer Placement
+              </div>
             </div>
           </div>
         </div>

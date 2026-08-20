@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
 import { Calculator, CheckCircle2, AlertTriangle, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { motion } from 'framer-motion';
 
 export const ToolsPage: React.FC = () => {
   // Eligibility Calculator State
@@ -57,30 +56,31 @@ export const ToolsPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-28 min-h-screen bg-slate-50 text-slate-800 text-left">
+    <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800 text-left">
       {/* Header Banner */}
-      <div className="page-banner bg-[#060F1E] text-white py-20 px-6 text-center">
-        <div className="max-w-4xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase">
-            <Calculator className="w-4 h-4" /> Pre-Medical & Eligibility Calculators
+      <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(200, 146, 42, 0.3) 0%, transparent 70%)' }}
+        />
+        <div className="relative z-10 max-w-4xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <Calculator className="w-3.5 h-3.5 text-amber-400" />
+            Pre-Medical &amp; Eligibility Calculators
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-serif-heading">
+          <h1 className="text-3xl sm:text-5xl font-black font-display text-white">
             Instant Qualification Tools
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Evaluate your merchant navy eligibility and medical fitness against DG Shipping rules instantly.
           </p>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-14 space-y-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 py-10 sm:py-14 space-y-12 sm:space-y-16">
         
         {/* Tool 1: Eligibility Wizard */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="bg-white p-8 rounded-2xl border border-slate-200 shadow-md"
         >
           <div className="flex items-center gap-2.5 mb-2">
@@ -133,21 +133,17 @@ export const ToolsPage: React.FC = () => {
             </div>
 
             <div className="md:col-span-3 pt-2">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <button
                 type="submit"
                 className="w-full sm:w-auto bg-[#0F2C59] hover:bg-[#1A3D73] text-white text-xs font-bold px-8 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <Sparkles className="w-4 h-4 text-amber-300" /> Evaluate Eligibility Now
-              </motion.button>
+              </button>
             </div>
           </form>
 
           {eligibilityResult && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+            <div
               className="mt-6 p-5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-start gap-3 shadow-sm"
             >
               <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
@@ -155,16 +151,12 @@ export const ToolsPage: React.FC = () => {
                 <div className="font-bold text-sm">Evaluation Result:</div>
                 <div className="text-xs font-semibold mt-0.5">{eligibilityResult}</div>
               </div>
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+        </div>
 
         {/* Tool 2: Medical BMI Gauge Calculator */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+        <div
           className="bg-white p-8 rounded-2xl border border-slate-200 shadow-md"
         >
           <div className="flex items-center gap-2.5 mb-2">
@@ -220,7 +212,7 @@ export const ToolsPage: React.FC = () => {
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
 
       </div>
 

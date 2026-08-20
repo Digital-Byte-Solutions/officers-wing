@@ -39,24 +39,29 @@ export const BlogPage: React.FC = () => {
   ];
 
   return (
-    <div className="pt-28 min-h-screen bg-slate-50 text-slate-800">
+    <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
       {/* Top Banner */}
-      <div className="page-banner bg-[#060F1E] text-white py-20 px-6 text-center">
-        <div className="max-w-4xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase">
-            <BookOpen className="w-4 h-4" /> Merchant Navy Knowledge Hub
+      <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(200, 146, 42, 0.3) 0%, transparent 70%)' }}
+        />
+        <div className="relative z-10 max-w-4xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <BookOpen className="w-3.5 h-3.5 text-amber-400" />
+            Merchant Navy Knowledge Hub
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-serif-heading">
-            Latest Articles & Exam Guidance
+          <h1 className="text-3xl sm:text-5xl font-black font-display text-white">
+            Latest Articles &amp; Exam Guidance
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Expert insights, IMU-CET preparation guides, and career roadmaps written by Master Mariners.
           </p>
         </div>
       </div>
 
       {/* Blog Cards Grid */}
-      <div className="max-w-6xl mx-auto px-6 py-14">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 py-10 sm:py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {posts.map((post) => (
             <article key={post.id} className="bg-white p-7 rounded-xl border border-slate-200 card-hover-effect flex flex-col justify-between space-y-4 text-left">

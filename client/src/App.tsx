@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 import { Header } from './components/layout/Header';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { EnquiryModal } from './components/layout/EnquiryModal';
 import { PageTransition } from './components/layout/PageTransition';
 
@@ -33,7 +34,7 @@ export function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-white font-sans text-slate-800 flex flex-col selection:bg-[#E87500] selection:text-white">
+      <div className="min-h-screen bg-white font-sans text-slate-800 flex flex-col selection:bg-[#E87500] selection:text-white pb-16 lg:pb-0">
         {/* Global Morphing Header */}
         <Header onOpenEnquire={() => setIsEnquireOpen(true)} />
 
@@ -54,12 +55,16 @@ export function App() {
               <Route path="/results" element={<ResultsPage />} />
               <Route path="/admission" element={<AdmissionPage onOpenEnquire={() => setIsEnquireOpen(true)} />} />
               <Route path="/tools" element={<ToolsPage />} />
+              <Route path="/calculators" element={<ToolsPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/student-dashboard" element={<StudentDashboardPage />} />
             </Routes>
           </PageTransition>
         </main>
+
+        {/* App-like Mobile Bottom Navigation Bar */}
+        <MobileBottomNav onOpenEnquire={() => setIsEnquireOpen(true)} />
       </div>
     </Router>
   );
