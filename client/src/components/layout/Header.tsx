@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Anchor, Menu, X, Phone, Mail, Globe, Share2, MessageCircle, Sparkles, ChevronRight, Award } from 'lucide-react';
+import { Anchor, Menu, X, Phone, Mail, MessageCircle, Sparkles, ChevronRight, Award } from 'lucide-react';
+import { InstagramIcon } from '../common/InstagramIcon';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeaderProps {
@@ -71,11 +72,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
           <div className="hidden lg:block bg-[#0F2C59] text-white text-xs py-1.5 px-6 border-b border-navy-dark transition-all duration-300">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
               <div className="flex items-center space-x-4">
-                <a href="tel:+919149081578" className="flex items-center gap-1 text-white/90 hover:text-[#F59E0B] transition-colors">
+                <a href="tel:+919149081578" className="flex items-center gap-1.5 text-white/90 hover:text-[#F59E0B] transition-colors font-medium">
                   <Phone className="w-3.5 h-3.5 text-[#F59E0B]" /> +91 91490 81578
                 </a>
                 <span className="text-white/40">|</span>
-                <a href="tel:+919557381578" className="flex items-center gap-1 text-white/90 hover:text-[#F59E0B] transition-colors">
+                <a href="tel:+919557381578" className="flex items-center gap-1.5 text-white/90 hover:text-[#F59E0B] transition-colors font-medium">
                   +91 95573 81578
                 </a>
                 <span className="text-white/40">|</span>
@@ -92,14 +93,18 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
                 <span>DG Shipping Approved Guidance Academy — Dehradun</span>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-white/80 hover:text-[#F59E0B] transition-colors" title="Facebook">
-                  <Globe className="w-3.5 h-3.5" />
+              <div className="flex items-center space-x-3.5">
+                <a
+                  href="https://instagram.com/officerswing"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 text-white/90 hover:text-pink-400 transition-colors font-semibold"
+                  title="Follow us on Instagram @officerswing"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5 text-pink-400" />
+                  <span className="text-[11px]">@officerswing</span>
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-white/80 hover:text-[#F59E0B] transition-colors" title="Twitter">
-                  <Share2 className="w-3.5 h-3.5" />
-                </a>
-                <a href="https://wa.me/919557381578" target="_blank" rel="noreferrer" className="text-white/80 hover:text-emerald-400 transition-colors" title="WhatsApp">
+                <a href="https://wa.me/919149081578" target="_blank" rel="noreferrer" className="text-white/80 hover:text-emerald-400 transition-colors" title="WhatsApp">
                   <MessageCircle className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -311,14 +316,33 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
 
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <a
-                    href="tel:+919557381578"
-                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white/05 border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
+                    href="tel:+919149081578"
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-white/05 border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5 text-[#E87500]" />
-                    <span>Direct Call</span>
+                    <span>9149081578</span>
                   </a>
                   <a
-                    href="https://wa.me/919557381578"
+                    href="tel:+919557381578"
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-white/05 border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[#E87500]" />
+                    <span>9557381578</span>
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <a
+                    href="https://instagram.com/officerswing"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-pink-950/40 border border-pink-500/30 text-pink-300 font-semibold hover:bg-pink-900/40 transition-colors"
+                  >
+                    <InstagramIcon className="w-3.5 h-3.5 text-pink-400" />
+                    <span>@officerswing</span>
+                  </a>
+                  <a
+                    href="https://wa.me/919149081578"
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 font-semibold hover:bg-emerald-900/40 transition-colors"
