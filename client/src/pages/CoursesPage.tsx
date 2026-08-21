@@ -28,6 +28,18 @@ export const CoursesPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Official Course Roadmap Banner */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 -mt-8 relative z-20">
+        <div className="rounded-3xl overflow-hidden border-2 border-amber-400/40 shadow-2xl bg-[#060F1E]">
+          <img
+            src="/images/officers_wing_banner.jpg"
+            alt="Officers Wing Academy Pre-Sea Course Pathways"
+            className="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
       {/* Main Grid */}
       <CoursesSection />
 

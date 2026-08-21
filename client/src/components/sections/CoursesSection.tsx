@@ -1,30 +1,7 @@
 import React, { useState } from 'react';
-import { GraduationCap, Star, Clock, Award, Compass, CheckCircle2, ChevronRight, Anchor, Navigation, Wrench, Zap } from 'lucide-react';
+import { GraduationCap, Star, Clock, Award, Compass, CheckCircle2, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { coursesData } from '../../data/coursesData';
-
-const COURSE_CONFIG: Record<string, { icon: React.ElementType; gradient: string; symbol: string }> = {
-  'after-10th-gp-rating': {
-    icon: Anchor,
-    gradient: 'from-amber-950 via-[#0A1E3F] to-[#060F1E]',
-    symbol: '⚓ GP RATING & DECK SEAMANSHIP ⚓'
-  },
-  'after-12th-imucet-dns': {
-    icon: Navigation,
-    gradient: 'from-blue-950 via-indigo-950 to-[#060F1E]',
-    symbol: '🧭 DNS NAUTICAL SCIENCE & IMU-CET 🧭'
-  },
-  'graduate-gme': {
-    icon: Wrench,
-    gradient: 'from-slate-900 via-[#0A1E3F] to-[#060F1E]',
-    symbol: '⚙️ GME MARINE ENGINEERING ⚙️'
-  },
-  'graduate-eto': {
-    icon: Zap,
-    gradient: 'from-[#0A1E3F] via-blue-950 to-[#060F1E]',
-    symbol: '⚡ ETO ELECTRO-TECHNICAL OFFICER ⚡'
-  }
-};
 
 export const CoursesSection: React.FC = () => {
   const navigate = useNavigate();
@@ -40,7 +17,7 @@ export const CoursesSection: React.FC = () => {
 
   return (
     <section className="relative w-full py-20 sm:py-28 bg-[#EFF4FA] overflow-hidden">
-      {/* Background Decorative Blobs */}
+      {/* Background Decorative Blob */}
       <div
         className="absolute top-0 right-0 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] pointer-events-none rounded-full"
         style={{ background: 'radial-gradient(circle, rgba(15, 44, 89, 0.05) 0%, transparent 70%)' }}
@@ -92,102 +69,86 @@ export const CoursesSection: React.FC = () => {
 
         {/* ── Cards Grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredCourses.map((course) => {
-            const config = COURSE_CONFIG[course.id] || {
-              icon: GraduationCap,
-              gradient: 'from-[#0A1E3F] to-[#060F1E]',
-              symbol: '⚓ MARITIME ACADEMY ⚓'
-            };
-            const CourseIcon = config.icon;
-
-            return (
-              <div
-                key={course.id}
-                className={`bento-card-light rounded-3xl flex flex-col justify-between overflow-hidden group relative transition-all duration-300 bg-white ${
-                  course.isHighlighted
-                    ? 'border-2 border-[#E87500] shadow-xl ring-4 ring-[#E87500]/10'
-                    : 'hover:border-slate-300 shadow-md hover:shadow-xl'
-                }`}
-              >
-                {/* Highlighted Banner */}
-                {course.isHighlighted && (
-                  <div className="bg-gradient-to-r from-[#E87500] to-[#F59E0B] text-white text-[10px] font-extrabold px-3 py-1.5 flex items-center justify-center gap-1.5 uppercase tracking-wider shadow-sm z-10">
-                    <Star className="w-3.5 h-3.5 fill-white" />
-                    Most Popular Cadet Pathway
-                  </div>
-                )}
-
-                {/* Self-Contained Visual Media Banner (No broken external image URLs) */}
-                <div className={`relative h-44 w-full overflow-hidden bg-gradient-to-br ${config.gradient} p-4 flex flex-col justify-between text-white border-b border-white/10`}>
-                  <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center font-black text-[10px] text-white uppercase tracking-widest text-center px-2">
-                    {config.symbol}
-                  </div>
-
-                  <div className="relative z-10 flex items-center justify-between">
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-300 bg-[#060F1E]/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-amber-400/30">
-                      {course.title}
-                    </span>
-                    <div className="w-8 h-8 rounded-xl bg-[#E87500] flex items-center justify-center shadow-md">
-                      <CourseIcon className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
-
-                  <div className="relative z-10">
-                    <h4 className="font-display text-sm font-bold text-amber-300 leading-tight">
-                      {course.category}
-                    </h4>
-                  </div>
+          {filteredCourses.map((course) => (
+            <div
+              key={course.id}
+              className={`bento-card-light rounded-3xl flex flex-col justify-between overflow-hidden group relative transition-all duration-300 ${
+                course.isHighlighted
+                  ? 'border-2 border-[#E87500] shadow-xl ring-4 ring-[#E87500]/10'
+                  : 'hover:border-slate-300'
+              }`}
+            >
+              {/* Highlighted Banner */}
+              {course.isHighlighted && (
+                <div className="bg-gradient-to-r from-[#E87500] to-[#F59E0B] text-white text-[10px] font-extrabold px-3 py-1.5 flex items-center justify-center gap-1.5 uppercase tracking-wider shadow-sm">
+                  <Star className="w-3.5 h-3.5 fill-white" />
+                  Most Popular Cadet Pathway
                 </div>
+              )}
 
-                {/* Card Body */}
-                <div className="p-5 sm:p-6 flex flex-col items-start gap-3.5 flex-1 text-left">
-                  {/* Course Subtitle */}
-                  <div>
-                    <p className="text-xs text-slate-600 font-semibold leading-relaxed">
-                      {course.description}
-                    </p>
-                  </div>
-
-                  {/* Metadata Pills */}
-                  <div className="w-full space-y-2 pt-1 border-t border-slate-100">
-                    <div className="flex items-center gap-2 text-xs text-slate-600">
-                      <Clock className="w-3.5 h-3.5 text-[#E87500] shrink-0" />
-                      <span className="font-semibold text-slate-700">{course.duration}</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-600">
-                      <Award className="w-3.5 h-3.5 text-[#C8922A] shrink-0 mt-0.5" />
-                      <span className="text-[11px] leading-tight text-slate-500 line-clamp-2">{course.eligibility}</span>
-                    </div>
-                  </div>
-
-                  {/* Highlights List */}
-                  <div className="w-full space-y-1.5 pt-1">
-                    {course.highlights.slice(0, 3).map((hl, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                        <span className="text-[11px] font-medium">{hl}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Card Footer Actions */}
-                <div className="p-5 sm:p-6 pt-0 space-y-2">
-                  <button
-                    onClick={() => navigate(`/courses/${course.id}`)}
-                    className={`w-full text-xs font-bold py-3.5 rounded-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-1.5 shadow-sm group-hover:shadow-md ${
-                      course.isHighlighted
-                        ? 'btn-glow-orange text-white'
-                        : 'bg-[#0A1E3F] hover:bg-[#0F2C59] text-white'
-                    }`}
+              <div className="p-6 sm:p-7 flex flex-col items-start gap-4 flex-1 text-left">
+                {/* Pathway Tag & Icon */}
+                <div className="w-full flex items-center justify-between">
+                  <div
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform"
+                    style={{ background: 'linear-gradient(135deg, #0A1E3F 0%, #0F2C59 100%)' }}
                   >
-                    <span>View Full Syllabus</span>
-                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </button>
+                    <GraduationCap className="w-6 h-6 text-amber-400" />
+                  </div>
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0A1E3F] bg-blue-50 border border-blue-200/80 px-2.5 py-1 rounded-full">
+                    {course.title}
+                  </span>
+                </div>
+
+                {/* Course Name */}
+                <div>
+                  <h3 className="font-display text-xl font-bold text-[#0A1E3F] leading-snug group-hover:text-[#E87500] transition-colors">
+                    {course.category}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium mt-1">
+                    {course.subtitle}
+                  </p>
+                </div>
+
+                {/* Metadata Pills */}
+                <div className="w-full space-y-2 pt-1 border-t border-slate-100">
+                  <div className="flex items-center gap-2 text-xs text-slate-600">
+                    <Clock className="w-3.5 h-3.5 text-[#E87500] shrink-0" />
+                    <span className="font-semibold text-slate-700">{course.duration}</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-slate-600">
+                    <Award className="w-3.5 h-3.5 text-[#C8922A] shrink-0 mt-0.5" />
+                    <span className="text-[11px] leading-tight text-slate-500 line-clamp-2">{course.eligibility}</span>
+                  </div>
+                </div>
+
+                {/* Highlights List */}
+                <div className="w-full space-y-1.5 pt-2">
+                  {course.highlights.slice(0, 3).map((hl, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                      <span className="text-[11px] font-medium">{hl}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            );
-          })}
+
+              {/* Card Footer Actions */}
+              <div className="p-6 sm:p-7 pt-0 space-y-2">
+                <button
+                  onClick={() => navigate(`/courses/${course.id}`)}
+                  className={`w-full text-xs font-bold py-3.5 rounded-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-1.5 shadow-sm group-hover:shadow-md ${
+                    course.isHighlighted
+                      ? 'btn-glow-orange text-white'
+                      : 'bg-[#0A1E3F] hover:bg-[#0F2C59] text-white'
+                  }`}
+                >
+                  <span>View Full Syllabus</span>
+                  <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Bottom Helper Note */}
