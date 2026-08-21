@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Anchor, Menu, X, Phone, Mail, MessageCircle, Sparkles, ChevronRight, Award } from 'lucide-react';
+import { Menu, X, Phone, Mail, MessageCircle, Sparkles, ChevronRight } from 'lucide-react';
 import { InstagramIcon } from '../common/InstagramIcon';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -124,14 +124,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
             <div className="max-w-7xl mx-auto flex items-center justify-between w-full">
               {/* Brand Logo */}
               <Link to="/" onClick={handleHomeClick} className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer shrink-0">
-                <div
-                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-md ${
-                    isScrolled
-                      ? 'bg-[#E87500] text-white group-hover:scale-105'
-                      : 'bg-[#0F2C59] text-white group-hover:bg-[#E87500]'
-                  }`}
-                >
-                  <Anchor className="w-5 h-5" />
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border-2 border-amber-400/60 shadow-md group-hover:scale-105 transition-transform bg-black shrink-0">
+                  <img
+                    src="/images/logo.jpg"
+                    alt="Officers Wing Official Academy Logo"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="flex flex-col text-left">
                   <span
@@ -143,10 +141,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
                   </span>
                   <span
                     className={`text-[8px] sm:text-[9px] uppercase tracking-widest font-bold ${
-                      isScrolled ? 'text-slate-300' : 'text-slate-500'
+                      isScrolled ? 'text-amber-300' : 'text-[#C8922A]'
                     }`}
                   >
-                    Merchant Navy Coaching
+                    Sailing towards a bright future
                   </span>
                 </div>
               </Link>
@@ -259,13 +257,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
             >
               {/* Header inside drawer */}
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400">
-                    <Award className="w-4 h-4" />
+                <div className="flex items-center gap-2.5">
+                  <div className="w-10 h-10 rounded-full overflow-hidden border border-amber-400/50 bg-black shrink-0">
+                    <img src="/images/logo.jpg" alt="Officers Wing Logo" className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-white block">Officers Wing Dehradun</span>
-                    <span className="text-[10px] text-amber-300">DG Shipping Approved Guidance</span>
+                    <span className="text-xs font-bold text-white block font-display">Officers Wing Dehradun</span>
+                    <span className="text-[10px] text-amber-300 font-semibold">Sailing towards a bright future</span>
                   </div>
                 </div>
                 <button

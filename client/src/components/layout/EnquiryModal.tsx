@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Send, CheckCircle2, Sparkles, Phone, User, BookOpen, MessageSquare } from 'lucide-react';
+import { X, Send, CheckCircle2, User, Phone, BookOpen, MessageSquare } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -67,12 +67,12 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0A1E3F] to-[#0F2C59] text-white p-5 sm:p-6 flex justify-between items-center shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-300 border border-amber-400/30">
-                <Sparkles className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-amber-400/50 bg-black shrink-0">
+                <img src="/images/logo.jpg" alt="Officers Wing Logo" className="w-full h-full object-cover" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-lg text-white leading-tight">Cadet Counselling</h3>
-                <p className="text-[11px] text-amber-300 font-medium">Free 1-on-1 Guidance &amp; Eligibility Check</p>
+                <h3 className="font-display font-bold text-lg text-white leading-tight">Officers Wing Dehradun</h3>
+                <p className="text-[11px] text-amber-300 font-medium">Free 1-on-1 Cadet Counselling</p>
               </div>
             </div>
             <button
