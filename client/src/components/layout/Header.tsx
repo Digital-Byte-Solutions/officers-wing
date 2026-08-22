@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Anchor, Menu, X, Phone, Mail, Globe, Share2, MessageCircle, Sparkles, ChevronRight, Award } from 'lucide-react';
+import { Menu, X, Phone, Mail, Globe, Share2, MessageCircle, Sparkles, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeaderProps {
@@ -119,15 +119,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
             <div className="max-w-7xl mx-auto flex items-center justify-between w-full">
               {/* Brand Logo */}
               <Link to="/" onClick={handleHomeClick} className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer shrink-0">
-                <div
-                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-md ${
-                    isScrolled
-                      ? 'bg-[#E87500] text-white group-hover:scale-105'
-                      : 'bg-[#0F2C59] text-white group-hover:bg-[#E87500]'
-                  }`}
-                >
-                  <Anchor className="w-5 h-5" />
-                </div>
+                <img
+                  src="/images/logo.png"
+                  alt="Officers Wing Logo"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover shadow-md border border-amber-400/30 group-hover:scale-105 transition-transform duration-300 shrink-0"
+                />
                 <div className="flex flex-col text-left">
                   <span
                     className={`text-base sm:text-lg font-black tracking-tight font-display leading-tight transition-colors ${
@@ -254,10 +250,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
             >
               {/* Header inside drawer */}
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400">
-                    <Award className="w-4 h-4" />
-                  </div>
+                <div className="flex items-center gap-2.5">
+                  <img
+                    src="/images/logo.png"
+                    alt="Officers Wing Logo"
+                    className="w-9 h-9 rounded-full object-cover border border-amber-400/40 shadow-sm shrink-0"
+                  />
                   <div>
                     <span className="text-xs font-bold text-white block">Officers Wing Dehradun</span>
                     <span className="text-[10px] text-amber-300">DG Shipping Approved Guidance</span>

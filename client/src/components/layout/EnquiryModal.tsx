@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { X, Send, CheckCircle2, Sparkles, Phone, User, BookOpen, MessageSquare } from 'lucide-react';
+import { X, Send, CheckCircle2, Phone, User, BookOpen, MessageSquare } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitLeadToGoogleSheet } from '../../services/leadService';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface EnquiryModalProps {
 
 export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -32,8 +34,24 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.phone) return;
+
+    setIsSubmitting(true);
+
+    // Send lead to Google Sheet Webhook
+    await submitLeadToGoogleSheet({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      course: formData.course,
+      message: formData.message,
+      formType: 'Enquiry Modal',
+      source: 'Website Modal'
+    });
+
+    setIsSubmitting(false);
     setSubmitted(true);
 
     // Fire celebratory confetti burst
@@ -67,9 +85,11 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0A1E3F] to-[#0F2C59] text-white p-5 sm:p-6 flex justify-between items-center shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-300 border border-amber-400/30">
-                <Sparkles className="w-5 h-5" />
-              </div>
+              <img
+                src="/images/logo.png"
+                alt="Officers Wing Logo"
+                className="w-10 h-10 rounded-full object-cover border border-amber-400/40 shadow-sm shrink-0"
+              />
               <div>
                 <h3 className="font-display font-bold text-lg text-white leading-tight">Cadet Counselling</h3>
                 <p className="text-[11px] text-amber-300 font-medium">Free 1-on-1 Guidance &amp; Eligibility Check</p>
@@ -165,10 +185,11 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
 
                 <button
                   type="submit"
-                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Submit for Free Guidance</span>
+                  <span>{isSubmitting ? 'Submitting...' : 'Submit for Free Guidance'}</span>
                 </button>
               </form>
             )}

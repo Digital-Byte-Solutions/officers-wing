@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
 import { Calculator, CheckCircle2, AlertTriangle, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { submitLeadToGoogleSheet } from '../services/leadService';
 
 export const ToolsPage: React.FC = () => {
   // Eligibility Calculator State
@@ -27,9 +28,9 @@ export const ToolsPage: React.FC = () => {
   const bmi = calculateBMI();
   const isBmiPass = bmi >= 17.0 && bmi <= 27.0;
 
-  const handleEligibilitySubmit = (e: React.FormEvent) => {
+  const handleEligibilitySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { age, qualification, pcm } = eligibilityData;
+    const { age, qualification, pcm, name, phone } = eligibilityData;
 
     let res = '';
     if (qualification === '10th' && age >= 15 && age <= 25) {
@@ -45,6 +46,20 @@ export const ToolsPage: React.FC = () => {
     }
 
     setEligibilityResult(res);
+
+    // If phone is entered, submit lead to Google Sheet
+    if (phone) {
+      await submitLeadToGoogleSheet({
+        name: name || 'Prospective Cadet',
+        phone: phone,
+        qualification: qualification,
+        age: age,
+        pcm: pcm,
+        message: `Eligibility Evaluation Result: ${res}`,
+        formType: 'Eligibility Checker',
+        source: 'Calculators & Tools Page'
+      });
+    }
 
     // Fire canvas-confetti celebration
     confetti({
@@ -128,6 +143,28 @@ export const ToolsPage: React.FC = () => {
                 max={100}
                 value={eligibilityData.pcm}
                 onChange={(e) => setEligibilityData({ ...eligibilityData, pcm: parseInt(e.target.value) || 60 })}
+                className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Your Name (Optional)</label>
+              <input
+                type="text"
+                placeholder="Candidate name"
+                value={eligibilityData.name}
+                onChange={(e) => setEligibilityData({ ...eligibilityData, name: e.target.value })}
+                className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Phone / WhatsApp (Optional)</label>
+              <input
+                type="tel"
+                placeholder="10-digit mobile number"
+                value={eligibilityData.phone}
+                onChange={(e) => setEligibilityData({ ...eligibilityData, phone: e.target.value })}
                 className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59]"
               />
             </div>

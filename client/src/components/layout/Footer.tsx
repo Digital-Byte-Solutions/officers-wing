@@ -24,10 +24,11 @@ export const Footer: React.FC = () => {
           {/* ── Col 1: Brand ── */}
           <div className="space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #E87500, #C8922A)' }}>
-                <Anchor className="w-5 h-5 text-white" />
-              </div>
+              <img
+                src="/images/logo.png"
+                alt="Officers Wing Logo"
+                className="w-12 h-12 rounded-full object-cover shadow-lg border border-amber-400/30 shrink-0"
+              />
               <div>
                 <div className="font-display text-lg font-bold text-white leading-tight">Officers Wing</div>
                 <div className="text-[9px] uppercase tracking-widest text-[#C8922A] font-bold">Merchant Navy Coaching</div>

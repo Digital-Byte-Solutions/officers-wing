@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageCircle, Sparkles } from 'lucide-react';
+import { submitLeadToGoogleSheet } from '../services/leadService';
 
 export const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -12,8 +14,23 @@ export const ContactPage: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.phone) return;
+
+    setIsSubmitting(true);
+
+    await submitLeadToGoogleSheet({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      city: formData.city,
+      message: formData.message,
+      formType: 'Contact Form',
+      source: 'Contact Page'
+    });
+
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
@@ -190,10 +207,11 @@ export const ContactPage: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Send Enquiry Message</span>
+                  <span>{isSubmitting ? 'Sending Enquiry...' : 'Send Enquiry Message'}</span>
                 </button>
               </form>
             )}

@@ -98,15 +98,47 @@ export const AdmissionPage: React.FC<AdmissionPageProps> = ({ onOpenEnquire }) =
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            {/* Batch Poster 1 */}
-            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between">
-              <img
-                src="/images/foundation_course_poster.jpg"
-                alt="Foundation After 10th for Merchant Navy IMU-CET"
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            {/* Batch Poster 1: IMU-CET 2027 */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/imu_cet_batch_classroom.jpg"
+                  alt="Join IMU-CET 2027 & Sponsorship Exam New Batch - Officers Wing Academy Dehradun"
+                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#E87500] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow">
+                  Batch 2027
+                </span>
+              </div>
+              <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">IMU-CET 2027 &amp; Sponsorship</div>
+                  <div className="text-xs text-amber-600 font-semibold">DNS | B.Sc Nautical | B.Tech</div>
+                </div>
+                <a
+                  href="tel:+919149081578"
+                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
+                >
+                  Call: 9149081578
+                </a>
+              </div>
+            </div>
+
+            {/* Batch Poster 2: Foundation Batch */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/foundation_course_poster.jpg"
+                  alt="Foundation After 10th for Merchant Navy IMU-CET"
+                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
+                  After 10th
+                </span>
+              </div>
               <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-bold text-[#0A1E3F]">Foundation Batch (After 10th)</div>
@@ -114,21 +146,26 @@ export const AdmissionPage: React.FC<AdmissionPageProps> = ({ onOpenEnquire }) =
                 </div>
                 <a
                   href="tel:+919149081578"
-                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer"
+                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
                 >
                   Call: 9149081578
                 </a>
               </div>
             </div>
 
-            {/* Batch Poster 2 */}
-            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between">
-              <img
-                src="/images/gp_rating_batch.jpg"
-                alt="New Preparation Batch Starting for GP Rating Course"
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
+            {/* Batch Poster 3: GP Rating Batch */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/gp_rating_batch.jpg"
+                  alt="New Preparation Batch Starting for GP Rating Course"
+                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
+                  GP Rating
+                </span>
+              </div>
               <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-bold text-[#0A1E3F]">GP Rating Preparation Batch</div>
@@ -136,7 +173,7 @@ export const AdmissionPage: React.FC<AdmissionPageProps> = ({ onOpenEnquire }) =
                 </div>
                 <a
                   href="tel:+919149081578"
-                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer"
+                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
                 >
                   Call: 9149081578
                 </a>

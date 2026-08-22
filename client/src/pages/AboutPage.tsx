@@ -1,5 +1,7 @@
 import React from 'react';
 import { FounderSection } from '../components/sections/FounderSection';
+import { CampusLifeGallery } from '../components/sections/CampusLifeGallery';
+import { FacultySection } from '../components/sections/FacultySection';
 import { StatsCounterBar } from '../components/sections/StatsCounterBar';
 import { Footer } from '../components/layout/Footer';
 import { Compass, Target, Award, Users, CheckCircle2 } from 'lucide-react';
@@ -89,6 +91,12 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Classroom Culture & Training Gallery */}
+      <CampusLifeGallery />
+
+      {/* Faculty Section */}
+      <FacultySection />
 
       <Footer />
     </div>
