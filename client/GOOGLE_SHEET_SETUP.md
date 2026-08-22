@@ -1,4 +1,4 @@
-﻿# 📊 Officers Wing Academy - Google Sheet Integration Setup Guide
+# 📊 Officers Wing Academy - Google Sheet Integration Setup Guide
 
 Follow these quick 2-minute steps to connect your website forms (Enquiry Modal, Contact Page, Prospectus Downloads, and Eligibility Checker) to your team's Google Sheet in real-time.
 
@@ -19,7 +19,6 @@ Follow these quick 2-minute steps to connect your website forms (Enquiry Modal, 
    - **I1**: `PCM %`
    - **J1**: `Message / Notes`
    - **K1**: `Form Type`
-   - **L1**: `Page URL`
 
 ---
 
@@ -39,7 +38,7 @@ function doPost(e) {
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     
-    // Ensure header row exists
+    // Ensure header row exists (11 Columns)
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
         'Timestamp',
@@ -52,10 +51,9 @@ function doPost(e) {
         'Age',
         'PCM %',
         'Message / Notes',
-        'Form Type',
-        'Page URL'
+        'Form Type'
       ]);
-      sheet.getRange(1, 1, 1, 12).setFontWeight('bold').setBackground('#0A1E3F').setFontColor('#FFFFFF');
+      sheet.getRange(1, 1, 1, 11).setFontWeight('bold').setBackground('#0A1E3F').setFontColor('#FFFFFF');
       sheet.setFrozenRows(1);
     }
 
@@ -83,8 +81,7 @@ function doPost(e) {
       data.age || 'N/A',
       data.pcm || 'N/A',
       data.message || 'Captured from website',
-      data.formType || 'Website Form',
-      data.pageUrl || ''
+      data.formType || 'Website Form'
     ];
 
     sheet.appendRow(row);

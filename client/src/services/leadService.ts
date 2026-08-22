@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Officers Wing Academy - Google Sheet Lead Submission Service
  * 
  * Automatically captures and posts all website leads (Enquiry Modal, Contact Page,
@@ -16,7 +16,6 @@ export interface LeadPayload {
   pcm?: number | string;
   message?: string;
   formType: 'Enquiry Modal' | 'Contact Form' | 'Prospectus Download' | 'Eligibility Checker' | 'Quick Enquiry';
-  pageUrl?: string;
   source?: string;
 }
 
@@ -64,7 +63,6 @@ export async function submitLeadToGoogleSheet(payload: LeadPayload): Promise<{ s
     pcm: payload.pcm !== undefined ? `${payload.pcm}%` : 'N/A',
     message: payload.message?.trim() || 'Lead captured from website',
     formType: payload.formType,
-    pageUrl: typeof window !== 'undefined' ? window.location.href : '',
     source: payload.source || 'Website'
   };
 

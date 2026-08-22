@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { X, Send, CheckCircle2, User, Phone, BookOpen, MessageSquare } from 'lucide-react';
+import { X, Send, CheckCircle2, User, Phone, BookOpen, MessageSquare, Loader2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitLeadToGoogleSheet } from '../../services/leadService';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface EnquiryModalProps {
 
 export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -32,9 +34,23 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      await submitLeadToGoogleSheet({
+        name: formData.name,
+        phone: formData.phone,
+        course: formData.course,
+        message: formData.message,
+        formType: 'Enquiry Modal'
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
 
     // Fire celebratory confetti burst
     confetti({
@@ -165,10 +181,20 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
 
                 <button
                   type="submit"
-                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit for Free Guidance</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Submitting...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Submit for Free Guidance</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}
