@@ -25,12 +25,20 @@ export const ProspectusDownloadCard: React.FC = () => {
 
     setIsSubmitting(false);
     setDownloaded(true);
+
+    submitLeadToGoogleSheet({
+      phone,
+      email,
+      formType: 'Prospectus Download'
+    });
+
     confetti({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.6 }
     });
   };
+
 
   return (
     <section className="w-full bg-white py-16 sm:py-20 border-y border-slate-200">

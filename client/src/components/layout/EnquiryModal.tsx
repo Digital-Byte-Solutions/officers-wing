@@ -52,6 +52,16 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
       setSubmitted(true);
     }
 
+    // Post to Google Sheet Webhook & local backup
+    submitLeadToGoogleSheet({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      course: formData.course,
+      message: formData.message,
+      formType: 'Enquiry Modal'
+    });
+
     // Fire celebratory confetti burst
     confetti({
       particleCount: 80,
