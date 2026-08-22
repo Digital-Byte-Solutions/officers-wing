@@ -137,8 +137,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
           <div className="max-w-7xl mx-auto flex justify-between items-center px-1 sm:px-0">
             {/* Logo */}
             <Link to="/" onClick={handleHomeClick} className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer">
-              <div className={`w-8 sm:w-9 h-8 sm:h-9 rounded-xl flex items-center justify-center transition-all duration-300 shadow-md ${isScrolledPastHero || isMobileMenuOpen ? 'bg-[#E87500] text-white group-hover:scale-105' : 'bg-[#0F2C59] text-white group-hover:bg-[#E87500]'}`}>
-                <Anchor className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
+              <div className={`w-9 sm:w-10 h-9 sm:h-10 rounded-full overflow-hidden flex items-center justify-center transition-all duration-300 shadow-md border border-amber-400/30 ${isScrolledPastHero || isMobileMenuOpen ? 'bg-[#E87500] text-white group-hover:scale-105' : 'bg-[#0F2C59] text-white group-hover:bg-[#E87500]'}`}>
+                <img src="/logo.png" alt="Officers Wing Logo" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                <Anchor className="w-4 h-4 text-white hidden" />
               </div>
               <div className="flex flex-col text-left">
                 <span className={`text-base sm:text-lg font-extrabold tracking-tight font-serif-heading leading-tight transition-colors ${isScrolledPastHero || isMobileMenuOpen ? 'text-white group-hover:text-amber-300' : 'text-[#0F2C59] group-hover:text-[#E87500]'}`}>

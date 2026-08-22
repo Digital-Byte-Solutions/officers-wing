@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Send, CheckCircle2, Sparkles, Phone, User, BookOpen, MessageSquare } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitLeadToGoogleSheet } from '../../services/leadService';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -35,6 +36,16 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+
+    // Post to Google Sheet Webhook & local backup
+    submitLeadToGoogleSheet({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      course: formData.course,
+      message: formData.message,
+      formType: 'Enquiry Modal'
+    });
 
     // Fire celebratory confetti burst
     confetti({

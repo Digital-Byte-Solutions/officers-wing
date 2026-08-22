@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageCircle, Sparkles } from 'lucide-react';
+import { submitLeadToGoogleSheet } from '../services/leadService';
 
 export const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -15,6 +16,15 @@ export const ContactPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+
+    submitLeadToGoogleSheet({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      city: formData.city,
+      message: formData.message,
+      formType: 'Contact Form'
+    });
   };
 
   return (

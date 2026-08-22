@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Download, FileText, CheckCircle, Sparkles, Send } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { submitLeadToGoogleSheet } from '../../services/leadService';
 
 export const ProspectusDownloadCard: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,12 +13,20 @@ export const ProspectusDownloadCard: React.FC = () => {
     if (!phone) return;
 
     setDownloaded(true);
+
+    submitLeadToGoogleSheet({
+      phone,
+      email,
+      formType: 'Prospectus Download'
+    });
+
     confetti({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.6 }
     });
   };
+
 
   return (
     <section className="w-full bg-white py-16 sm:py-20 border-y border-slate-200">

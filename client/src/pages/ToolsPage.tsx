@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
 import { Calculator, CheckCircle2, AlertTriangle, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { submitLeadToGoogleSheet } from '../services/leadService';
 
 export const ToolsPage: React.FC = () => {
   // Eligibility Calculator State
@@ -45,6 +46,18 @@ export const ToolsPage: React.FC = () => {
     }
 
     setEligibilityResult(res);
+
+    if (eligibilityData.phone) {
+      submitLeadToGoogleSheet({
+        name: eligibilityData.name,
+        phone: eligibilityData.phone,
+        qualification: eligibilityData.qualification,
+        age: eligibilityData.age,
+        pcm: eligibilityData.pcm,
+        message: res,
+        formType: 'Eligibility Checker'
+      });
+    }
 
     // Fire canvas-confetti celebration
     confetti({

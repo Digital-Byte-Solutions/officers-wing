@@ -13,6 +13,7 @@ import { PlacementsSection } from '../components/sections/PlacementsSection';
 import { BatchCalendar } from '../components/sections/BatchCalendar';
 import { FAQSection } from '../components/sections/FAQSection';
 import { FounderSection } from '../components/sections/FounderSection';
+import { VideoShowcaseSection } from '../components/sections/VideoShowcaseSection';
 import { Footer } from '../components/layout/Footer';
 import { FloatingWhatsAppPill } from '../components/layout/FloatingWhatsAppPill';
 
@@ -71,7 +72,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquire }) => {
       {/* 9. Life at Sea & Commercial Cargo Fleets Showcase (PROMINENT MEDIA SECTION) */}
       <LifeAtSeaSection />
 
-      {/* 10. Cadet Selection Wall (With Cadet Avatars) */}
+      {/* 10. Academy & Maritime Video Showcase */}
+      <VideoShowcaseSection />
+
+      {/* 11. Cadet Selection Wall (With Cadet Avatars) */}
       <div id="selection-wall-section">
         <SelectionWall />
       </div>

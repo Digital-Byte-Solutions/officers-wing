@@ -65,8 +65,9 @@ export const FounderSection: React.FC = () => {
             />
             <div className="relative z-10 rounded-2xl overflow-hidden w-64 sm:w-72 shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80"
+                src="/images/founder.jpg"
                 alt="Capt. Anurag Singh — Founder, Officers Wing"
+                onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80"; }}
                 className="w-full h-80 sm:h-96 object-cover object-top"
               />
             </div>
