@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HeroSection } from '../components/sections/HeroSection';
 import { StatsCounterBar } from '../components/sections/StatsCounterBar';
 import { WhyChooseSection } from '../components/sections/WhyChooseSection';
+import { BatchCalendar } from '../components/sections/BatchCalendar';
+import { PathwayWizard } from '../components/sections/PathwayWizard';
 import { CoursesSection } from '../components/sections/CoursesSection';
+import { VideoShowcaseSection } from '../components/sections/VideoShowcaseSection';
+import { CampusLifeGallery } from '../components/sections/CampusLifeGallery';
+import { CampusLifeSection } from '../components/sections/CampusLifeSection';
 import { PlacementsSection } from '../components/sections/PlacementsSection';
+import { SelectionWall } from '../components/sections/SelectionWall';
+import { LifeAtSeaSection } from '../components/sections/LifeAtSeaSection';
 import { FounderSection } from '../components/sections/FounderSection';
+import { ProspectusDownloadCard } from '../components/sections/ProspectusDownloadCard';
+import { FAQSection } from '../components/sections/FAQSection';
+import { CampusTourModal } from '../components/layout/CampusTourModal';
 import { Footer } from '../components/layout/Footer';
 
 interface HomePageProps {
@@ -12,6 +22,8 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquire }) => {
+  const [isTourOpen, setIsTourOpen] = useState(false);
+
   const scrollToCourses = () => {
     const coursesElem = document.getElementById('courses-section');
     if (coursesElem) {
@@ -19,13 +31,29 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquire }) => {
     }
   };
 
+  const scrollToCampusTour = () => {
+    const campusElem = document.getElementById('campus-tour-section');
+    if (campusElem) {
+      campusElem.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="w-full">
+      {/* 18s WebM Campus Tour Modal */}
+      <CampusTourModal
+        isOpen={isTourOpen}
+        onClose={() => setIsTourOpen(false)}
+        onOpenEnquire={onOpenEnquire}
+        onExploreMore={scrollToCampusTour}
+      />
+
       {/* 1. Hero Section */}
       <div id="hero-section">
         <HeroSection
           onExploreCourses={scrollToCourses}
           onCheckEligibility={onOpenEnquire}
+          onCampusTour={() => setIsTourOpen(true)}
         />
       </div>
 
@@ -155,25 +183,63 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquire }) => {
         </div>
       </section>
 
-      {/* 3. Our Courses Section */}
+      {/* 3. Live Batch Calendar & Seat Availability */}
+      <div id="batch-calendar-section">
+        <BatchCalendar />
+      </div>
+
+      {/* 4. Interactive Pathway Wizard */}
+      <div id="pathway-wizard-section">
+        <PathwayWizard />
+      </div>
+
+      {/* 5. Our Courses Section */}
       <div id="courses-section">
         <CoursesSection />
       </div>
 
-      {/* 4. Alumni Placements Section */}
+      {/* 6. Campus Tour, Simulator Showcase & Video Gallery */}
+      <div id="campus-tour-section">
+        <VideoShowcaseSection />
+        <CampusLifeGallery />
+        <CampusLifeSection />
+      </div>
+
+      {/* 7. Alumni Placements Section */}
       <div id="placements-section">
         <PlacementsSection />
       </div>
 
-      {/* 5. About the Founder Section */}
+      {/* 8. Cadet Selection Wall / Hall of Fame */}
+      <div id="selection-wall-section">
+        <SelectionWall />
+      </div>
+
+      {/* 9. Life at Sea & Commercial Fleets */}
+      <div id="life-at-sea-section">
+        <LifeAtSeaSection />
+      </div>
+
+      {/* 10. About the Founder Section */}
       <div id="founder-section">
         <FounderSection />
       </div>
 
-      {/* 6. Footer Section */}
+      {/* 11. Download Free Prospectus & Syllabus Guide */}
+      <div id="prospectus-section">
+        <ProspectusDownloadCard />
+      </div>
+
+      {/* 12. Frequently Asked Questions (FAQs) */}
+      <div id="faq-section">
+        <FAQSection />
+      </div>
+
+      {/* 13. Footer Section */}
       <div id="footer-section">
         <Footer />
       </div>
     </div>
   );
 };
+
