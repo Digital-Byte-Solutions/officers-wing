@@ -13,6 +13,15 @@ interface VideoItem {
 
 const VIDEOS: VideoItem[] = [
   {
+    id: 'v3',
+    title: 'Academy Campus Life & Classroom Coaching (Dehradun)',
+    category: 'Campus Life',
+    webmUrl: '/videos/v3.webm',
+    mp4Url: '/videos/v3.mp4',
+    description: 'Insight into classroom mentoring, CBT mock test preparation, smart digital classes, and structured routine in Dehradun.',
+    badge: 'Campus Tour',
+  },
+  {
     id: 'v1',
     title: 'Cadet Maritime Training & Seamanship Drills',
     category: 'Practical Training',
@@ -29,15 +38,6 @@ const VIDEOS: VideoItem[] = [
     mp4Url: '/videos/v2.mp4',
     description: 'Real glimpses of life aboard modern international commercial container and tanker vessels.',
     badge: 'Ocean Voyages',
-  },
-  {
-    id: 'v3',
-    title: 'Academy Campus Life & Classroom Coaching',
-    category: 'Campus Life',
-    webmUrl: '/videos/v3.webm',
-    mp4Url: '/videos/v3.mp4',
-    description: 'Insight into classroom mentoring, CBT mock test preparation, and structured physical routine in Dehradun.',
-    badge: 'Campus & Classes',
   },
   {
     id: 'v4',
@@ -65,13 +65,13 @@ export const VideoShowcaseSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 space-y-3">
           <span className="section-label section-label-dark">
-            <Video className="w-3.5 h-3.5 text-[#E87500]" /> Academy &amp; Maritime Videos
+            <Video className="w-3.5 h-3.5 text-[#E87500]" /> Campus Tour &amp; Maritime Training
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight">
-            See Officers Wing in Action
+            Campus Tour &amp; Academy Showcase
           </h2>
           <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
-            Experience real maritime training, campus life, and commercial ship voyages through our academy video gallery.
+            Take a virtual tour of Officers Wing Dehradun — experience hands-on maritime seamanship training, smart classrooms, cadet lifestyle, and real ship operations.
           </p>
         </div>
 
@@ -120,7 +120,7 @@ export const VideoShowcaseSection: React.FC = () => {
               <span className="text-xs font-bold uppercase tracking-wider text-[#C8922A] flex items-center gap-1.5">
                 <Film className="w-4 h-4 text-[#E87500]" /> Academy Video Playlist
               </span>
-              <span className="text-[11px] text-slate-400 font-medium">4 Videos</span>
+              <span className="text-[11px] text-slate-400 font-medium">{VIDEOS.length} Videos</span>
             </div>
 
             <div className="space-y-3">

@@ -1,35 +1,58 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Quote, Building2, Star, Play, X, CheckCircle, ShieldCheck } from 'lucide-react';
-
+import { ChevronLeft, ChevronRight, Quote, Building2, Star, ShieldCheck, CheckCircle, Play, Video, Sparkles, Award } from 'lucide-react';
 import { shippingCompanies, testimonialsData } from '../../data/placementsData';
 
-const VIDEO_TESTIMONIALS = [
-  {
-    name: 'Pankaj Sajwan',
-    course: 'DNS Cadet — Synergy Marine Group',
-    thumb: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&auto=format&fit=crop&q=80',
-    ytId: 'L_LUpnjgPso',
-    quote: 'Officers Wing changed my life completely. From struggling with PCM to getting AIR 112 in IMU-CET!'
-  },
-  {
-    name: 'Kuldeep Pal',
-    course: 'DNS Cadet — Fleet Management Ltd.',
-    thumb: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600&auto=format&fit=crop&q=80',
-    ytId: 'd-diB65scQU',
-    quote: 'Capt. Anurag Sir\'s mentorship is unparalleled. He personally guided me through every step.'
-  },
-  {
-    name: 'Priyanka Negi',
-    course: 'B.Sc Nautical Science — Great Eastern',
-    thumb: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80',
-    ytId: 'vS3_728-E3E',
-    quote: 'As the first female cadet from Uttarakhand in this batch, I am proud to represent Officers Wing.'
-  },
-];
+interface AlumniVideo {
+  id: string;
+  title: string;
+  cadetName: string;
+  fleetCompany: string;
+  course: string;
+  webmUrl: string;
+  mp4Url: string;
+  badge: string;
+  quote: string;
+}
 
+const ALUMNI_VIDEOS: AlumniVideo[] = [
+  {
+    id: 'v4',
+    title: 'Cadet Sponsorship Interview Coaching & Selection Story',
+    cadetName: 'Officer Cadet Batch 2024',
+    fleetCompany: 'Synergy Marine & Fleet Mgmt',
+    course: 'DNS & IMU-CET Sponsorship',
+    webmUrl: '/videos/v4.webm',
+    mp4Url: '/videos/v4.mp4',
+    badge: '100% Sponsorship Selection',
+    quote: 'Officers Wing guided me step-by-step through technical round mock interviews, Psychometric testing, and IMU-CET preparation to secure my dream shipping sponsorship.',
+  },
+  {
+    id: 'v1',
+    title: 'Cadet Maritime Practical Training & Seamanship Drills',
+    cadetName: 'Pre-Sea Cadets Batch',
+    fleetCompany: 'Top International Fleets',
+    course: 'Pre-Sea Nautical Science',
+    webmUrl: '/videos/v1.webm',
+    mp4Url: '/videos/v1.mp4',
+    badge: 'Hands-On Practical Training',
+    quote: 'Hands-on seamanship laboratory training and chart work at Officers Wing gave us the confidence needed to clear shipping company interviews with ease.',
+  },
+  {
+    id: 'v2',
+    title: 'Life at Sea & International Commercial Voyages',
+    cadetName: 'Alumni Officer Cadets',
+    fleetCompany: 'Maersk, Synergy & Fleet Mgmt',
+    course: 'Merchant Navy Sailing',
+    webmUrl: '/videos/v2.webm',
+    mp4Url: '/videos/v2.mp4',
+    badge: 'Worldwide Sea Voyages',
+    quote: 'From classroom mentoring in Dehradun to navigating across international waters — proud to be part of the Officers Wing alumni family.',
+  }
+];
 
 export const PlacementsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeVideo, setActiveVideo] = useState<AlumniVideo>(ALUMNI_VIDEOS[0]);
   const totalSlides = testimonialsData.length;
 
   const handlePrev = () => {
@@ -40,11 +63,8 @@ export const PlacementsSection: React.FC = () => {
     setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
   };
 
-  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
-
   return (
     <section className="relative w-full py-20 sm:py-28 bg-[#050B14] overflow-hidden">
-
       {/* Radial Glow Atmosphere */}
       <div
         className="absolute bottom-0 right-0 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] pointer-events-none rounded-full"
@@ -66,71 +86,15 @@ export const PlacementsSection: React.FC = () => {
             </span>
           </div>
           <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight">
-            Alumni Selections & Placements
+            Alumni Selections &amp; Placements
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
             Cadets trained at Officers Wing are sailing worldwide with premier international shipping fleets.
           </p>
         </div>
 
-        {/* ── Video Testimonials Grid ── */}
-        <div className="mb-14 sm:mb-16">
-          <h3 className="text-center font-display text-lg sm:text-xl font-bold text-white mb-6">
-            <span className="text-[#C8922A]">🎥</span> Cadets Speak — Watch Their Selection Journey
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {VIDEO_TESTIMONIALS.map((vt, idx) => (
-              <div key={idx} className="group relative rounded-2xl overflow-hidden border border-white/10 cursor-pointer hover:border-[#C8922A]/50 transition-all duration-300 hover:-translate-y-1"
-                onClick={() => setPlayingVideo(vt.ytId)}>
-                {/* Thumbnail */}
-                <div className="relative">
-                  <img src={vt.thumb} alt={vt.name} className="w-full h-44 sm:h-48 object-cover" />
-                  <div className="absolute inset-0 bg-[#060F1E]/60 group-hover:bg-[#060F1E]/40 transition-all" />
-                  {/* Play button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-[#E87500] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                      <Play className="w-6 h-6 text-white ml-1" />
-                    </div>
-                  </div>
-                </div>
-                {/* Caption */}
-                <div className="p-4 bg-[#0A1E3F]/80">
-                  <p className="text-[11px] italic text-slate-300 mb-2 leading-relaxed line-clamp-2">"{vt.quote}"</p>
-                  <p className="font-bold text-white text-xs">{vt.name}</p>
-                  <p className="text-[10px] text-[#D4A840]">{vt.course}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ── Video Modal ── */}
-        {playingVideo && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4"
-            onClick={() => setPlayingVideo(null)}>
-            <div className="relative w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl border border-[#C8922A]/30"
-              onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setPlayingVideo(null)}
-                className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-[#E87500] transition-colors cursor-pointer">
-                <X className="w-4 h-4" />
-              </button>
-              <div className="relative pt-[56.25%] bg-black">
-                <iframe
-                  className="absolute inset-0 w-full h-full"
-                  src={`https://www.youtube.com/embed/${playingVideo}?autoplay=1&rel=0`}
-                  title="Cadet Testimonial"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-
-
         {/* ── Partner Shipping Companies Marquee ── */}
-        <div className="mb-14 sm:mb-16 overflow-hidden py-4 border-y border-white/10 relative">
+        <div className="mb-12 sm:mb-14 overflow-hidden py-4 border-y border-white/10 relative">
           <div className="animate-marquee flex items-center gap-4 sm:gap-6">
             {[...shippingCompanies, ...shippingCompanies].map((company, idx) => (
               <div
@@ -141,6 +105,94 @@ export const PlacementsSection: React.FC = () => {
                 <span>{company.logoText}</span>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* ── FEATURED ALUMNI VIDEO SHOWCASE CARD ── */}
+        <div className="mb-14 sm:mb-16 rounded-3xl bg-gradient-to-br from-[#0A1E3F] via-[#081730] to-[#040C1A] border-2 border-amber-400/40 p-5 sm:p-8 shadow-2xl relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+            
+            {/* Left Column: Video Player */}
+            <div className="lg:col-span-7">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-white/20 shadow-2xl">
+                <video
+                  key={activeVideo.id}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                >
+                  <source src={activeVideo.webmUrl} type="video/webm" />
+                  <source src={activeVideo.mp4Url} type="video/mp4" />
+                  Your browser does not support HTML5 video.
+                </video>
+
+                {/* Floating Tag */}
+                <div className="absolute top-3 left-3 pointer-events-none">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-300 bg-[#060F1E]/90 backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/40 shadow-md flex items-center gap-1.5">
+                    <Sparkles className="w-3 h-3 text-amber-400" /> {activeVideo.badge}
+                  </span>
+                </div>
+              </div>
+
+              {/* Video Selector Tabs */}
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <span className="text-[10px] uppercase font-bold text-[#C8922A] mr-1 flex items-center gap-1">
+                  <Video className="w-3 h-3 text-[#E87500]" /> Watch Video:
+                </span>
+                {ALUMNI_VIDEOS.map((v) => {
+                  const isSelected = activeVideo.id === v.id;
+                  return (
+                    <button
+                      key={v.id}
+                      onClick={() => setActiveVideo(v)}
+                      className={`px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        isSelected
+                          ? 'bg-[#E87500] text-white shadow-md'
+                          : 'bg-white/05 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
+                      }`}
+                    >
+                      <Play className={`w-2.5 h-2.5 ${isSelected ? 'fill-current' : 'text-[#D4A840]'}`} />
+                      <span>{v.title.split('&')[0]}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Column: Cadet Story Information */}
+            <div className="lg:col-span-5 text-left space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wider uppercase border border-amber-400/30 bg-amber-400/10 text-amber-300">
+                <Award className="w-3.5 h-3.5 text-amber-400" />
+                Alumni Video Testimonial
+              </div>
+
+              <h3 className="font-display text-xl sm:text-2xl font-black text-white leading-snug">
+                {activeVideo.title}
+              </h3>
+
+              <div className="p-4 rounded-2xl bg-white/05 border border-white/10 relative">
+                <Quote className="w-6 h-6 text-amber-400/30 absolute top-3 right-3" />
+                <p className="font-display text-xs sm:text-sm italic text-slate-200 leading-relaxed pr-6">
+                  "{activeVideo.quote}"
+                </p>
+              </div>
+
+              <div className="pt-2 flex items-center justify-between border-t border-white/10 text-xs">
+                <div>
+                  <div className="font-bold text-white flex items-center gap-1.5">
+                    <span>{activeVideo.cadetName}</span>
+                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                  </div>
+                  <div className="text-[11px] text-slate-400">{activeVideo.course}</div>
+                </div>
+
+                <span className="text-[10px] font-bold text-amber-300 bg-amber-400/15 border border-amber-400/30 px-2.5 py-1 rounded-lg">
+                  {activeVideo.fleetCompany}
+                </span>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -222,6 +274,46 @@ export const PlacementsSection: React.FC = () => {
             </div>
           </div>
 
+        </div>
+
+        {/* ── Official 16 Shipping Companies Grid Showcase ── */}
+        <div className="mt-14 sm:mt-20 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0A1E3F]/90 to-[#0F2C59]/80 border-2 border-amber-400/30 shadow-2xl backdrop-blur-md">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-6 space-y-4 text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wider uppercase border border-amber-400/30 bg-amber-400/10 text-amber-300">
+                <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                Verified Shipping Recruitment Partners
+              </div>
+              <h3 className="font-display text-2xl sm:text-3xl font-black text-white leading-tight">
+                Top Global Fleets Sailing with Officers Wing Cadets
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Our cadets have consistently secured sponsorships and direct selections in the world's most prestigious maritime conglomerates — including Maersk, Wallem, Anglo-Eastern, Scorpio, Synergy, MSC, BSM, SCI, and Fleet Management.
+              </p>
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <a
+                  href="tel:+919149081578"
+                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer inline-flex items-center gap-2"
+                >
+                  <Building2 className="w-4 h-4" />
+                  <span>Call Placement Desk: 9149081578</span>
+                </a>
+                <span className="text-xs text-amber-300 font-semibold">
+                  Also available at 95573-81578
+                </span>
+              </div>
+            </div>
+            <div className="lg:col-span-6">
+              <div className="rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl bg-white p-2 hover:scale-[1.01] transition-transform">
+                <img
+                  src="/images/shipping_partners_grid.jpg"
+                  alt="Officers Wing Official 16 Shipping Companies Placement Network"
+                  className="w-full h-auto rounded-xl object-contain"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
