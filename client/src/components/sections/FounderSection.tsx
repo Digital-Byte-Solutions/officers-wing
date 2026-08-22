@@ -63,11 +63,12 @@ export const FounderSection: React.FC = () => {
               className="absolute -inset-1.5 rounded-2xl z-0"
               style={{ background: 'linear-gradient(135deg, #0A1E3F 0%, #C8922A 50%, #E87500 100%)', padding: '2px' }}
             />
-            <div className="relative z-10 rounded-2xl overflow-hidden w-64 sm:w-72 shadow-2xl">
+            <div className="relative z-10 rounded-2xl overflow-hidden w-64 sm:w-72 shadow-2xl bg-white border border-slate-200">
               <img
                 src="/images/founder.jpg"
-                alt="Capt. Anurag Singh — Founder, Officers Wing"
-                className="w-full h-80 sm:h-96 object-cover object-top"
+                alt="Capt. Anurag Singh — Founder & Managing Director, Officers Wing"
+                className="w-full h-80 sm:h-96 object-cover object-center"
+                loading="lazy"
               />
             </div>
           </div>

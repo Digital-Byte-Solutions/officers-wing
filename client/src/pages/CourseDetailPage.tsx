@@ -129,9 +129,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
                 src={
                   id?.includes('gp-rating')
                     ? '/images/gp_rating_batch.jpg'
-                    : id?.includes('dns') || id?.includes('12th')
-                    ? '/images/foundation_course_poster.jpg'
-                    : '/images/foundation_imu_cet.jpg'
+                    : '/images/foundation_course_poster.jpg'
                 }
                 alt={`${course.category} Official Poster`}
                 className="w-full h-auto object-cover"

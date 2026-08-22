@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Phone, Mail, Globe, Share2, MessageCircle, Sparkles, ChevronRight } from 'lucide-react';
+import { Menu, X, Phone, Mail, MessageCircle, Sparkles, ChevronRight } from 'lucide-react';
+import { InstagramIcon } from '../common/InstagramIcon';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeaderProps {
@@ -71,11 +72,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
           <div className="hidden lg:block bg-[#0F2C59] text-white text-xs py-1.5 px-6 border-b border-navy-dark transition-all duration-300">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
               <div className="flex items-center space-x-4">
-                <a href="tel:+919149081578" className="flex items-center gap-1 text-white/90 hover:text-[#F59E0B] transition-colors">
+                <a href="tel:+919149081578" className="flex items-center gap-1.5 text-white/90 hover:text-[#F59E0B] transition-colors font-medium">
                   <Phone className="w-3.5 h-3.5 text-[#F59E0B]" /> +91 91490 81578
                 </a>
                 <span className="text-white/40">|</span>
-                <a href="tel:+919557381578" className="flex items-center gap-1 text-white/90 hover:text-[#F59E0B] transition-colors">
+                <a href="tel:+919557381578" className="flex items-center gap-1.5 text-white/90 hover:text-[#F59E0B] transition-colors font-medium">
                   +91 95573 81578
                 </a>
                 <span className="text-white/40">|</span>
@@ -92,14 +93,18 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
                 <span>DG Shipping Approved Guidance Academy — Dehradun</span>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-white/80 hover:text-[#F59E0B] transition-colors" title="Facebook">
-                  <Globe className="w-3.5 h-3.5" />
+              <div className="flex items-center space-x-3.5">
+                <a
+                  href="https://instagram.com/officerswing"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 text-white/90 hover:text-pink-400 transition-colors font-semibold"
+                  title="Follow us on Instagram @officerswing"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5 text-pink-400" />
+                  <span className="text-[11px]">@officerswing</span>
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-white/80 hover:text-[#F59E0B] transition-colors" title="Twitter">
-                  <Share2 className="w-3.5 h-3.5" />
-                </a>
-                <a href="https://wa.me/919557381578" target="_blank" rel="noreferrer" className="text-white/80 hover:text-emerald-400 transition-colors" title="WhatsApp">
+                <a href="https://wa.me/919149081578" target="_blank" rel="noreferrer" className="text-white/80 hover:text-emerald-400 transition-colors" title="WhatsApp">
                   <MessageCircle className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -119,11 +124,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
             <div className="max-w-7xl mx-auto flex items-center justify-between w-full">
               {/* Brand Logo */}
               <Link to="/" onClick={handleHomeClick} className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer shrink-0">
-                <img
-                  src="/images/logo.png"
-                  alt="Officers Wing Logo"
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover shadow-md border border-amber-400/30 group-hover:scale-105 transition-transform duration-300 shrink-0"
-                />
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border-2 border-amber-400/60 shadow-md group-hover:scale-105 transition-transform bg-black shrink-0">
+                  <img
+                    src="/images/logo.jpg"
+                    alt="Officers Wing Official Academy Logo"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="flex flex-col text-left">
                   <span
                     className={`text-base sm:text-lg font-black tracking-tight font-display leading-tight transition-colors ${
@@ -134,10 +141,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
                   </span>
                   <span
                     className={`text-[8px] sm:text-[9px] uppercase tracking-widest font-bold ${
-                      isScrolled ? 'text-slate-300' : 'text-slate-500'
+                      isScrolled ? 'text-amber-300' : 'text-[#C8922A]'
                     }`}
                   >
-                    Merchant Navy Coaching
+                    Sailing towards a bright future
                   </span>
                 </div>
               </Link>
@@ -251,14 +258,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
               {/* Header inside drawer */}
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
                 <div className="flex items-center gap-2.5">
-                  <img
-                    src="/images/logo.png"
-                    alt="Officers Wing Logo"
-                    className="w-9 h-9 rounded-full object-cover border border-amber-400/40 shadow-sm shrink-0"
-                  />
+                  <div className="w-10 h-10 rounded-full overflow-hidden border border-amber-400/50 bg-black shrink-0">
+                    <img src="/images/logo.jpg" alt="Officers Wing Logo" className="w-full h-full object-cover" />
+                  </div>
                   <div>
-                    <span className="text-xs font-bold text-white block">Officers Wing Dehradun</span>
-                    <span className="text-[10px] text-amber-300">DG Shipping Approved Guidance</span>
+                    <span className="text-xs font-bold text-white block font-display">Officers Wing Dehradun</span>
+                    <span className="text-[10px] text-amber-300 font-semibold">Sailing towards a bright future</span>
                   </div>
                 </div>
                 <button
@@ -309,14 +314,33 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
 
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <a
-                    href="tel:+919557381578"
-                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white/05 border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
+                    href="tel:+919149081578"
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-white/05 border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5 text-[#E87500]" />
-                    <span>Direct Call</span>
+                    <span>9149081578</span>
                   </a>
                   <a
-                    href="https://wa.me/919557381578"
+                    href="tel:+919557381578"
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-white/05 border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[#E87500]" />
+                    <span>9557381578</span>
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <a
+                    href="https://instagram.com/officerswing"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-pink-950/40 border border-pink-500/30 text-pink-300 font-semibold hover:bg-pink-900/40 transition-colors"
+                  >
+                    <InstagramIcon className="w-3.5 h-3.5 text-pink-400" />
+                    <span>@officerswing</span>
+                  </a>
+                  <a
+                    href="https://wa.me/919149081578"
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 font-semibold hover:bg-emerald-900/40 transition-colors"
