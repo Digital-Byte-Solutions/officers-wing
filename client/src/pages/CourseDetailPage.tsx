@@ -15,19 +15,23 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
   const course = coursesData.find((c) => c.id === id) || coursesData[1]; // fallback to DNS
 
   return (
-    <div className="pt-28 min-h-screen bg-slate-50 text-slate-800 text-left">
+    <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800 text-left">
       {/* Top Breadcrumb & Banner */}
-      <div className="bg-[#0F2C59] text-white py-14 px-6">
-        <div className="max-w-6xl mx-auto space-y-4">
+      <div className="bg-[#050B14] text-white py-14 sm:py-16 px-4 sm:px-8 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(200, 146, 42, 0.3) 0%, transparent 70%)' }}
+        />
+        <div className="relative z-10 max-w-6xl mx-auto space-y-4">
           <button
             onClick={() => navigate('/courses')}
-            className="inline-flex items-center gap-1.5 text-xs text-amber-300 hover:text-white transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-white transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" /> Back to Courses Hub
           </button>
 
           <div className="flex flex-wrap items-center gap-3">
-            <span className="bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">
+            <span className="bg-[#E87500] text-white text-xs font-bold px-3 py-1 rounded-full">
               {course.title}
             </span>
             <span className="text-xs text-slate-300 flex items-center gap-1">
@@ -35,18 +39,18 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-serif-heading">
+          <h1 className="text-3xl sm:text-5xl font-black font-display text-white">
             {course.category}
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-300 max-w-2xl">
+          <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-2xl leading-relaxed">
             {course.subtitle}
           </p>
         </div>
       </div>
 
       {/* Main Content Grid */}
-      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 py-10 sm:py-12 grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10">
         
         {/* Left Column: Details & Curriculum */}
         <div className="lg:col-span-2 space-y-8">

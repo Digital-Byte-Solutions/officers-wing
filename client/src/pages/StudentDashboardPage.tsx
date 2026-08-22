@@ -13,23 +13,28 @@ export const StudentDashboardPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-28 min-h-screen bg-slate-50 text-slate-800">
+    <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
       {/* Top Banner */}
-      <div className="bg-[#0F2C59] text-white py-14 px-6 text-center">
-        <div className="max-w-4xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase">
-            <Lock className="w-3.5 h-3.5" /> Enrolled Cadets Portal
+      <div className="bg-[#050B14] text-white py-14 sm:py-16 px-4 sm:px-8 text-center relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(200, 146, 42, 0.3) 0%, transparent 70%)' }}
+        />
+        <div className="relative z-10 max-w-4xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <Lock className="w-3.5 h-3.5 text-amber-400" />
+            Enrolled Cadets Portal
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold font-serif-heading">
-            Student Login & Study Portal
+          <h1 className="text-3xl sm:text-4xl font-black font-display text-white">
+            Student Login &amp; Study Portal
           </h1>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
             Access your course materials, IMU-CET mock test series, batch announcements, and placement updates.
           </p>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-14">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 py-10 sm:py-14">
         {!isLoggedIn ? (
           /* Login Card */
           <div className="max-w-md mx-auto bg-white p-8 rounded-xl border border-slate-200 shadow-lg space-y-6">

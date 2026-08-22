@@ -9,6 +9,7 @@ export interface Course {
   fullDescription: string;
   targetExam: string;
   highlights: string[];
+  imageUrl: string;
   isHighlighted?: boolean;
 }
 
@@ -23,7 +24,8 @@ export const coursesData: Course[] = [
     description: 'Learn from basic to deck rating after 10th. Complete pre-sea rating course approved by DG Shipping.',
     fullDescription: 'General Purpose (GP) Rating course prepares cadets for seamanship, navigation assistance, deck maintenance, and engine machinery operations. Ideal entry route for students completing 10th standard who wish to start earning early at sea.',
     targetExam: 'Board Exam + DG Medical Test',
-    highlights: ['DG Shipping Approved', '100% Placement Support', 'Hand-on Workshop Training', 'Fire Safety & STCW Certification']
+    highlights: ['DG Shipping Approved', '100% Placement Support', 'Hands-on Workshop Training', 'Fire Safety & STCW Certification'],
+    imageUrl: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&auto=format&fit=crop&q=80'
   },
   {
     id: 'after-12th-imucet-dns',
@@ -36,6 +38,7 @@ export const coursesData: Course[] = [
     fullDescription: 'Diploma in Nautical Science (DNS) leading to B.Sc Nautical Science is the premier cadet route to become a Navigation Officer (3rd Officer) in international merchant ships.',
     targetExam: 'IMU-CET & Company Sponsorship Exams',
     highlights: ['Specialized IMU-CET Coaching', 'Sponsorship Interview Prep', 'Navigational Simulator Training', 'Physical Fitness Regime'],
+    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&auto=format&fit=crop&q=80',
     isHighlighted: true
   },
   {
@@ -48,7 +51,8 @@ export const coursesData: Course[] = [
     description: 'Specialized training preparing engineering graduates for Merchant Navy Junior Engineer officer positions.',
     fullDescription: 'Graduate Marine Engineering (GME) converts mechanical engineers into qualified Marine Engineers, allowing direct entry into engine room management on cargo & tanker vessels.',
     targetExam: 'DG Shipping Entrance & Marine Interview',
-    highlights: ['High Salary Packages', 'Engine Room Simulator', 'Direct Sponsorship Drive', 'Expert Chief Engineer Faculty']
+    highlights: ['High Salary Packages', 'Engine Room Simulator', 'Direct Sponsorship Drive', 'Expert Chief Engineer Faculty'],
+    imageUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80'
   },
   {
     id: 'graduate-eto',
@@ -60,6 +64,7 @@ export const coursesData: Course[] = [
     description: 'Electrical and electronics specialized training for high-tech automated commercial marine vessels.',
     fullDescription: 'Electro-Technical Officer (ETO) course trains electrical engineers to handle complex automated control systems, high-voltage power generation, and satellite communication equipment on modern ships.',
     targetExam: 'ETO Entrance & Technical Oral Interview',
-    highlights: ['High Demand Worldwide', 'Automated Control Systems', 'Fast Career Advancement', '100% Placement Guidance']
+    highlights: ['High Demand Worldwide', 'Automated Control Systems', 'Fast Career Advancement', '100% Placement Guidance'],
+    imageUrl: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80'
   }
 ];
