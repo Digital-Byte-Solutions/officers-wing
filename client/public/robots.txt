@@ -1,0 +1,32 @@
+# ==============================================================================
+# Officers Wing Academy — Merchant Navy Coaching Dehradun
+# Search Engine & AI Answer Engine Crawler Directives (SEO / AEO)
+# Domain: https://officerswing.com
+# ==============================================================================
+
+# Default Search Engine Directives (Google, Bing, Yahoo, DuckDuckGo)
+User-agent: *
+Allow: /
+Disallow: /student-dashboard
+Disallow: /api/
+Disallow: /draft/
+
+# AI Search & Answer Engine Directives (ChatGPT, Google Gemini, Claude, Perplexity)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Canonical Domain & Sitemap Reference
+Host: https://officerswing.com
+Sitemap: https://officerswing.com/sitemap.xml

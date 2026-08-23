@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/common/SEO';
 import { CoursesSection } from '../components/sections/CoursesSection';
 import { Footer } from '../components/layout/Footer';
 import { coursesData } from '../data/coursesData';
@@ -8,6 +9,11 @@ import { ArrowRight, Sparkles, BookOpen } from 'lucide-react';
 export const CoursesPage: React.FC = () => {
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
+      <SEO
+        title="Merchant Navy Courses & Eligibility | GP Rating, DNS, GME & ETO | Officers Wing"
+        description="Explore structured Merchant Navy coaching programs after 10th, 12th PCM, and Graduation. GP Rating, DNS (IMU-CET), GME, and ETO courses in Dehradun."
+        keywords="merchant navy courses after 12th, GP rating after 10th, DNS course IMUCET, GME course fees, ETO course Dehradun"
+      />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div

@@ -12,6 +12,7 @@ interface EnquiryModalProps {
 export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -41,9 +42,11 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
       await submitLeadToGoogleSheet({
         name: formData.name,
         phone: formData.phone,
+        email: formData.email,
         course: formData.course,
         message: formData.message,
-        formType: 'Enquiry Modal'
+        formType: 'Enquiry Modal',
+        honeypot: honeypot
       });
     } catch (err) {
       console.error(err);
@@ -51,16 +54,6 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
       setIsSubmitting(false);
       setSubmitted(true);
     }
-
-    // Post to Google Sheet Webhook & local backup
-    submitLeadToGoogleSheet({
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      course: formData.course,
-      message: formData.message,
-      formType: 'Enquiry Modal'
-    });
 
     // Fire celebratory confetti burst
     confetti({
@@ -189,6 +182,17 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
                   ></textarea>
                 </div>
 
+                {/* Honeypot Spam Trap Input (Hidden from human users) */}
+                <input
+                  type="text"
+                  name="website_url_hp"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+                />
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -196,16 +200,21 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Submitting...</span>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>Verifying &amp; Submitting...</span>
                     </>
                   ) : (
                     <>
                       <Send className="w-4 h-4" />
-                      <span>Submit for Free Guidance</span>
+                      <span>Submit Enquiry Now</span>
                     </>
                   )}
                 </button>
+
+                {/* reCAPTCHA v3 & Spam Shield Badge */}
+                <div className="text-[10px] text-slate-400 text-center flex items-center justify-center gap-1 pt-1">
+                  <span>🔒 Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield</span>
+                </div>
               </form>
             )}
           </div>

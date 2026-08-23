@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Camera, ShieldCheck, X } from 'lucide-react';
-
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface FacilityPhoto {
@@ -16,7 +15,7 @@ const FACILITIES: FacilityPhoto[] = [
   {
     title: 'Full-Mission Bridge Navigation Simulator',
     tag: 'Navigation Lab',
-    imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/images/Hero_image.png',
     description: 'Real-time ship maneuvering simulator equipped with ARPA radar, ECDIS electronic charts, and 240-degree visual sea display.',
     features: ['Radar & ECDIS Training', 'Vessel Collision Avoidance', 'International Sea Routes'],
     stats: '240° Visual Display'
@@ -32,7 +31,7 @@ const FACILITIES: FacilityPhoto[] = [
   {
     title: 'Marine Engine Room & Workshop Lab',
     tag: 'Engineering Lab',
-    imageUrl: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/images/smart_classroom_lecture.jpg',
     description: 'Operational auxiliary marine engine models, centrifugal pumps, diesel generators, and lathe machining tools for GME & ETO cadets.',
     features: ['Auxiliary Engine Models', 'Lathe Machining', 'Pumps & Compressors'],
     stats: 'Working Engine Models'
@@ -40,7 +39,7 @@ const FACILITIES: FacilityPhoto[] = [
   {
     title: 'STCW Water Survival & Firefighting Facility',
     tag: 'Safety Certification',
-    imageUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/images/interactive_classroom_session.jpg',
     description: 'Practical STCW safety drills covering inflatable life raft deployment, personal survival techniques (PST), and SCBA firefighting gear.',
     features: ['Life Raft Deployment', 'SCBA Fire Drills', 'First Aid & Survival'],
     stats: 'STCW 2010 Certified'
@@ -48,7 +47,7 @@ const FACILITIES: FacilityPhoto[] = [
   {
     title: 'Dehradun Campus Hostel & Mess Facilities',
     tag: 'Residential Life',
-    imageUrl: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/images/english_cubicle_smart_class.jpg',
     description: 'Clean, secure residential hostel blocks with 4-time nutritious meals, indoor recreation, study halls, and 24/7 warden supervision.',
     features: ['Nutritious Meals', 'Study Lounges', '24/7 Security'],
     stats: '4-Time Meals'
@@ -65,6 +64,12 @@ const FACILITIES: FacilityPhoto[] = [
 
 export const CampusLifeSection: React.FC = () => {
   const [activePhoto, setActivePhoto] = useState<FacilityPhoto | null>(null);
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.currentTarget;
+    target.onerror = null;
+    target.src = '/images/officers_wing_banner.jpg';
+  };
 
   return (
     <section id="campus-life-section" className="w-full bg-[#060F1E] py-20 sm:py-28 relative overflow-hidden">
@@ -102,6 +107,7 @@ export const CampusLifeSection: React.FC = () => {
                   <img
                     src={fac.imageUrl}
                     alt={fac.title}
+                    onError={handleImageError}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
@@ -172,6 +178,7 @@ export const CampusLifeSection: React.FC = () => {
                   <img
                     src={activePhoto.imageUrl}
                     alt={activePhoto.title}
+                    onError={handleImageError}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1E3F] via-transparent to-black/50" />

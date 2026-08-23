@@ -6,6 +6,7 @@ import { submitLeadToGoogleSheet } from '../../services/leadService';
 export const ProspectusDownloadCard: React.FC = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [downloaded, setDownloaded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -20,17 +21,12 @@ export const ProspectusDownloadCard: React.FC = () => {
       email: email,
       formType: 'Prospectus Download',
       course: 'IMU-CET Prep Guide & Prospectus',
-      source: 'Prospectus Download Card'
+      source: 'Prospectus Download Card',
+      honeypot: honeypot
     });
 
     setIsSubmitting(false);
     setDownloaded(true);
-
-    submitLeadToGoogleSheet({
-      phone,
-      email,
-      formType: 'Prospectus Download'
-    });
 
     confetti({
       particleCount: 80,
@@ -120,6 +116,17 @@ export const ProspectusDownloadCard: React.FC = () => {
                     />
                   </div>
 
+                  {/* Honeypot Spam Trap Input */}
+                  <input
+                    type="text"
+                    name="website_url_hp"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+                  />
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -130,7 +137,7 @@ export const ProspectusDownloadCard: React.FC = () => {
                   </button>
 
                   <p className="text-[10px] text-slate-400 text-center">
-                    🔒 100% Privacy. Instant WhatsApp &amp; PDF access.
+                    🔒 100% Privacy. Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield.
                   </p>
                 </form>
               ) : (

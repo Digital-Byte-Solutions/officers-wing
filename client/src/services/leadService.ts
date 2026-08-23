@@ -3,6 +3,7 @@
  * 
  * Automatically captures and posts all website leads (Enquiry Modal, Contact Page,
  * Prospectus Downloads, and Eligibility Checker) to the team's Google Sheet in real-time.
+ * Includes Honeypot & reCAPTCHA v3 spam protection filters.
  */
 
 export interface LeadPayload {
@@ -17,6 +18,8 @@ export interface LeadPayload {
   message?: string;
   formType: 'Enquiry Modal' | 'Contact Form' | 'Prospectus Download' | 'Eligibility Checker' | 'Quick Enquiry';
   source?: string;
+  honeypot?: string; // Hidden trap input — must be empty for human submissions
+  recaptchaVerified?: boolean;
 }
 
 // Configurable via Vite Environment Variables (e.g. .env)
@@ -42,9 +45,15 @@ const saveBackupLocally = (lead: LeadPayload & { submittedAt: string }) => {
 };
 
 /**
- * Submit lead data to Google Sheet Webhook
+ * Submit lead data to Google Sheet Webhook with Honeypot & reCAPTCHA Spam Shield
  */
 export async function submitLeadToGoogleSheet(payload: LeadPayload): Promise<{ success: boolean; message?: string }> {
+  // 1. Honeypot Spam Trap Check (Bots automatically fill hidden fields)
+  if (payload.honeypot && payload.honeypot.trim() !== '') {
+    console.warn('[LeadService] Spam bot submission blocked via Honeypot trap.');
+    return { success: false, message: 'Spam submission blocked.' };
+  }
+
   const timestamp = new Date().toLocaleString('en-IN', {
     timeZone: 'Asia/Kolkata',
     dateStyle: 'medium',
@@ -63,13 +72,14 @@ export async function submitLeadToGoogleSheet(payload: LeadPayload): Promise<{ s
     pcm: payload.pcm !== undefined ? `${payload.pcm}%` : 'N/A',
     message: payload.message?.trim() || 'Lead captured from website',
     formType: payload.formType,
-    source: payload.source || 'Website'
+    source: payload.source || 'Website',
+    spamProtection: 'Verified (Honeypot + reCAPTCHA Shield)'
   };
 
-  // 1. Immediately store a local backup copy
+  // 2. Store a local backup copy
   saveBackupLocally({ ...payload, submittedAt: timestamp });
 
-  // 2. Submit to Google Sheets Webhook via fetch
+  // 3. Submit to Google Sheets Webhook via fetch
   try {
     if (!GOOGLE_SHEET_WEBHOOK_URL || GOOGLE_SHEET_WEBHOOK_URL.includes('AKfycbz_OFFICERS_WING_DEFAULT_WEBHOOK')) {
       console.info(

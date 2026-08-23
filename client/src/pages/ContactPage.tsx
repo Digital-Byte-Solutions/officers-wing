@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
+import { SEO } from '../components/common/SEO';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageCircle, Sparkles, Loader2 } from 'lucide-react';
 import { InstagramIcon } from '../components/common/InstagramIcon';
 import { submitLeadToGoogleSheet } from '../services/leadService';
@@ -7,6 +8,7 @@ import { submitLeadToGoogleSheet } from '../services/leadService';
 export const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -25,7 +27,8 @@ export const ContactPage: React.FC = () => {
         email: formData.email,
         city: formData.city,
         message: formData.message,
-        formType: 'Contact Form'
+        formType: 'Contact Form',
+        honeypot: honeypot
       });
     } catch (err) {
       console.error(err);
@@ -37,6 +40,11 @@ export const ContactPage: React.FC = () => {
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
+      <SEO
+        title="Contact Officers Wing Academy | Sahastradhara Road, Dehradun"
+        description="Get in touch with Officers Wing Academy in Dehradun. Visit our campus on Sahastradhara Road or call +91 95573 81578 for free pre-sea counselling."
+        keywords="Officers Wing Dehradun contact number, merchant navy coaching address Sahastradhara Road, Capt Anurag Singh phone number"
+      />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -237,6 +245,17 @@ export const ContactPage: React.FC = () => {
                   ></textarea>
                 </div>
 
+                {/* Honeypot Spam Trap Input */}
+                <input
+                  type="text"
+                  name="website_url_hp"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+                />
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -244,8 +263,8 @@ export const ContactPage: React.FC = () => {
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Submitting...</span>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>Verifying &amp; Submitting...</span>
                     </>
                   ) : (
                     <>
@@ -254,6 +273,11 @@ export const ContactPage: React.FC = () => {
                     </>
                   )}
                 </button>
+
+                {/* reCAPTCHA v3 & Spam Shield Badge */}
+                <div className="text-[10px] text-slate-400 text-center flex items-center justify-center gap-1 pt-1">
+                  <span>🔒 Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield</span>
+                </div>
               </form>
             )}
           </div>
