@@ -1,5 +1,6 @@
 import React from 'react';
 import { Footer } from '../components/layout/Footer';
+import { SEO } from '../components/common/SEO';
 import { Calendar, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
 
 interface AdmissionPageProps {
@@ -32,6 +33,11 @@ export const AdmissionPage: React.FC<AdmissionPageProps> = ({ onOpenEnquire }) =
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
+      <SEO
+        title="Admission Process & Batch Dates 2026-2027 | Officers Wing Academy Dehradun"
+        description="Step-by-step admission process, document checklist, medical requirements, and upcoming batch schedule for Merchant Navy coaching in Dehradun."
+        keywords="merchant navy admission Dehradun, IMUCET batch registration, DG Shipping medical test eligibility"
+      />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div

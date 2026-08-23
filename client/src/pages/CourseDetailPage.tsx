@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { coursesData } from '../data/coursesData';
 import { Footer } from '../components/layout/Footer';
+import { SEO } from '../components/common/SEO';
 import { GraduationCap, CheckCircle2, ArrowLeft, ShieldCheck, Clock } from 'lucide-react';
 
 interface CourseDetailPageProps {
@@ -12,10 +13,59 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   
-  const course = coursesData.find((c) => c.id === id) || coursesData[1]; // fallback to DNS
+  const course = coursesData.find((c) => c.id === id || c.aliases?.includes(id || '')) || coursesData[1]; // fallback to DNS
+
+  // Inject Course JSON-LD Schema Marker for Search Engine & AI Indexing
+  useEffect(() => {
+    const courseSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      '@id': `https://officerswing.com/courses/${course.id}#course`,
+      'name': `${course.category} — ${course.title}`,
+      'courseCode': course.id.toUpperCase(),
+      'description': course.fullDescription || course.subtitle,
+      'provider': {
+        '@type': 'EducationalOrganization',
+        'name': 'Officers Wing Academy',
+        'sameAs': 'https://officerswing.com'
+      },
+      'educationalCredentialAwarded': `${course.targetExam} Preparation & DG Shipping Clearance`,
+      'hasCourseInstance': {
+        '@type': 'CourseInstance',
+        'courseMode': 'Classroom, Simulator & Practical Labs',
+        'instructor': {
+          '@type': 'Person',
+          'name': 'Capt. Anurag Singh',
+          'jobTitle': 'Master Mariner & Managing Director'
+        }
+      }
+    };
+
+    let script = document.getElementById('course-jsonld-schema') as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'course-jsonld-schema';
+      document.head.appendChild(script);
+    }
+    script.text = JSON.stringify(courseSchema);
+
+    return () => {
+      const existingScript = document.getElementById('course-jsonld-schema');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, [course]);
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800 text-left">
+      <SEO
+        title={`${course.category} Coaching Dehradun | ${course.title} — Officers Wing`}
+        description={`Prepare for ${course.category} (${course.title}) at Officers Wing Academy in Dehradun. Eligibility: ${course.eligibility}. Duration: ${course.duration}.`}
+        keywords={`${course.category} Dehradun, ${course.title} coaching, merchant navy ${course.category.toLowerCase()}, DG shipping ${course.id}`}
+        canonicalUrl={`https://officerswing.com/courses/${course.id}`}
+      />
       {/* Top Breadcrumb & Banner */}
       <div className="bg-[#050B14] text-white py-14 sm:py-16 px-4 sm:px-8 relative overflow-hidden">
         <div

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HelpCircle, ChevronDown, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -43,6 +43,38 @@ const FAQS: FAQItem[] = [
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  // Inject FAQPage JSON-LD Schema for AI Answer Engine Citations (ChatGPT, Gemini, Perplexity)
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': FAQS.map((faq) => ({
+        '@type': 'Question',
+        'name': faq.question,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': faq.answer
+        }
+      }))
+    };
+
+    let script = document.getElementById('faq-jsonld-schema') as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'faq-jsonld-schema';
+      document.head.appendChild(script);
+    }
+    script.text = JSON.stringify(faqSchema);
+
+    return () => {
+      const existingScript = document.getElementById('faq-jsonld-schema');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SEO } from '../components/common/SEO';
 import { HeroSection } from '../components/sections/HeroSection';
 import { StatsCounterBar } from '../components/sections/StatsCounterBar';
 import { WhyChooseSection } from '../components/sections/WhyChooseSection';
@@ -39,8 +40,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquire }) => {
   };
 
   return (
-    <div className="w-full">
-      {/* 18s WebM Campus Tour Modal */}
+    <div className="w-full relative">
+      <SEO
+        title="Officers Wing Academy | Best Merchant Navy Coaching in Dehradun"
+        description="Officers Wing Academy is Dehradun's premier Merchant Navy coaching institute. 100% mentorship for IMU-CET, DNS, GP Rating, GME & ETO courses by Capt. Anurag Singh."
+        keywords="merchant navy coaching Dehradun, best merchant navy institute in Dehradun, IMUCET coaching Dehradun, GP Rating course after 10th Dehradun, DNS B.Sc Nautical Science coaching, merchant navy sponsorship coaching"
+      />
+
+      {/* 1. Hero Section — Video + Campus Tour Modal + CTAs */}
       <CampusTourModal
         isOpen={isTourOpen}
         onClose={() => setIsTourOpen(false)}

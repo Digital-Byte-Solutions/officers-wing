@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Calendar, Clock, Users, ChevronRight, AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { animate, stagger } from 'animejs';
 
 interface Batch {
@@ -175,10 +176,10 @@ export const BatchCalendar: React.FC = () => {
                   </div>
                 </div>
 
-                {/* CTA */}
+                {/* CTA Redirect to Courses Page */}
                 <div className="shrink-0">
-                  <a
-                    href="/admission"
+                  <Link
+                    to="/courses"
                     className={`inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2.5 rounded-lg cursor-pointer transition-all duration-300 whitespace-nowrap ${
                       batch.urgency === 'critical' || batch.urgency === 'high'
                         ? 'bg-[#E87500] hover:bg-amber-500 text-white shadow-md hover:shadow-lg'
@@ -186,7 +187,7 @@ export const BatchCalendar: React.FC = () => {
                     }`}
                   >
                     Apply Now <ChevronRight className="w-3.5 h-3.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             );

@@ -14,6 +14,7 @@ import { ResultsPage } from './pages/ResultsPage';
 import { AdmissionPage } from './pages/AdmissionPage';
 import { ToolsPage } from './pages/ToolsPage';
 import { BlogPage } from './pages/BlogPage';
+import { BlogPostDetailPage } from './pages/BlogPostDetailPage';
 import { ContactPage } from './pages/ContactPage';
 import { StudentDashboardPage } from './pages/StudentDashboardPage';
 
@@ -57,6 +58,7 @@ export function App() {
               <Route path="/tools" element={<ToolsPage />} />
               <Route path="/calculators" element={<ToolsPage />} />
               <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostDetailPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/student-dashboard" element={<StudentDashboardPage />} />
             </Routes>
