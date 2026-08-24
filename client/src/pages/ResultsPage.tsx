@@ -33,7 +33,7 @@ export const ResultsPage: React.FC = () => {
       </div>
 
       {/* Embedded Placements Wall */}
-      <PlacementsSection />
+      <PlacementsSection hideHeader />
 
       {/* Batch Placement Highlights */}
       <div className="py-16 sm:py-20 bg-[#F8FAFC] border-t border-slate-200 text-left">
