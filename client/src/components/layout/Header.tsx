@@ -55,11 +55,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
+    { name: 'About', path: '/about' },
     { name: 'Courses', path: '/courses' },
     { name: 'Results', path: '/results' },
+    { name: 'Gallery', path: '/gallery' },
     { name: 'Admission', path: '/admission' },
     { name: 'Tools', path: '/tools' },
+    { name: 'FAQ', path: '/faq' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -192,7 +194,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
                       onClick={(e) => {
                         if (link.path === '/') handleHomeClick(e);
                       }}
-                      className={`relative px-4 py-1.5 text-xs font-bold transition-colors duration-200 z-10 ${
+                      className={`relative px-3 py-1.5 text-xs font-bold transition-colors duration-200 z-10 ${
                         isActive
                           ? isScrolled
                             ? 'text-[#0F2C59]'
