@@ -48,6 +48,8 @@ export const Footer: React.FC = () => {
                   { to: '/',       label: 'Home' },
                   { to: '/about',  label: 'About Us' },
                   { to: '/courses', label: 'Our Courses' },
+                  { to: '/gallery', label: 'Campus Tour & Gallery' },
+                  { to: '/faq',    label: 'Merchant Navy FAQs' },
                 ].map(({ to, label }) => (
                   <li key={to}>
                     <Link to={to} className="hover:text-[#C8922A] transition-colors duration-200">
@@ -67,6 +69,7 @@ export const Footer: React.FC = () => {
                 { to: '/results',          label: 'Alumni Placements & Results' },
                 { to: '/admission',        label: 'Admission Process' },
                 { to: '/tools',            label: 'Eligibility & Medical Calculators' },
+                { to: '/faq',              label: 'Aspirant FAQs & Guide' },
                 { to: '/blog',             label: 'Merchant Navy Blog' },
                 { to: '/contact',          label: 'Contact Us' },
                 { to: '/student-dashboard', label: 'Student Portal Login →', highlight: true },
