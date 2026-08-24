@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { X, Send, CheckCircle2, Sparkles, Phone, User, BookOpen, MessageSquare } from 'lucide-react';
+import { X, Send, CheckCircle2, User, Phone, BookOpen, MessageSquare, Loader2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitLeadToGoogleSheet } from '../../services/leadService';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -10,6 +11,8 @@ interface EnquiryModalProps {
 
 export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -32,9 +35,25 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      await submitLeadToGoogleSheet({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        course: formData.course,
+        message: formData.message,
+        formType: 'Enquiry Modal',
+        honeypot: honeypot
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
 
     // Fire celebratory confetti burst
     confetti({
@@ -67,12 +86,12 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0A1E3F] to-[#0F2C59] text-white p-5 sm:p-6 flex justify-between items-center shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-300 border border-amber-400/30">
-                <Sparkles className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-amber-400/50 bg-black shrink-0">
+                <img src="/images/logo.jpg" alt="Officers Wing Logo" className="w-full h-full object-cover" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-lg text-white leading-tight">Cadet Counselling</h3>
-                <p className="text-[11px] text-amber-300 font-medium">Free 1-on-1 Guidance &amp; Eligibility Check</p>
+                <h3 className="font-display font-bold text-lg text-white leading-tight">Officers Wing Dehradun</h3>
+                <p className="text-[11px] text-amber-300 font-medium">Free 1-on-1 Cadet Counselling</p>
               </div>
             </div>
             <button
@@ -163,13 +182,39 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
                   ></textarea>
                 </div>
 
+                {/* Honeypot Spam Trap Input (Hidden from human users) */}
+                <input
+                  type="text"
+                  name="website_url_hp"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+                />
+
                 <button
                   type="submit"
-                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit for Free Guidance</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>Verifying &amp; Submitting...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Submit Enquiry Now</span>
+                    </>
+                  )}
                 </button>
+
+                {/* reCAPTCHA v3 & Spam Shield Badge */}
+                <div className="text-[10px] text-slate-400 text-center flex items-center justify-center gap-1 pt-1">
+                  <span>🔒 Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield</span>
+                </div>
               </form>
             )}
           </div>

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
+import { SEO } from '../components/common/SEO';
 import { Calculator, CheckCircle2, AlertTriangle, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { submitLeadToGoogleSheet } from '../services/leadService';
 
 export const ToolsPage: React.FC = () => {
   // Eligibility Calculator State
+  const [honeypot, setHoneypot] = useState('');
   const [eligibilityData, setEligibilityData] = useState({
     age: 18,
     qualification: '12th',
@@ -27,9 +30,10 @@ export const ToolsPage: React.FC = () => {
   const bmi = calculateBMI();
   const isBmiPass = bmi >= 17.0 && bmi <= 27.0;
 
-  const handleEligibilitySubmit = (e: React.FormEvent) => {
+  const handleEligibilitySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { age, qualification, pcm } = eligibilityData;
+    if (honeypot) return; // Honeypot check
+    const { age, qualification, pcm, name, phone } = eligibilityData;
 
     let res = '';
     if (qualification === '10th' && age >= 15 && age <= 25) {
@@ -46,6 +50,21 @@ export const ToolsPage: React.FC = () => {
 
     setEligibilityResult(res);
 
+    // If phone is entered, submit lead to Google Sheet
+    if (phone) {
+      await submitLeadToGoogleSheet({
+        name: name || 'Prospective Cadet',
+        phone: phone,
+        qualification: qualification,
+        age: age,
+        pcm: pcm,
+        message: `Eligibility Tool Result: ${res}`,
+        formType: 'Eligibility Checker',
+        source: 'Calculators & Tools Page',
+        honeypot: honeypot
+      });
+    }
+
     // Fire canvas-confetti celebration
     confetti({
       particleCount: 80,
@@ -57,6 +76,12 @@ export const ToolsPage: React.FC = () => {
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800 text-left">
+      <SEO
+        title="Merchant Navy Eligibility & DG Shipping BMI Calculator | Officers Wing"
+        description="Free online Merchant Navy eligibility checker and DG Shipping BMI calculator. Check age, PCM marks, and eyesight requirements instantly."
+        keywords="merchant navy eligibility checker, DG Shipping BMI calculator, IMUCET eligibility tool, eyesight requirements merchant navy"
+        canonicalUrl="https://officerswing.com/tools"
+      />
       {/* Header Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -132,13 +157,49 @@ export const ToolsPage: React.FC = () => {
               />
             </div>
 
-            <div className="md:col-span-3 pt-2">
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Your Name (Optional)</label>
+              <input
+                type="text"
+                placeholder="Candidate name"
+                value={eligibilityData.name}
+                onChange={(e) => setEligibilityData({ ...eligibilityData, name: e.target.value })}
+                className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Phone / WhatsApp (Optional)</label>
+              <input
+                type="tel"
+                placeholder="10-digit mobile number"
+                value={eligibilityData.phone}
+                onChange={(e) => setEligibilityData({ ...eligibilityData, phone: e.target.value })}
+                className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59]"
+              />
+            </div>
+
+            {/* Honeypot Spam Trap Input */}
+            <input
+              type="text"
+              name="website_url_hp"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+            />
+
+            <div className="md:col-span-3 pt-2 space-y-2">
               <button
                 type="submit"
                 className="w-full sm:w-auto bg-[#0F2C59] hover:bg-[#1A3D73] text-white text-xs font-bold px-8 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <Sparkles className="w-4 h-4 text-amber-300" /> Evaluate Eligibility Now
               </button>
+              <div className="text-[10px] text-slate-400 flex items-center gap-1">
+                <span>🔒 Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield</span>
+              </div>
             </div>
           </form>
 

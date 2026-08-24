@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/common/SEO';
 import { CoursesSection } from '../components/sections/CoursesSection';
 import { Footer } from '../components/layout/Footer';
 import { coursesData } from '../data/coursesData';
@@ -8,6 +9,11 @@ import { ArrowRight, Sparkles, BookOpen } from 'lucide-react';
 export const CoursesPage: React.FC = () => {
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
+      <SEO
+        title="Merchant Navy Courses & Eligibility | GP Rating, DNS, GME & ETO | Officers Wing"
+        description="Explore structured Merchant Navy coaching programs after 10th, 12th PCM, and Graduation. GP Rating, DNS (IMU-CET), GME, and ETO courses in Dehradun."
+        keywords="merchant navy courses after 12th, GP rating after 10th, DNS course IMUCET, GME course fees, ETO course Dehradun"
+      />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -25,6 +31,18 @@ export const CoursesPage: React.FC = () => {
           <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Choose the right training path tailored to your qualification stage: 10th Standard, 12th PCM, or Engineering Graduation.
           </p>
+        </div>
+      </div>
+
+      {/* Official Course Roadmap Banner */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 -mt-8 relative z-20">
+        <div className="rounded-3xl overflow-hidden border-2 border-amber-400/40 shadow-2xl bg-[#060F1E]">
+          <img
+            src="/images/officers_wing_banner.jpg"
+            alt="Officers Wing Academy Pre-Sea Course Pathways"
+            className="w-full h-auto object-cover"
+            loading="lazy"
+          />
         </div>
       </div>
 

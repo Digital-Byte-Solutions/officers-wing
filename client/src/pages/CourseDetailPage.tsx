@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { coursesData } from '../data/coursesData';
 import { Footer } from '../components/layout/Footer';
+import { SEO } from '../components/common/SEO';
 import { GraduationCap, CheckCircle2, ArrowLeft, ShieldCheck, Clock } from 'lucide-react';
 
 interface CourseDetailPageProps {
@@ -12,10 +13,59 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   
-  const course = coursesData.find((c) => c.id === id) || coursesData[1]; // fallback to DNS
+  const course = coursesData.find((c) => c.id === id || c.aliases?.includes(id || '')) || coursesData[1]; // fallback to DNS
+
+  // Inject Course JSON-LD Schema Marker for Search Engine & AI Indexing
+  useEffect(() => {
+    const courseSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      '@id': `https://officerswing.com/courses/${course.id}#course`,
+      'name': `${course.category} — ${course.title}`,
+      'courseCode': course.id.toUpperCase(),
+      'description': course.fullDescription || course.subtitle,
+      'provider': {
+        '@type': 'EducationalOrganization',
+        'name': 'Officers Wing Academy',
+        'sameAs': 'https://officerswing.com'
+      },
+      'educationalCredentialAwarded': `${course.targetExam} Preparation & DG Shipping Clearance`,
+      'hasCourseInstance': {
+        '@type': 'CourseInstance',
+        'courseMode': 'Classroom, Simulator & Practical Labs',
+        'instructor': {
+          '@type': 'Person',
+          'name': 'Capt. Anurag Singh',
+          'jobTitle': 'Master Mariner & Managing Director'
+        }
+      }
+    };
+
+    let script = document.getElementById('course-jsonld-schema') as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'course-jsonld-schema';
+      document.head.appendChild(script);
+    }
+    script.text = JSON.stringify(courseSchema);
+
+    return () => {
+      const existingScript = document.getElementById('course-jsonld-schema');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, [course]);
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800 text-left">
+      <SEO
+        title={`${course.category} Coaching Dehradun | ${course.title} — Officers Wing`}
+        description={`Prepare for ${course.category} (${course.title}) at Officers Wing Academy in Dehradun. Eligibility: ${course.eligibility}. Duration: ${course.duration}.`}
+        keywords={`${course.category} Dehradun, ${course.title} coaching, merchant navy ${course.category.toLowerCase()}, DG shipping ${course.id}`}
+        canonicalUrl={`https://officerswing.com/courses/${course.id}`}
+      />
       {/* Top Breadcrumb & Banner */}
       <div className="bg-[#050B14] text-white py-14 sm:py-16 px-4 sm:px-8 relative overflow-hidden">
         <div
@@ -110,20 +160,34 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
 
         </div>
 
-        {/* Right Sidebar: Admission Box */}
+        {/* Right Sidebar: Admission Box & Official Poster */}
         <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-lg space-y-6 sticky top-28 text-center">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-lg space-y-6 sticky top-28 text-center">
             
-            <div className="w-14 h-14 rounded-full bg-[#0F2C59] text-white flex items-center justify-center mx-auto">
-              <GraduationCap className="w-7 h-7" />
+            <div className="w-14 h-14 rounded-2xl bg-[#0F2C59] text-white flex items-center justify-center mx-auto shadow-md">
+              <GraduationCap className="w-7 h-7 text-amber-400" />
             </div>
 
             <div>
-              <h3 className="font-bold text-lg text-[#0F2C59]">Enrollment Open</h3>
-              <p className="text-xs text-slate-500 mt-1">Upcoming batch starting soon in Dehradun center</p>
+              <h3 className="font-bold text-lg text-[#0F2C59] font-display">New Batch Enrollment Open</h3>
+              <p className="text-xs text-slate-500 mt-1">Upcoming batch starting soon at Dehradun Academy</p>
             </div>
 
-            <div className="border-t border-b border-slate-100 py-4 space-y-2 text-xs text-slate-600">
+            {/* Embed Course-Specific Official Poster */}
+            <div className="rounded-xl overflow-hidden border border-slate-200 shadow-md">
+              <img
+                src={
+                  id?.includes('gp-rating')
+                    ? '/images/gp_rating_batch.jpg'
+                    : '/images/foundation_course_poster.jpg'
+                }
+                alt={`${course.category} Official Poster`}
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="border-t border-b border-slate-100 py-3 space-y-2 text-xs text-slate-600 text-left">
               <div className="flex justify-between">
                 <span>Target Exam:</span>
                 <span className="font-bold text-[#0F2C59]">{course.targetExam}</span>
@@ -132,18 +196,27 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
                 <span>Batch Seats:</span>
                 <span className="font-bold text-emerald-700">Limited (30 Seats)</span>
               </div>
+              <div className="flex justify-between">
+                <span>Helpline:</span>
+                <span className="font-bold text-amber-600">9149081578</span>
+              </div>
             </div>
 
             <button
               onClick={onOpenEnquire}
-              className="w-full bg-[#E87500] hover:bg-[#F59E0B] text-white font-bold text-xs py-3.5 rounded-[6px] transition-all shadow-md cursor-pointer"
+              className="w-full bg-[#E87500] hover:bg-[#F59E0B] text-white font-bold text-xs py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
-              Enquire For This Course
+              Enquire For This Batch
             </button>
 
-            <p className="text-[11px] text-slate-400">
-              Need instant guidance? Call our admissions team at +91 98765 43210
-            </p>
+            <div className="pt-1">
+              <a
+                href="tel:+919149081578"
+                className="text-xs font-semibold text-[#0F2C59] hover:text-[#E87500] flex items-center justify-center gap-1.5"
+              >
+                <span>Call Admissions: <strong>9149081578</strong></span>
+              </a>
+            </div>
           </div>
         </div>
 

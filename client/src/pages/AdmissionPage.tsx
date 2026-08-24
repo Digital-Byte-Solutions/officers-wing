@@ -1,5 +1,6 @@
 import React from 'react';
 import { Footer } from '../components/layout/Footer';
+import { SEO } from '../components/common/SEO';
 import { Calendar, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
 
 interface AdmissionPageProps {
@@ -32,6 +33,11 @@ export const AdmissionPage: React.FC<AdmissionPageProps> = ({ onOpenEnquire }) =
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
+      <SEO
+        title="Admission Process & Batch Dates 2026-2027 | Officers Wing Academy Dehradun"
+        description="Step-by-step admission process, document checklist, medical requirements, and upcoming batch schedule for Merchant Navy coaching in Dehradun."
+        keywords="merchant navy admission Dehradun, IMUCET batch registration, DG Shipping medical test eligibility"
+      />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -82,28 +88,102 @@ export const AdmissionPage: React.FC<AdmissionPageProps> = ({ onOpenEnquire }) =
         </div>
       </div>
 
-      {/* Batch Calendar */}
+      {/* Official Posters & Upcoming Batch Notices */}
       <div className="py-16 bg-white border-t border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-8 text-center space-y-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#0A1E3F] font-display">
-            Upcoming Batch Start Dates
-          </h2>
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center space-y-10">
+          <div className="space-y-2">
+            <span className="section-label section-label-light mb-2">
+              <Calendar className="w-3.5 h-3.5 text-[#0A1E3F]" />
+              Official Admission Notices
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black text-[#0A1E3F] font-display">
+              Upcoming Batch Start Dates &amp; Posters
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
+              Direct registration open for Foundation After 10th and GP Rating preparation batches at our Dehradun academy.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex justify-between items-center">
-              <div>
-                <div className="text-[10px] font-bold text-amber-700 uppercase tracking-wider">IMU-CET &amp; DNS Batch</div>
-                <div className="text-sm font-bold text-[#0A1E3F] mt-0.5">Starts 15th September 2026</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            {/* Batch Poster 1: IMU-CET 2027 */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/imu_cet_batch_classroom.jpg"
+                  alt="Join IMU-CET 2027 & Sponsorship Exam New Batch - Officers Wing Academy Dehradun"
+                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#E87500] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow">
+                  Batch 2027
+                </span>
               </div>
-              <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Open</span>
+              <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">IMU-CET 2027 &amp; Sponsorship</div>
+                  <div className="text-xs text-amber-600 font-semibold">DNS | B.Sc Nautical | B.Tech</div>
+                </div>
+                <a
+                  href="tel:+919149081578"
+                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
+                >
+                  Call: 9149081578
+                </a>
+              </div>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex justify-between items-center">
-              <div>
-                <div className="text-[10px] font-bold text-amber-700 uppercase tracking-wider">GP Rating Batch</div>
-                <div className="text-sm font-bold text-[#0A1E3F] mt-0.5">Starts 1st October 2026</div>
+            {/* Batch Poster 2: Foundation Batch */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/foundation_course_poster.jpg"
+                  alt="Foundation After 10th for Merchant Navy IMU-CET"
+                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
+                  After 10th
+                </span>
               </div>
-              <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Open</span>
+              <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">Foundation Batch (After 10th)</div>
+                  <div className="text-xs text-amber-600 font-semibold">DNS | BSc Nautical | BTech Marine</div>
+                </div>
+                <a
+                  href="tel:+919149081578"
+                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
+                >
+                  Call: 9149081578
+                </a>
+              </div>
+            </div>
+
+            {/* Batch Poster 3: GP Rating Batch */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/gp_rating_batch.jpg"
+                  alt="New Preparation Batch Starting for GP Rating Course"
+                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
+                  GP Rating
+                </span>
+              </div>
+              <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">GP Rating Preparation Batch</div>
+                  <div className="text-xs text-amber-600 font-semibold">Target: NUSI Goa, TS Rahman, SCI</div>
+                </div>
+                <a
+                  href="tel:+919149081578"
+                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
+                >
+                  Call: 9149081578
+                </a>
+              </div>
             </div>
           </div>
 

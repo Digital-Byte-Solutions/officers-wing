@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageCircle, Sparkles } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageCircle, Sparkles, Loader2 } from 'lucide-react';
+import { InstagramIcon } from '../components/common/InstagramIcon';
+import { submitLeadToGoogleSheet } from '../services/leadService';
 
 export const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -12,13 +17,34 @@ export const ContactPage: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      await submitLeadToGoogleSheet({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        city: formData.city,
+        message: formData.message,
+        formType: 'Contact Form',
+        honeypot: honeypot
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
+      <SEO
+        title="Contact Officers Wing Academy | Sahastradhara Road, Dehradun"
+        description="Get in touch with Officers Wing Academy in Dehradun. Visit our campus on Sahastradhara Road or call +91 95573 81578 for free pre-sea counselling."
+        keywords="Officers Wing Dehradun contact number, merchant navy coaching address Sahastradhara Road, Capt Anurag Singh phone number"
+      />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -64,8 +90,30 @@ export const ContactPage: React.FC = () => {
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="font-bold text-[#0A1E3F] text-sm">Direct Helpline &amp; WhatsApp</div>
-                  <div className="text-slate-600 mt-0.5">+91 95573 81578 / +91 98765 43210</div>
+                  <div className="font-bold text-[#0A1E3F] text-sm">Official Helplines</div>
+                  <div className="text-slate-600 mt-0.5 flex flex-col gap-0.5">
+                    <a href="tel:+919149081578" className="hover:text-[#E87500] font-semibold text-slate-800">+91 91490 81578 (Admissions)</a>
+                    <a href="tel:+919557381578" className="hover:text-[#E87500] font-semibold text-slate-800">+91 95573 81578 (Counselling)</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0">
+                  <InstagramIcon className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold text-[#0A1E3F] text-sm">Instagram Handle</div>
+                  <div className="text-slate-600 mt-0.5">
+                    <a
+                      href="https://instagram.com/officerswing"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-pink-600 hover:underline font-bold"
+                    >
+                      @officerswing
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -90,16 +138,25 @@ export const ContactPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick WhatsApp Action */}
-            <div className="pt-2">
+            {/* Quick Actions */}
+            <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
-                href="https://wa.me/919557381578"
+                href="https://wa.me/919149081578"
                 target="_blank"
                 rel="noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors shadow-md"
+                className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors shadow-md"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Chat Instantly on WhatsApp</span>
+                <span>Chat on WhatsApp</span>
+              </a>
+              <a
+                href="https://instagram.com/officerswing"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-bold text-xs transition-opacity shadow-md"
+              >
+                <InstagramIcon className="w-4 h-4" />
+                <span>Follow on Instagram</span>
               </a>
             </div>
           </div>
@@ -188,13 +245,39 @@ export const ContactPage: React.FC = () => {
                   ></textarea>
                 </div>
 
+                {/* Honeypot Spam Trap Input */}
+                <input
+                  type="text"
+                  name="website_url_hp"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+                />
+
                 <button
                   type="submit"
-                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Send Enquiry Message</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>Verifying &amp; Submitting...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Send Enquiry Message</span>
+                    </>
+                  )}
                 </button>
+
+                {/* reCAPTCHA v3 & Spam Shield Badge */}
+                <div className="text-[10px] text-slate-400 text-center flex items-center justify-center gap-1 pt-1">
+                  <span>🔒 Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield</span>
+                </div>
               </form>
             )}
           </div>
