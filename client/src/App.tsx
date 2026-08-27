@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 import { Header } from './components/layout/Header';
-import { MobileBottomNav } from './components/layout/MobileBottomNav';
+import { StickyMobileCTA } from './components/layout/StickyMobileCTA';
+import { FloatingWhatsAppPill } from './components/layout/FloatingWhatsAppPill';
+import { ExitIntentModal } from './components/layout/ExitIntentModal';
 import { EnquiryModal } from './components/layout/EnquiryModal';
 import { PageTransition } from './components/layout/PageTransition';
 
@@ -17,6 +19,8 @@ import { BlogPage } from './pages/BlogPage';
 import { BlogPostDetailPage } from './pages/BlogPostDetailPage';
 import { ContactPage } from './pages/ContactPage';
 import { StudentDashboardPage } from './pages/StudentDashboardPage';
+import { FAQPage } from './pages/FAQPage';
+import { GalleryPage } from './pages/GalleryPage';
 
 // Scroll to top helper on route / tab change
 function ScrollToTop() {
@@ -35,7 +39,7 @@ export function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-white font-sans text-slate-800 flex flex-col selection:bg-[#E87500] selection:text-white pb-16 lg:pb-0">
+      <div className="min-h-screen bg-white font-sans text-slate-800 flex flex-col selection:bg-[#E87500] selection:text-white pb-20 lg:pb-0">
         {/* Global Morphing Header */}
         <Header onOpenEnquire={() => setIsEnquireOpen(true)} />
 
@@ -44,6 +48,14 @@ export function App() {
           isOpen={isEnquireOpen}
           onClose={() => setIsEnquireOpen(false)}
         />
+
+        {/* Exit Intent Lead Capture Modal */}
+        <ExitIntentModal />
+
+        {/* Floating WhatsApp Quick Action Pill (Desktop & Tablet) */}
+        <div className="hidden lg:block">
+          <FloatingWhatsAppPill />
+        </div>
 
         {/* Routes with Page Transition */}
         <main className="flex-1">
@@ -57,6 +69,10 @@ export function App() {
               <Route path="/admission" element={<AdmissionPage onOpenEnquire={() => setIsEnquireOpen(true)} />} />
               <Route path="/tools" element={<ToolsPage />} />
               <Route path="/calculators" element={<ToolsPage />} />
+              <Route path="/faq" element={<FAQPage onOpenEnquire={() => setIsEnquireOpen(true)} />} />
+              <Route path="/faqs" element={<FAQPage onOpenEnquire={() => setIsEnquireOpen(true)} />} />
+              <Route path="/gallery" element={<GalleryPage onOpenEnquire={() => setIsEnquireOpen(true)} />} />
+              <Route path="/campus-life" element={<GalleryPage onOpenEnquire={() => setIsEnquireOpen(true)} />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostDetailPage />} />
               <Route path="/contact" element={<ContactPage />} />
@@ -65,8 +81,8 @@ export function App() {
           </PageTransition>
         </main>
 
-        {/* App-like Mobile Bottom Navigation Bar */}
-        <MobileBottomNav onOpenEnquire={() => setIsEnquireOpen(true)} />
+        {/* Persistent High-Converting Sticky Mobile Bottom CTA Bar */}
+        <StickyMobileCTA onOpenEnquire={() => setIsEnquireOpen(true)} />
       </div>
     </Router>
   );

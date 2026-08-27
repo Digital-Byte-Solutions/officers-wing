@@ -164,6 +164,17 @@ export const CampusLifeGallery: React.FC = () => {
           )}
         </AnimatePresence>
 
+        {/* View Full Gallery Link Banner */}
+        <div className="mt-10 text-center">
+          <a
+            href="/gallery"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-[#0A1E3F] hover:bg-[#0F2C59] border border-amber-400/40 text-amber-300 hover:text-white text-xs sm:text-sm font-extrabold shadow-lg hover:shadow-amber-500/20 transition-all cursor-pointer"
+          >
+            <span>Explore Full Campus Photo &amp; Video Testimonials Hub</span>
+            <span className="text-[#E87500]">→</span>
+          </a>
+        </div>
+
       </div>
     </section>
   );

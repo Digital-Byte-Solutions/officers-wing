@@ -148,8 +148,19 @@ export const FAQSection: React.FC = () => {
           })}
         </div>
 
+        {/* View All FAQs Link Banner */}
+        <div className="mt-8 text-center">
+          <a
+            href="/faq"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-slate-300 hover:border-[#0A1E3F] text-[#0A1E3F] hover:text-[#E87500] text-xs sm:text-sm font-bold shadow-sm hover:shadow-md transition-all cursor-pointer"
+          >
+            <span>Explore All 25+ FAQs in Dedicated Knowledge Hub</span>
+            <span className="text-[#E87500]">→</span>
+          </a>
+        </div>
+
         {/* Helpline Card */}
-        <div className="mt-10 p-5 rounded-2xl bg-[#0A1E3F] text-white flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="mt-8 p-5 rounded-2xl bg-[#0A1E3F] text-white flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#E87500] flex items-center justify-center shrink-0">
               <MessageSquare className="w-5 h-5 text-white" />

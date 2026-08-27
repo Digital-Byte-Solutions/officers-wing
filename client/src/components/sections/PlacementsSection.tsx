@@ -50,7 +50,11 @@ const ALUMNI_VIDEOS: AlumniVideo[] = [
   }
 ];
 
-export const PlacementsSection: React.FC = () => {
+interface PlacementsSectionProps {
+  hideHeader?: boolean;
+}
+
+export const PlacementsSection: React.FC<PlacementsSectionProps> = ({ hideHeader = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeVideo, setActiveVideo] = useState<AlumniVideo>(ALUMNI_VIDEOS[0]);
   const totalSlides = testimonialsData.length;
@@ -78,20 +82,22 @@ export const PlacementsSection: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* ── Section Heading ── */}
-        <div className="text-center mb-12 sm:mb-16 space-y-3">
-          <div>
-            <span className="section-label section-label-dark">
-              <Building2 className="w-3.5 h-3.5 text-amber-400" />
-              Verified Cadet Success
-            </span>
+        {!hideHeader && (
+          <div className="text-center mb-12 sm:mb-16 space-y-3">
+            <div>
+              <span className="section-label section-label-dark">
+                <Building2 className="w-3.5 h-3.5 text-amber-400" />
+                Verified Cadet Success
+              </span>
+            </div>
+            <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight">
+              Alumni Selections &amp; Placements
+            </h2>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+              Cadets trained at Officers Wing are sailing worldwide with premier international shipping fleets.
+            </p>
           </div>
-          <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight">
-            Alumni Selections &amp; Placements
-          </h2>
-          <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
-            Cadets trained at Officers Wing are sailing worldwide with premier international shipping fleets.
-          </p>
-        </div>
+        )}
 
         {/* ── Partner Shipping Companies Marquee ── */}
         <div className="mb-12 sm:mb-14 overflow-hidden py-4 border-y border-white/10 relative">
