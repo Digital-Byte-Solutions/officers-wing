@@ -9,9 +9,9 @@ export const CoursesSection: React.FC = () => {
 
   const filteredCourses = coursesData.filter((c) => {
     if (selectedFilter === 'all') return true;
-    if (selectedFilter === '10th') return c.id.includes('10th');
-    if (selectedFilter === '12th') return c.id.includes('12th');
-    if (selectedFilter === 'graduate') return c.id.includes('graduate');
+    if (selectedFilter === '10th') return c.id.includes('10th') || c.title.toLowerCase().includes('10th');
+    if (selectedFilter === '12th') return c.title.toLowerCase().includes('12th') || c.id.includes('dns') || c.id.includes('bsc') || c.id.includes('btech');
+    if (selectedFilter === 'graduate') return c.title.toLowerCase().includes('graduate') || c.id.includes('gme') || c.id.includes('eto');
     return true;
   });
 
@@ -49,7 +49,7 @@ export const CoursesSection: React.FC = () => {
             {[
               { key: 'all',      label: 'All Programs' },
               { key: '10th',     label: 'After 10th (GP Rating)' },
-              { key: '12th',     label: 'After 12th (DNS / IMU-CET)' },
+              { key: '12th',     label: 'After 12th (DNS, B.Sc & B.Tech)' },
               { key: 'graduate', label: 'Graduates (GME & ETO)' },
             ].map((tab) => (
               <button
@@ -68,7 +68,7 @@ export const CoursesSection: React.FC = () => {
         </div>
 
         {/* ── Cards Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.map((course) => (
             <div
               key={course.id}
@@ -86,20 +86,24 @@ export const CoursesSection: React.FC = () => {
                 </div>
               )}
 
-              <div className="p-6 sm:p-7 flex flex-col items-start gap-4 flex-1 text-left">
-                {/* Pathway Tag & Icon */}
-                <div className="w-full flex items-center justify-between">
-                  <div
-                    className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform"
-                    style={{ background: 'linear-gradient(135deg, #0A1E3F 0%, #0F2C59 100%)' }}
-                  >
-                    <GraduationCap className="w-6 h-6 text-amber-400" />
-                  </div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0A1E3F] bg-blue-50 border border-blue-200/80 px-2.5 py-1 rounded-full">
-                    {course.title}
-                  </span>
-                </div>
+              {/* Course Poster Image */}
+              <div
+                className="relative w-full h-48 sm:h-52 overflow-hidden bg-slate-900 cursor-pointer"
+                onClick={() => navigate(`/courses/${course.id}`)}
+              >
+                <img
+                  src={course.imageUrl}
+                  alt={`${course.category} Official Poster & Course Structure`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1E3F]/80 via-transparent to-transparent pointer-events-none" />
+                <span className="absolute bottom-3 left-4 text-[10px] font-extrabold uppercase tracking-wider text-white bg-[#0A1E3F]/90 backdrop-blur-sm border border-white/20 px-2.5 py-1 rounded-full shadow">
+                  {course.title}
+                </span>
+              </div>
 
+              <div className="p-6 sm:p-7 flex flex-col items-start gap-4 flex-1 text-left">
                 {/* Course Name */}
                 <div>
                   <h3 className="font-display text-xl font-bold text-[#0A1E3F] leading-snug group-hover:text-[#E87500] transition-colors">

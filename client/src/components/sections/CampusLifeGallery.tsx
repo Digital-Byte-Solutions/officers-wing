@@ -12,6 +12,18 @@ interface GalleryItem {
 
 const GALLERY_ITEMS: GalleryItem[] = [
   {
+    title: 'IMU-CET & Sponsorship Preparation Classroom Batch',
+    category: 'Smart Classrooms',
+    imageUrl: '/images/officers_wing_classroom_batch.jpg',
+    description: 'Cadets attending disciplined interactive lectures in our spacious Dehradun classroom for IMU-CET and sponsorship exam preparation.'
+  },
+  {
+    title: 'Drug-Free Awareness Session by Narcotics Department',
+    category: 'Academy Events',
+    imageUrl: '/images/narcotics_awareness_session.jpg',
+    description: 'Informative drug-free awareness and youth leadership session conducted by the Narcotics Department for Officers Wing cadets.'
+  },
+  {
     title: 'IMU-CET 2027 & Sponsorship Exam Batch',
     category: 'Academy Batches',
     imageUrl: '/images/imu_cet_batch_classroom.jpg',

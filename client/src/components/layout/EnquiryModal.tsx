@@ -161,10 +161,12 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
                     onChange={(e) => setFormData({ ...formData, course: e.target.value })}
                     className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A1E3F] focus:border-transparent transition-all bg-slate-50/50"
                   >
-                    <option>After 10th (GP Rating / Deck Rating)</option>
-                    <option>After 12th (DNS / IMU-CET Coaching)</option>
-                    <option>Graduate / B.Tech (GME Conversion)</option>
-                    <option>Graduate / B.Tech (ETO Specialization)</option>
+                    <option>After 12th — DNS (Diploma in Nautical Science)</option>
+                    <option>After 12th — B.Sc Nautical Science</option>
+                    <option>After 12th — B.Tech Marine Engineering</option>
+                    <option>Graduate / B.Tech — GME (Graduate Marine Engineering)</option>
+                    <option>Graduate / Diploma — ETO (Electro-Technical Officer)</option>
+                    <option>After 10th — GP Rating (General Purpose)</option>
                   </select>
                 </div>
 

@@ -10,9 +10,9 @@ export const CoursesPage: React.FC = () => {
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
       <SEO
-        title="Merchant Navy Courses & Eligibility | GP Rating, DNS, GME & ETO | Officers Wing"
-        description="Explore structured Merchant Navy coaching programs after 10th, 12th PCM, and Graduation. GP Rating, DNS (IMU-CET), GME, and ETO courses in Dehradun."
-        keywords="merchant navy courses after 12th, GP rating after 10th, DNS course IMUCET, GME course fees, ETO course Dehradun"
+        title="Merchant Navy Courses & Eligibility | DNS, B.Sc, B.Tech, GME & ETO | Officers Wing"
+        description="Explore DG Shipping approved Merchant Navy pre-sea programs: DNS (IMU-CET & Sponsorship), B.Sc Nautical Science, B.Tech Marine Engineering, GME, ETO, and GP Rating in Dehradun."
+        keywords="merchant navy courses after 12th, DNS course IMUCET, BSc nautical science dehradun, BTech marine engineering, GME course eligibility, ETO course fees, GP rating after 10th"
       />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">

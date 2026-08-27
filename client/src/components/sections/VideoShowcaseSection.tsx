@@ -5,7 +5,7 @@ interface VideoItem {
   id: string;
   title: string;
   category: string;
-  webmUrl: string;
+  webmUrl?: string;
   mp4Url: string;
   description: string;
   badge: string;
@@ -13,40 +13,84 @@ interface VideoItem {
 
 const VIDEOS: VideoItem[] = [
   {
-    id: 'v3',
-    title: 'Academy Campus Life & Classroom Coaching (Dehradun)',
+    id: 'vid1',
+    title: 'Cadet Maritime Training & Seamanship Drills',
+    category: 'Practical Training',
+    mp4Url: '/videos/vid1.mp4',
+    description: 'Watch Officers Wing cadets undergoing hands-on seamanship drills, chart work, and navigation orientation in Dehradun.',
+    badge: 'Practical Drills',
+  },
+  {
+    id: 'vid2',
+    title: 'Life at Sea: Commercial Cargo Ship Navigation',
+    category: 'Life at Sea',
+    mp4Url: '/videos/vid2.mp4',
+    description: 'Real glimpses of life aboard modern international commercial container and tanker vessels navigated by alumni.',
+    badge: 'Ocean Voyages',
+  },
+  {
+    id: 'vid3',
+    title: 'Academy Campus Life & Academic Mentorship (Dehradun)',
     category: 'Campus Life',
-    webmUrl: '/videos/v3.webm',
-    mp4Url: '/videos/v3.mp4',
+    mp4Url: '/videos/vid3.mp4',
     description: 'Insight into classroom mentoring, CBT mock test preparation, smart digital classes, and structured routine in Dehradun.',
     badge: 'Campus Tour',
   },
   {
-    id: 'v1',
-    title: 'Cadet Maritime Training & Seamanship Drills',
-    category: 'Practical Training',
-    webmUrl: '/videos/v1.webm',
-    mp4Url: '/videos/v1.mp4',
-    description: 'Watch Officers Wing cadets undergoing hands-on seamanship drills, chart work, and navigation orientation.',
-    badge: 'Practical Drills',
-  },
-  {
-    id: 'v2',
-    title: 'Life at Sea & Merchant Ship Navigation',
-    category: 'Life at Sea',
-    webmUrl: '/videos/v2.webm',
-    mp4Url: '/videos/v2.mp4',
-    description: 'Real glimpses of life aboard modern international commercial container and tanker vessels.',
-    badge: 'Ocean Voyages',
-  },
-  {
-    id: 'v4',
-    title: 'Sponsorship Interview & Cadet Mentorship',
+    id: 'vid4',
+    title: 'Sponsorship Interview & Cadet Mentorship Strategy',
     category: 'Selection Strategy',
-    webmUrl: '/videos/v4.webm',
-    mp4Url: '/videos/v4.mp4',
-    description: 'Interview coaching and personal guidance that helps cadets secure sponsorship from top shipping lines.',
+    mp4Url: '/videos/vid4.mp4',
+    description: 'Interview coaching and personal guidance that helps cadets secure sponsorship from top global shipping lines.',
     badge: '100% Mentorship',
+  },
+  {
+    id: 'vid5',
+    title: 'Classroom Lecture & Problem Solving Session',
+    category: 'Classroom Coaching',
+    mp4Url: '/videos/vid5.mp4',
+    description: 'In-depth interactive classroom session covering high-speed IMU-CET Physics, Maths, and Navigation concepts.',
+    badge: 'Smart Lecture',
+  },
+  {
+    id: 'vid6',
+    title: 'Cadet Discipline, Morning PT & Fitness Conditioning',
+    category: 'Physical Training',
+    mp4Url: '/videos/vid6.mp4',
+    description: 'Daily physical training, parade drills, stamina conditioning, and maritime discipline routine at Officers Wing Dehradun.',
+    badge: 'Fitness & Routine',
+  },
+  {
+    id: 'vid7',
+    title: 'Student Success Stories: Classroom to Ship Placements',
+    category: 'Alumni Testimonial',
+    mp4Url: '/videos/vid7.mp4',
+    description: 'Officers Wing cadets sharing their journey of clearing IMU-CET and getting sponsored in world-class shipping companies.',
+    badge: 'Placement Story',
+  },
+  {
+    id: 'vid8',
+    title: 'Maritime Seamanship Lab & Practical Workshop',
+    category: 'Practical Training',
+    mp4Url: '/videos/vid8.mp4',
+    description: 'Hands-on practical equipment handling, safety apparatus inspection, marine knots, and survival drills.',
+    badge: 'Hands-On Lab',
+  },
+  {
+    id: 'vid9',
+    title: 'Psychometric Test Drills & Personal Interview Mentoring',
+    category: 'Interview Coaching',
+    mp4Url: '/videos/vid9.mp4',
+    description: 'Detailed guidance for Synergy, Anglo-Eastern, Fleet Management, and Great Eastern sponsorship selection rounds.',
+    badge: 'Panel Coaching',
+  },
+  {
+    id: 'vid10',
+    title: 'Dehradun Campus Tour: Hostels, Mess & Facilities',
+    category: 'Campus Tour',
+    mp4Url: '/videos/vid10.mp4',
+    description: 'Comprehensive tour of on-campus student accommodation, hygienic mess food, study library, and cadet environment.',
+    badge: 'Campus Facilities',
   },
 ];
 
@@ -84,13 +128,12 @@ export const VideoShowcaseSection: React.FC = () => {
               <video
                 key={activeVideo.id}
                 controls
+                autoPlay
                 playsInline
                 preload="metadata"
                 className="w-full h-full object-cover"
               >
-                {/* WebM loads first by default for faster speed and smaller size */}
-                <source src={activeVideo.webmUrl} type="video/webm" />
-                {/* MP4 as reliable fallback */}
+                {activeVideo.webmUrl && <source src={activeVideo.webmUrl} type="video/webm" />}
                 <source src={activeVideo.mp4Url} type="video/mp4" />
                 Your browser does not support HTML5 video.
               </video>
@@ -114,7 +157,7 @@ export const VideoShowcaseSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Playlist / Video Selector Grid */}
+          {/* Playlist / Video Selector Grid with Smooth Scroll */}
           <div className="lg:col-span-5 space-y-3 text-left">
             <div className="flex items-center justify-between pb-2 border-b border-white/10">
               <span className="text-xs font-bold uppercase tracking-wider text-[#C8922A] flex items-center gap-1.5">
@@ -123,28 +166,27 @@ export const VideoShowcaseSection: React.FC = () => {
               <span className="text-[11px] text-slate-400 font-medium">{VIDEOS.length} Videos</span>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3 max-h-[560px] overflow-y-auto pr-1">
               {VIDEOS.map((item, idx) => {
                 const isActive = activeVideo.id === item.id;
                 return (
                   <div
                     key={item.id}
                     onClick={() => setActiveVideo(item)}
-                    className={`p-3.5 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center gap-4 ${
+                    className={`p-3 sm:p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center gap-3.5 ${
                       isActive
-                        ? 'bg-gradient-to-r from-[#0A1E3F] to-[#0F2C59] border-[#E87500] shadow-lg scale-[1.02]'
+                        ? 'bg-gradient-to-r from-[#0A1E3F] to-[#0F2C59] border-[#E87500] shadow-lg scale-[1.01]'
                         : 'bg-white/05 border-white/10 hover:bg-white/10 hover:border-amber-400/40'
                     }`}
                   >
                     {/* Video mini thumbnail preview */}
-                    <div className="relative w-24 h-16 sm:w-28 sm:h-18 rounded-xl overflow-hidden bg-black shrink-0 border border-white/20 flex items-center justify-center group">
+                    <div className="relative w-24 h-16 rounded-xl overflow-hidden bg-black shrink-0 border border-white/20 flex items-center justify-center group">
                       <video
                         muted
                         playsInline
                         preload="metadata"
                         className="w-full h-full object-cover opacity-70 pointer-events-none"
                       >
-                        <source src={item.webmUrl} type="video/webm" />
                         <source src={item.mp4Url} type="video/mp4" />
                       </video>
                       <div className={`absolute inset-0 flex items-center justify-center transition-transform ${isActive ? 'scale-110' : ''}`}>

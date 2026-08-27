@@ -67,7 +67,7 @@ const FAQ_DATA: FAQItem[] = [
   {
     id: 'gprating-1',
     question: 'Can I join Merchant Navy after 10th standard through GP Rating?',
-    answer: 'Yes! The General Purpose (GP) Rating course is a 6-month pre-sea residential training program approved by DG Shipping. After passing 10th class with minimum 40% overall and 40% in English, you can enrol in GP Rating. You are trained in both Deck and Engine room maintenance and operations, leading to international CDC issuance.',
+    answer: 'Yes! The General Purpose (GP) Rating course is a 6-month pre-sea residential training program approved by DG Shipping. Eligibility: 10th pass with minimum 40% in Maths and Science, minimum 40% marks in English at 10+2 or 10th level, age between 17.5 and 25 years (5 years relaxation for SC/ST candidates), and 6/6 eyesight with no color blindness (medically fit as per Directorate General of Shipping). You are trained in both Deck and Engine room maintenance, leading to international CDC issuance.',
     category: 'GP Rating (After 10th)',
     popular: true
   },

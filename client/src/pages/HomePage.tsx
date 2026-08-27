@@ -124,19 +124,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquire }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {/* Poster 1: Foundation After 10th for Merchant Navy IMU-CET */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {/* Poster 1: IMU-CET 2027 With Sponsorship */}
               <div className="rounded-3xl overflow-hidden border-2 border-white/15 bg-[#060F1E] shadow-2xl hover:border-amber-400/60 transition-all flex flex-col justify-between">
                 <img
-                  src="/images/foundation_course_poster.jpg"
-                  alt="Join Foundation After 10th for Merchant Navy IMU-CET"
+                  src="/images/imucet_sponsorship_admission_poster.jpg"
+                  alt="IMU-CET 2027 With Shipping Company Sponsorship Preparation"
                   className="w-full h-auto object-cover"
                   loading="lazy"
                 />
                 <div className="p-5 bg-[#040810] flex flex-wrap items-center justify-between gap-3 border-t border-white/10">
                   <div>
-                    <div className="text-sm font-bold text-white">Foundation After 10th</div>
-                    <div className="text-xs text-amber-300 font-semibold">DNS | BSc Nautical | BTech Marine</div>
+                    <div className="text-sm font-bold text-white">IMU-CET 2027 + Sponsorship</div>
+                    <div className="text-xs text-amber-300 font-semibold">DNS | BSc | BTech Marine</div>
                   </div>
                   <div className="flex items-center gap-2">
                     <a
@@ -155,10 +155,40 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquire }) => {
                 </div>
               </div>
 
-              {/* Poster 2: GP Rating New Batch Starting */}
+              {/* Poster 2: Psychology & Mental Conditioning */}
               <div className="rounded-3xl overflow-hidden border-2 border-white/15 bg-[#060F1E] shadow-2xl hover:border-amber-400/60 transition-all flex flex-col justify-between">
                 <img
-                  src="/images/gp_rating_batch.jpg"
+                  src="/images/psychology_classes_infographic.jpg"
+                  alt="Psychology Classes with Mr. Yogesh Dobhal at Officers Wing"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+                <div className="p-5 bg-[#040810] flex flex-wrap items-center justify-between gap-3 border-t border-white/10">
+                  <div>
+                    <div className="text-sm font-bold text-white">Psychology &amp; Interview Mindset</div>
+                    <div className="text-xs text-amber-300 font-semibold">Mentored by Mr. Yogesh Dobhal</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="tel:+919149081578"
+                      className="bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3.5 py-2 rounded-xl border border-white/20 transition-colors"
+                    >
+                      Call
+                    </a>
+                    <button
+                      onClick={onOpenEnquire}
+                      className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
+                    >
+                      Enquire
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Poster 3: GP Rating New Batch Starting */}
+              <div className="rounded-3xl overflow-hidden border-2 border-white/15 bg-[#060F1E] shadow-2xl hover:border-amber-400/60 transition-all flex flex-col justify-between">
+                <img
+                  src="/images/gp_rating_course_infographic.jpg"
                   alt="New Preparation Batch Starting For GP Rating Course"
                   className="w-full h-auto object-cover"
                   loading="lazy"
