@@ -10,7 +10,7 @@ export const ToolsPage: React.FC = () => {
   const [honeypot, setHoneypot] = useState('');
   const [eligibilityData, setEligibilityData] = useState({
     age: 18,
-    qualification: '12th',
+    qualification: '12th_pcm',
     pcm: 65,
     name: '',
     phone: ''
@@ -36,16 +36,16 @@ export const ToolsPage: React.FC = () => {
     const { age, qualification, pcm, name, phone } = eligibilityData;
 
     let res = '';
-    if (qualification === '10th' && age >= 15 && age <= 25) {
-      res = 'Qualified for GP Rating / Deck Rating Course (6 Months)';
-    } else if (qualification === '12th' && pcm >= 60 && age <= 25) {
-      res = 'Qualified for DNS / B.Sc Nautical Science (IMU-CET)';
-    } else if (qualification === 'graduate' && age <= 28) {
-      res = 'Qualified for GME (Graduate Marine Engineering)';
-    } else if (qualification === 'btech_marine' && age <= 28) {
-      res = 'Qualified for ETO (Electro-Technical Officer)';
+    if (qualification === '10th' && age >= 17 && age <= 25) {
+      res = 'Eligible for GP Rating (General Purpose Deck & Engine Rating — 6 Months Pre-Sea). 10th pass min 40% Maths/Sci & 40% English, 6/6 Eyesight.';
+    } else if (qualification === '12th_pcm' && pcm >= 60 && age <= 25) {
+      res = 'Eligible for DNS (Diploma in Nautical Science — 1 Year + Sponsorship), B.Sc Nautical Science (3-Year Degree), & B.Tech Marine Engineering (4-Year Degree).';
+    } else if (qualification === 'graduate_mech' && age <= 28) {
+      res = 'Eligible for GME (Graduate Marine Engineering — 1 Year Conversion Course for Mechanical / Naval Architecture Engineers).';
+    } else if (qualification === 'graduate_ee' && age <= 35) {
+      res = 'Eligible for ETO (Electro-Technical Officer — 4 Months Course for Electrical, Electronics, EEE, ECE & Instrumentation Engineers).';
     } else {
-      res = 'Personalized Counselling Required — Contact our admissions team for custom routing.';
+      res = 'Personalized Counselling Required — Contact our senior Master Mariner admissions team for specialized entry routing.';
     }
 
     setEligibilityResult(res);
@@ -138,10 +138,10 @@ export const ToolsPage: React.FC = () => {
                 onChange={(e) => setEligibilityData({ ...eligibilityData, qualification: e.target.value })}
                 className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59] bg-white"
               >
-                <option value="10th">Passed 10th Standard</option>
-                <option value="12th">Passed / Appearing 12th (PCM)</option>
-                <option value="graduate">Graduate (Mechanical Eng / General)</option>
-                <option value="btech_marine">B.Tech / Electrical Engineering</option>
+                <option value="10th">Passed 10th Standard (GP Rating)</option>
+                <option value="12th_pcm">Passed / Appearing 12th PCM (DNS, B.Sc, B.Tech)</option>
+                <option value="graduate_mech">B.E. / B.Tech Mechanical / Naval Arch (GME)</option>
+                <option value="graduate_ee">Degree / Diploma Electrical, EEE, ECE, Instrumentation (ETO)</option>
               </select>
             </div>
 

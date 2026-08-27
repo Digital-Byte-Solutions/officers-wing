@@ -26,7 +26,7 @@ const FAQS: FAQItem[] = [
   },
   {
     question: 'Can I join the Merchant Navy right after passing 10th Standard?',
-    answer: 'Yes! After 10th standard, you can enrol in the 6-Month General Purpose (GP) Rating pre-sea course. Upon completion, you join cargo ships as a Trainee Rating/Motorman with initial sea salaries ranging from ₹35,000 to ₹60,000/month.',
+    answer: 'Yes! After 10th standard (minimum 40% in Maths & Science, 40% in English, age 17.5–25 years, and 6/6 eyesight), you can enrol in the 6-Month General Purpose (GP) Rating pre-sea course. Upon completion, you join commercial ships as a Trainee Rating/Motorman with initial sea salaries ranging from ₹35,000 to ₹60,000/month.',
     category: 'Eligibility'
   },
   {

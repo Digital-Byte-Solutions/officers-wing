@@ -12,26 +12,41 @@ interface GalleryPhoto {
   description: string;
 }
 
-interface VideoStory {
-  id: string;
-  title: string;
-  category: string;
-  webmUrl: string;
-  mp4Url: string;
-  duration: string;
-  badge: string;
-  description: string;
-  cadetName?: string;
-  company?: string;
-}
-
 const GALLERY_PHOTOS: GalleryPhoto[] = [
+  {
+    id: 'p0',
+    title: 'IMU-CET & Merchant Navy Preparation Classroom Batch',
+    category: 'Classrooms',
+    imageUrl: '/images/officers_wing_classroom_batch.jpg',
+    description: 'Cadets attending interactive morning lectures, theory discussions, and sponsorship preparation in our modern Dehradun classroom.'
+  },
+  {
+    id: 'p0_narcotics',
+    title: 'Narcotics Dept Drug-Free Awareness Session at Officers Wing',
+    category: 'Cadet Batches',
+    imageUrl: '/images/narcotics_awareness_session.jpg',
+    description: 'Special youth orientation and leadership seminar conducted by the Narcotics Department for our maritime cadet batches in Dehradun.'
+  },
   {
     id: 'p1',
     title: 'IMU-CET 2027 & Sponsorship Induction Batch',
     category: 'Cadet Batches',
     imageUrl: '/images/imu_cet_batch_classroom.jpg',
     description: 'Cadets assembled in uniform for the morning induction lecture and comprehensive syllabus orientation at Officers Wing Dehradun.'
+  },
+  {
+    id: 'p_dns_info',
+    title: 'DNS Course & Career Progression (Cadet to Captain)',
+    category: 'Labs & Simulators',
+    imageUrl: '/images/dns_course_infographic.jpg',
+    description: 'Complete eligibility, syllabus, physical standards, and sea promotion roadmap for Diploma in Nautical Science.'
+  },
+  {
+    id: 'p_bsc_info',
+    title: 'B.Sc Nautical Science Degree Career Progression Chart',
+    category: 'Labs & Simulators',
+    imageUrl: '/images/bsc_nautical_science_infographic.jpg',
+    description: '3-Year DG Shipping approved degree roadmap from Deck Cadet to 3rd Officer and Master Mariner.'
   },
   {
     id: 'p2',
@@ -63,10 +78,31 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   },
   {
     id: 'p6',
-    title: 'GP Rating & Seamanship Foundation Batch',
-    category: 'Cadet Batches',
-    imageUrl: '/images/gp_rating_batch.jpg',
-    description: 'Practical seamanship, bridge orientation, and technical workshop training for 10th-pass GP Rating cadets.'
+    title: 'GP Rating Career Progression: Trainee Seaman to Captain',
+    category: 'Labs & Simulators',
+    imageUrl: '/images/gp_rating_course_infographic.jpg',
+    description: 'Complete 8-step merchant navy career roadmap from Trainee Seaman to Master Captain after 10th standard.'
+  },
+  {
+    id: 'p_gme_info',
+    title: 'GME (Graduate Marine Engineering) Career Roadmap',
+    category: 'Labs & Simulators',
+    imageUrl: '/images/gme_course_infographic.jpg',
+    description: 'B.E/B.Tech Mechanical Engineering conversion program to Marine Engineer officer with rank & salary chart.'
+  },
+  {
+    id: 'p_eto_info',
+    title: 'ETO (Electro-Technical Officer) Career & Salary Growth',
+    category: 'Labs & Simulators',
+    imageUrl: '/images/eto_course_infographic.jpg',
+    description: 'Electrical & electronics specialist training for high-tech automated commercial marine vessels.'
+  },
+  {
+    id: 'p_psych_info',
+    title: 'Psychology Classes with Mr. Yogesh Dobhal',
+    category: 'Classrooms',
+    imageUrl: '/images/psychology_classes_infographic.jpg',
+    description: 'Mental conditioning, emotional balance, stress management, and psychometric interview preparation.'
   },
   {
     id: 'p7',
@@ -91,55 +127,130 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   }
 ];
 
+interface VideoStory {
+  id: string;
+  title: string;
+  category: string;
+  webmUrl?: string;
+  mp4Url: string;
+  duration: string;
+  badge: string;
+  description: string;
+  cadetName?: string;
+  company?: string;
+}
+
 const VIDEO_STORIES: VideoStory[] = [
   {
-    id: 'v3',
-    title: 'Academy Campus Life & Academic Mentorship (Dehradun)',
-    category: 'Campus Tour',
-    webmUrl: '/videos/v3.webm',
-    mp4Url: '/videos/v3.mp4',
-    duration: '2:15',
-    badge: 'Campus Tour',
-    description: 'A walkthrough of classroom mentoring, CBT mock test software, digital smart classes, and structured routine in Dehradun.',
-    cadetName: 'Officers Wing Dehradun',
-    company: 'Full Campus Tour'
-  },
-  {
-    id: 'v1',
-    title: 'Cadet Maritime Training & Practical Seamanship Drills',
-    category: 'Practical Drills',
-    webmUrl: '/videos/v1.webm',
-    mp4Url: '/videos/v1.mp4',
-    duration: '1:45',
+    id: 'vid1',
+    title: 'Cadet Maritime Training & Seamanship Drills',
+    category: 'Practical Training',
+    mp4Url: '/videos/vid1.mp4',
+    duration: '2:10',
     badge: 'Seamanship Drills',
-    description: 'Watch Officers Wing cadets undergoing hands-on chart work, rope knots, navigation orientation, and bridge team simulation.',
-    cadetName: 'Batch of 2026',
-    company: 'Practical Training'
+    description: 'Watch Officers Wing cadets undergoing hands-on chart work, rope knots, navigation orientation, and bridge team simulation in Dehradun.',
+    cadetName: 'Deck & Engine Cadets',
+    company: 'Practical Seamanship'
   },
   {
-    id: 'v2',
-    title: 'Life at Sea: Real Commercial Ship Navigation',
+    id: 'vid2',
+    title: 'Life at Sea: Commercial Cargo Ship Operations',
     category: 'Life at Sea',
-    webmUrl: '/videos/v2.webm',
-    mp4Url: '/videos/v2.mp4',
-    duration: '3:10',
+    mp4Url: '/videos/vid2.mp4',
+    duration: '3:15',
     badge: 'Ocean Voyages',
-    description: 'Real onboard footage of life on international container ships and crude oil tankers navigated by Officers Wing alumni.',
+    description: 'Real onboard footage of life on international container ships and crude oil tankers navigated by Officers Wing alumni seafarers.',
     cadetName: 'Alumni Cadets',
     company: 'International Cargo Fleet'
   },
   {
-    id: 'v4',
+    id: 'vid3',
+    title: 'Academy Campus Life & Academic Mentorship (Dehradun)',
+    category: 'Campus Life',
+    mp4Url: '/videos/vid3.mp4',
+    duration: '2:40',
+    badge: 'Campus Tour',
+    description: 'Insight into classroom mentoring, CBT mock test preparation, smart digital classes, and structured routine in Dehradun.',
+    cadetName: 'Officers Wing Dehradun',
+    company: 'Full Campus Tour'
+  },
+  {
+    id: 'vid4',
     title: 'Sponsorship Interview Mastery & Panel Preparation',
     category: 'Selection Strategy',
-    webmUrl: '/videos/v4.webm',
-    mp4Url: '/videos/v4.mp4',
+    mp4Url: '/videos/vid4.mp4',
     duration: '2:30',
     badge: '100% Mentorship',
     description: 'Master Mariner led mock interviews, psychometric test drills, and grooming sessions that secure top shipping line sponsorships.',
     cadetName: 'Sponsored Cadets',
     company: 'Synergy / Fleet / Anglo'
-  }
+  },
+  {
+    id: 'vid5',
+    title: 'Classroom Lecture & Problem Solving Session',
+    category: 'Classroom Coaching',
+    mp4Url: '/videos/vid5.mp4',
+    duration: '2:50',
+    badge: 'Smart Lecture',
+    description: 'In-depth interactive classroom session covering high-speed IMU-CET Physics, Maths, and Navigation concepts.',
+    cadetName: 'Academy Faculty & Cadets',
+    company: 'IMU-CET Batch'
+  },
+  {
+    id: 'vid6',
+    title: 'Cadet Discipline, Morning PT & Fitness Conditioning',
+    category: 'Physical Training',
+    mp4Url: '/videos/vid6.mp4',
+    duration: '1:55',
+    badge: 'Fitness & Routine',
+    description: 'Daily physical training, parade drills, stamina conditioning, and maritime discipline routine at Officers Wing Dehradun.',
+    cadetName: 'All Cadet Batches',
+    company: 'Physical Fitness'
+  },
+  {
+    id: 'vid7',
+    title: 'Student Success Stories: Classroom to Ship Placements',
+    category: 'Alumni Testimonial',
+    mp4Url: '/videos/vid7.mp4',
+    duration: '2:20',
+    badge: 'Placement Story',
+    description: 'Officers Wing cadets sharing their journey of clearing IMU-CET and getting sponsored in world-class shipping companies.',
+    cadetName: 'Placed Seafarers',
+    company: 'Top Shipping Lines'
+  },
+  {
+    id: 'vid8',
+    title: 'Maritime Seamanship Lab & Practical Workshop',
+    category: 'Practical Training',
+    mp4Url: '/videos/vid8.mp4',
+    duration: '2:35',
+    badge: 'Hands-On Lab',
+    description: 'Hands-on practical equipment handling, safety apparatus inspection, marine knots, and survival drills.',
+    cadetName: 'Seamanship Instructors',
+    company: 'Workshop Drills'
+  },
+  {
+    id: 'vid9',
+    title: 'Psychometric Test Drills & Personal Interview Mentoring',
+    category: 'Interview Coaching',
+    mp4Url: '/videos/vid9.mp4',
+    duration: '3:05',
+    badge: 'Panel Coaching',
+    description: 'Detailed guidance for Synergy, Anglo-Eastern, Fleet Management, and Great Eastern sponsorship selection rounds.',
+    cadetName: 'Interview Panel Faculty',
+    company: 'Sponsorship Prep'
+  },
+  {
+    id: 'vid10',
+    title: 'Dehradun Campus Tour: Hostels, Mess & Facilities',
+    category: 'Campus Tour',
+    mp4Url: '/videos/vid10.mp4',
+    duration: '3:45',
+    badge: 'Campus Facilities',
+    description: 'Comprehensive tour of on-campus student accommodation, hygienic mess food, study library, and cadet environment.',
+    cadetName: 'Residential Wardens & Staff',
+    company: 'Campus Life'
+  },
 ];
 
 const PHOTO_CATEGORIES = [
@@ -323,7 +434,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquire }) => {
                     playsInline
                     className="w-full h-full object-cover"
                   >
-                    <source src={activeVideo.webmUrl} type="video/webm" />
+                    {activeVideo.webmUrl && <source src={activeVideo.webmUrl} type="video/webm" />}
                     <source src={activeVideo.mp4Url} type="video/mp4" />
                     Your browser does not support HTML5 video.
                   </video>
@@ -358,7 +469,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquire }) => {
                   <span className="text-xs text-slate-400">{VIDEO_STORIES.length} Videos</span>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-3 max-h-[560px] overflow-y-auto pr-1">
                   {VIDEO_STORIES.map((v, idx) => {
                     const isPlaying = activeVideo.id === v.id;
                     return (

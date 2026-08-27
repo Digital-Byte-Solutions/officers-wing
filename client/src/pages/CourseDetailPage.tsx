@@ -126,20 +126,98 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
               <div className="text-xs text-slate-700">{course.eligibility}</div>
             </div>
 
-            <ul className="space-y-2.5 text-xs text-slate-700 pt-2">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span><strong>Eyesight:</strong> 6/6 in better eye, 6/9 in other eye without color blindness.</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span><strong>BMI standard:</strong> Medical fitness BMI between 17.0 and 27.0 according to DG Shipping standards.</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span><strong>Medical Certificate:</strong> Issued by DG Shipping approved medical doctor.</span>
-              </li>
-            </ul>
+            {course.id.includes('gp-rating') ? (
+              <ul className="space-y-2.5 text-xs text-slate-700 pt-2">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>10th Pass:</strong> 10th pass with minimum 40% aggregate in Mathematics and Science.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>English:</strong> Minimum 40% marks in English at 10th or 10+2 level.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Age Limit:</strong> 17.5 to 25 years at the start of training (5-year relaxation for SC/ST).</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Medical Fitness:</strong> 6/6 eyesight (unaided) with zero color blindness and DG Shipping medical clearance.</span>
+                </li>
+              </ul>
+            ) : course.id.includes('dns') || course.id.includes('bsc') ? (
+              <ul className="space-y-2.5 text-xs text-slate-700 pt-2">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Academic Qualification:</strong> 10+2 PCM (Physics, Chemistry, Maths) with min 60% aggregate & min 50% in English.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Age Limit:</strong> 17 to 25 years on commencement date (relaxation as per DG Shipping rules).</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Deck Eyesight Standard:</strong> Strictly 6/6 unaided in each eye with zero color blindness.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>DG Medical Test:</strong> Certified medically fit by a DG Shipping approved medical examiner.</span>
+                </li>
+              </ul>
+            ) : course.id.includes('gme') ? (
+              <ul className="space-y-2.5 text-xs text-slate-700 pt-2">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Degree Qualification:</strong> B.E. / B.Tech in Mechanical Engineering or Naval Architecture with min 60% aggregate.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>English Language:</strong> Minimum 50% marks in English at 10th, 12th, or Degree level.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Age Limit:</strong> Maximum 28 years on the date of batch commencement.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Engine Medical Standard:</strong> Eyesight up to 6/12 with corrective lenses, zero color blindness.</span>
+                </li>
+              </ul>
+            ) : course.id.includes('eto') ? (
+              <ul className="space-y-2.5 text-xs text-slate-700 pt-2">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Engineering / Diploma:</strong> Degree or 3-Year Diploma in Electrical, Electronics, EEE, ECE, or Instrumentation with min 60%.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>English Requirement:</strong> Minimum 50% marks in English at 10th, 12th, or Diploma level.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Age Limit:</strong> Maximum 28 to 35 years as per DG Shipping guidelines.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Medical Standard:</strong> Medically fit as per DG Shipping guidelines with zero color blindness.</span>
+                </li>
+              </ul>
+            ) : (
+              <ul className="space-y-2.5 text-xs text-slate-700 pt-2">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Academic Qualification:</strong> 10+2 PCM with min 60% aggregate & min 50% in English.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Age Limit:</strong> 17 to 25 years on date of commencement.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Eyesight & Fitness:</strong> Eyesight up to 6/12 with aids, zero color blindness, BMI 17.0–27.0.</span>
+                </li>
+              </ul>
+            )}
           </div>
 
           {/* Key Program Highlights */}
@@ -158,6 +236,24 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
             </div>
           </div>
 
+          {/* Official Course Roadmap & Infographic Poster */}
+          <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm space-y-4">
+            <h2 className="text-xl font-bold text-[#0F2C59] font-serif-heading border-b pb-3">
+              Official Course Roadmap &amp; Infographic
+            </h2>
+            <p className="text-xs text-slate-600">
+              Detailed step-by-step career path, training modules, and ranking structure for {course.category}:
+            </p>
+            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-50">
+              <img
+                src={course.imageUrl || '/images/dns_course_infographic.jpg'}
+                alt={`${course.category} Official Syllabus & Career Roadmap`}
+                className="w-full h-auto object-contain max-h-[700px] mx-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
         </div>
 
         {/* Right Sidebar: Admission Box & Official Poster */}
@@ -173,15 +269,11 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ onOpenEnquir
               <p className="text-xs text-slate-500 mt-1">Upcoming batch starting soon at Dehradun Academy</p>
             </div>
 
-            {/* Embed Course-Specific Official Poster */}
+            {/* Embed Course-Specific Official Infographic Poster */}
             <div className="rounded-xl overflow-hidden border border-slate-200 shadow-md">
               <img
-                src={
-                  id?.includes('gp-rating')
-                    ? '/images/gp_rating_batch.jpg'
-                    : '/images/foundation_course_poster.jpg'
-                }
-                alt={`${course.category} Official Poster`}
+                src={course.imageUrl || '/images/dns_course_infographic.jpg'}
+                alt={`${course.category} Official Poster & Career Path`}
                 className="w-full h-auto object-cover"
                 loading="lazy"
               />

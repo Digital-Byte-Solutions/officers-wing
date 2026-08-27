@@ -104,84 +104,165 @@ export const AdmissionPage: React.FC<AdmissionPageProps> = ({ onOpenEnquire }) =
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            {/* Batch Poster 1: IMU-CET 2027 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            {/* Batch Poster 1: DNS & IMU-CET */}
             <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
               <div className="relative overflow-hidden">
                 <img
-                  src="/images/imu_cet_batch_classroom.jpg"
-                  alt="Join IMU-CET 2027 & Sponsorship Exam New Batch - Officers Wing Academy Dehradun"
-                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  src="/images/dns_course_infographic.jpg"
+                  alt="DNS Diploma in Nautical Science Official Poster & Admission"
+                  className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
                 <span className="absolute top-3 left-3 bg-[#E87500] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow">
-                  Batch 2027
+                  DNS / IMU-CET
                 </span>
               </div>
-              <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div className="p-5 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <div className="text-sm font-bold text-[#0A1E3F]">IMU-CET 2027 &amp; Sponsorship</div>
-                  <div className="text-xs text-amber-600 font-semibold">DNS | B.Sc Nautical | B.Tech</div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">DNS (Diploma in Nautical Science)</div>
+                  <div className="text-xs text-amber-600 font-semibold">1 Year Pre-Sea + Company Sponsorship</div>
                 </div>
                 <a
-                  href="tel:+919149081578"
-                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
+                  href="/courses/dns-course-dehradun"
+                  className="bg-[#0A1E3F] hover:bg-[#E87500] text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow cursor-pointer transition-colors"
                 >
-                  Call: 9149081578
+                  View Details
                 </a>
               </div>
             </div>
 
-            {/* Batch Poster 2: Foundation Batch */}
+            {/* Batch Poster 2: B.Sc Nautical Science */}
             <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
               <div className="relative overflow-hidden">
                 <img
-                  src="/images/foundation_course_poster.jpg"
-                  alt="Foundation After 10th for Merchant Navy IMU-CET"
-                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  src="/images/bsc_nautical_science_infographic.jpg"
+                  alt="B.Sc Nautical Science Official Poster & Syllabus"
+                  className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
                 <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
-                  After 10th
+                  B.Sc Nautical
                 </span>
               </div>
-              <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div className="p-5 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <div className="text-sm font-bold text-[#0A1E3F]">Foundation Batch (After 10th)</div>
-                  <div className="text-xs text-amber-600 font-semibold">DNS | BSc Nautical | BTech Marine</div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">B.Sc Nautical Science</div>
+                  <div className="text-xs text-amber-600 font-semibold">3-Year DG Shipping Degree Program</div>
                 </div>
                 <a
-                  href="tel:+919149081578"
-                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
+                  href="/courses/bsc-nautical-science-dehradun"
+                  className="bg-[#0A1E3F] hover:bg-[#E87500] text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow cursor-pointer transition-colors"
                 >
-                  Call: 9149081578
+                  View Details
                 </a>
               </div>
             </div>
 
-            {/* Batch Poster 3: GP Rating Batch */}
+            {/* Batch Poster 3: GME Marine Engineering */}
             <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
               <div className="relative overflow-hidden">
                 <img
-                  src="/images/gp_rating_batch.jpg"
-                  alt="New Preparation Batch Starting for GP Rating Course"
-                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  src="/images/gme_course_infographic.jpg"
+                  alt="GME Graduate Marine Engineering Poster"
+                  className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
+                  GME
+                </span>
+              </div>
+              <div className="p-5 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">GME (Graduate Marine Engineering)</div>
+                  <div className="text-xs text-amber-600 font-semibold">1-Year Mechanical Conversion</div>
+                </div>
+                <a
+                  href="/courses/after-graduation-gme-dehradun"
+                  className="bg-[#0A1E3F] hover:bg-[#E87500] text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow cursor-pointer transition-colors"
+                >
+                  View Details
+                </a>
+              </div>
+            </div>
+
+            {/* Batch Poster 4: ETO Electro-Technical Officer */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/eto_course_infographic.jpg"
+                  alt="ETO Electro-Technical Officer Official Poster"
+                  className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
+                  ETO
+                </span>
+              </div>
+              <div className="p-5 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">ETO (Electro-Technical Officer)</div>
+                  <div className="text-xs text-amber-600 font-semibold">4 Months Specialized Electrical Track</div>
+                </div>
+                <a
+                  href="/courses/after-btech-eto-dehradun"
+                  className="bg-[#0A1E3F] hover:bg-[#E87500] text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow cursor-pointer transition-colors"
+                >
+                  View Details
+                </a>
+              </div>
+            </div>
+
+            {/* Batch Poster 5: B.Tech Marine Engineering */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/btech_marine_engineering_course_infographic.jpg"
+                  alt="B.Tech Marine Engineering Official Poster"
+                  className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
+                  B.Tech Marine
+                </span>
+              </div>
+              <div className="p-5 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-bold text-[#0A1E3F]">B.Tech Marine Engineering</div>
+                  <div className="text-xs text-amber-600 font-semibold">4-Year Degree Chief Engineer Track</div>
+                </div>
+                <a
+                  href="/courses/btech-marine-engineering-dehradun"
+                  className="bg-[#0A1E3F] hover:bg-[#E87500] text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow cursor-pointer transition-colors"
+                >
+                  View Details
+                </a>
+              </div>
+            </div>
+
+            {/* Batch Poster 6: GP Rating Batch */}
+            <div className="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50 flex flex-col justify-between group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/images/gp_rating_course_infographic.jpg"
+                  alt="GP Rating Official Course Infographic Poster"
+                  className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
                 <span className="absolute top-3 left-3 bg-[#0A1E3F] text-amber-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md shadow border border-amber-400/40">
                   GP Rating
                 </span>
               </div>
-              <div className="p-6 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div className="p-5 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-bold text-[#0A1E3F]">GP Rating Preparation Batch</div>
-                  <div className="text-xs text-amber-600 font-semibold">Target: NUSI Goa, TS Rahman, SCI</div>
+                  <div className="text-xs text-amber-600 font-semibold">6 Months Pre-Sea Deck & Engine Rating</div>
                 </div>
                 <a
-                  href="tel:+919149081578"
-                  className="bg-[#E87500] hover:bg-[#F09030] text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer"
+                  href="/courses/after-10th-gp-rating-dehradun"
+                  className="bg-[#0A1E3F] hover:bg-[#E87500] text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow cursor-pointer transition-colors"
                 >
-                  Call: 9149081578
+                  View Details
                 </a>
               </div>
             </div>

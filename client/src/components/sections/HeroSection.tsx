@@ -110,7 +110,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             className="text-xs sm:text-base lg:text-lg text-slate-200 leading-relaxed max-w-xl"
           >
             Dehradun's premier <strong className="text-white">mentoring</strong> institute — trusted by{' '}
-            <span className="text-[#D4A840] font-semibold">970+ cadets</span> since 2016. Expert guidance for DNS, GME, GP Rating &amp; IMU-CET.
+            <span className="text-[#D4A840] font-semibold">970+ cadets</span> since 2016. Expert guidance for DNS, BSc, GME, ETO, GP Rating &amp; IMU-CET &amp; Shipping Company Sponsorship.
           </p>
 
           {/* CTA Action Buttons */}

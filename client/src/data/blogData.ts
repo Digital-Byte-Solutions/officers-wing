@@ -118,10 +118,10 @@ export const blogPosts: BlogPost[] = [
         heading: '2. Eligibility Requirements for 10th Pass Students',
         body: 'Candidate qualifications for GP Rating enrolment:',
         bulletPoints: [
-          'Passed 10th Standard with minimum 40% aggregate marks.',
-          'Minimum 40% marks in English subject in 10th Board.',
-          'Age: 17.5 to 25 years at course commencement.',
-          'Physical Fitness: Medical fitness certificate from a DG Shipping approved doctor.'
+          '10th pass with minimum 40% in Maths and Science.',
+          'Minimum 40% marks in English at 10+2 or 10th level is a must.',
+          'Age: Min 17.5 Years and Not exceeding 25 years on the date of commencement of training (5 Years relaxation for SC/ST candidates).',
+          'Medical fitness: Eyesight 6/6 with no color blindness and medically fit as per Directorate General of Shipping.'
         ]
       },
       {

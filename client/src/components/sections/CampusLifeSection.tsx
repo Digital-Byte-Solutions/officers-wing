@@ -13,6 +13,14 @@ interface FacilityPhoto {
 
 const FACILITIES: FacilityPhoto[] = [
   {
+    title: 'Modern Smart Classroom & Cadet Lecture Hall',
+    tag: 'Classroom & Batch Hall',
+    imageUrl: '/images/officers_wing_classroom_batch.jpg',
+    description: 'Spacious, well-ventilated smart lecture hall equipped with digital display systems, live doubt solving, and structured cadet seating.',
+    features: ['Smart Digital Displays', 'Uniform Cadet Seating', 'CBT Test Terminals'],
+    stats: 'Dehradun Campus'
+  },
+  {
     title: 'Full-Mission Bridge Navigation Simulator',
     tag: 'Navigation Lab',
     imageUrl: '/images/Hero_image.png',
