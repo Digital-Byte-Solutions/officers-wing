@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Play, Video, Sparkles, Film } from 'lucide-react';
 
 interface VideoItem {
@@ -95,7 +96,59 @@ const VIDEOS: VideoItem[] = [
 ];
 
 export const VideoShowcaseSection: React.FC = () => {
+  const location = useLocation();
   const [activeVideo, setActiveVideo] = useState<VideoItem>(VIDEOS[0]);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const stopVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      try {
+        videoRef.current.currentTime = 0;
+      } catch (e) {}
+    }
+    setIsPlaying(false);
+  };
+
+  // Listen for browser tab switching (visibilitychange)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopVideo();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  // Listen for route navigation changes
+  useEffect(() => {
+    stopVideo();
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.src = '';
+        videoRef.current.load();
+      }
+      setIsPlaying(false);
+    };
+  }, [location.pathname]);
+
+  const handleSelectVideo = (item: VideoItem) => {
+    setActiveVideo(item);
+    setIsPlaying(true);
+  };
+
+  const handleManualPlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <section id="videos-section" className="w-full bg-[#060F1E] py-16 sm:py-24 text-white relative overflow-hidden border-t border-white/10">
@@ -124,19 +177,37 @@ export const VideoShowcaseSection: React.FC = () => {
           
           {/* Main Featured Video Player */}
           <div className="lg:col-span-7 bg-[#0A1E3F]/80 rounded-3xl overflow-hidden border border-white/15 shadow-2xl p-4 sm:p-5 flex flex-col gap-4">
-            <div className="relative w-full rounded-2xl overflow-hidden bg-black aspect-video shadow-inner">
+            <div className="relative w-full rounded-2xl overflow-hidden bg-black aspect-video shadow-inner group">
               <video
+                ref={videoRef}
                 key={activeVideo.id}
                 controls
-                autoPlay
+                autoPlay={isPlaying}
                 playsInline
                 preload="metadata"
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
                 className="w-full h-full object-cover"
               >
                 {activeVideo.webmUrl && <source src={activeVideo.webmUrl} type="video/webm" />}
                 <source src={activeVideo.mp4Url} type="video/mp4" />
                 Your browser does not support HTML5 video.
               </video>
+
+              {/* Play Overlay */}
+              {!isPlaying && (
+                <div
+                  onClick={handleManualPlay}
+                  className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex flex-col items-center justify-center cursor-pointer group/overlay transition-all"
+                >
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#E87500] hover:bg-[#F09030] text-white flex items-center justify-center shadow-2xl group-hover/overlay:scale-110 transition-transform">
+                    <Play className="w-8 h-8 sm:w-10 sm:h-10 fill-current ml-1" />
+                  </div>
+                  <span className="mt-3 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-white bg-black/60 px-4 py-1.5 rounded-full border border-white/20 shadow-md">
+                    Click to Play Video
+                  </span>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2 text-left pt-2 px-1">
@@ -172,7 +243,7 @@ export const VideoShowcaseSection: React.FC = () => {
                 return (
                   <div
                     key={item.id}
-                    onClick={() => setActiveVideo(item)}
+                    onClick={() => handleSelectVideo(item)}
                     className={`p-3 sm:p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center gap-3.5 ${
                       isActive
                         ? 'bg-gradient-to-r from-[#0A1E3F] to-[#0F2C59] border-[#E87500] shadow-lg scale-[1.01]'
@@ -190,7 +261,7 @@ export const VideoShowcaseSection: React.FC = () => {
                         <source src={item.mp4Url} type="video/mp4" />
                       </video>
                       <div className={`absolute inset-0 flex items-center justify-center transition-transform ${isActive ? 'scale-110' : ''}`}>
-                        <div className={`w-7 h-7 rounded-full flex items-center justify-center shadow-md ${isActive ? 'bg-[#E87500] text-white' : 'bg-white/40 text-white backdrop-blur-sm'}`}>
+                        <div className={`w-7 h-7 rounded-full flex items-center justify-center shadow-md ${isActive && isPlaying ? 'bg-[#E87500] text-white' : 'bg-white/40 text-white backdrop-blur-sm'}`}>
                           <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
                         </div>
                       </div>

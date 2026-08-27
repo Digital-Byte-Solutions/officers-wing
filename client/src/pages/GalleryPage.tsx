@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Camera, Film, Eye, Play, Sparkles, ChevronLeft, ChevronRight, X, Phone, Compass } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SEO } from '../components/common/SEO';
@@ -267,6 +268,7 @@ interface GalleryPageProps {
 }
 
 export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquire }) => {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState<'photos' | 'videos'>('photos');
   const [selectedCategory, setSelectedCategory] = useState('All Photos');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -274,20 +276,44 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquire }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const mainVideoRef = useRef<HTMLVideoElement | null>(null);
 
-  // Pause video and stop audio when switching away from video tab or unmounting component
-  useEffect(() => {
-    if (activeTab !== 'videos') {
-      if (mainVideoRef.current) {
-        mainVideoRef.current.pause();
-      }
-      setIsVideoPlaying(false);
+  // Helper to completely kill video playback & audio stream
+  const stopVideoAndAudio = () => {
+    if (mainVideoRef.current) {
+      mainVideoRef.current.pause();
+      try {
+        mainVideoRef.current.currentTime = 0;
+      } catch (e) {}
     }
+    setIsVideoPlaying(false);
+  };
+
+  // 1. Listen for browser tab switching (visibilitychange: when user switches browser tab or minimizes window)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopVideoAndAudio();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  // 2. Listen for route navigation or gallery tab switching (photos vs videos)
+  useEffect(() => {
+    stopVideoAndAudio();
+
     return () => {
       if (mainVideoRef.current) {
         mainVideoRef.current.pause();
+        mainVideoRef.current.src = '';
+        mainVideoRef.current.load();
       }
+      setIsVideoPlaying(false);
     };
-  }, [activeTab]);
+  }, [location.pathname, activeTab]);
 
   const handleSelectPlaylistVideo = (video: VideoStory) => {
     setActiveVideo(video);
