@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Camera, Film, Eye, Play, Sparkles, ChevronLeft, ChevronRight, X, Phone, Compass } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SEO } from '../components/common/SEO';
@@ -271,6 +271,35 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquire }) => {
   const [selectedCategory, setSelectedCategory] = useState('All Photos');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [activeVideo, setActiveVideo] = useState<VideoStory>(VIDEO_STORIES[0]);
+  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
+  const mainVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  // Pause video and stop audio when switching away from video tab or unmounting component
+  useEffect(() => {
+    if (activeTab !== 'videos') {
+      if (mainVideoRef.current) {
+        mainVideoRef.current.pause();
+      }
+      setIsVideoPlaying(false);
+    }
+    return () => {
+      if (mainVideoRef.current) {
+        mainVideoRef.current.pause();
+      }
+    };
+  }, [activeTab]);
+
+  const handleSelectPlaylistVideo = (video: VideoStory) => {
+    setActiveVideo(video);
+    setIsVideoPlaying(true);
+  };
+
+  const handleManualPlay = () => {
+    if (mainVideoRef.current) {
+      mainVideoRef.current.play().catch(() => {});
+      setIsVideoPlaying(true);
+    }
+  };
 
   const filteredPhotos = GALLERY_PHOTOS.filter((photo) => {
     if (selectedCategory === 'All Photos') return true;
@@ -426,18 +455,36 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquire }) => {
               
               {/* Active Player */}
               <div className="lg:col-span-8 bg-[#0A1E3F] rounded-3xl overflow-hidden border border-amber-500/30 p-4 sm:p-6 shadow-2xl space-y-4">
-                <div className="relative w-full rounded-2xl overflow-hidden bg-black aspect-video shadow-2xl">
+                <div className="relative w-full rounded-2xl overflow-hidden bg-black aspect-video shadow-2xl group">
                   <video
+                    ref={mainVideoRef}
                     key={activeVideo.id}
                     controls
-                    autoPlay
+                    autoPlay={isVideoPlaying}
                     playsInline
+                    onPlay={() => setIsVideoPlaying(true)}
+                    onPause={() => setIsVideoPlaying(false)}
                     className="w-full h-full object-cover"
                   >
                     {activeVideo.webmUrl && <source src={activeVideo.webmUrl} type="video/webm" />}
                     <source src={activeVideo.mp4Url} type="video/mp4" />
                     Your browser does not support HTML5 video.
                   </video>
+
+                  {/* Play Button Overlay (when video is not playing) */}
+                  {!isVideoPlaying && (
+                    <div
+                      onClick={handleManualPlay}
+                      className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex flex-col items-center justify-center cursor-pointer group/overlay transition-all"
+                    >
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#E87500] hover:bg-[#F09030] text-white flex items-center justify-center shadow-2xl group-hover/overlay:scale-110 transition-transform">
+                        <Play className="w-8 h-8 sm:w-10 sm:h-10 fill-current ml-1" />
+                      </div>
+                      <span className="mt-3 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-white bg-black/60 px-4 py-1.5 rounded-full border border-white/20 shadow-md">
+                        Click to Play Video
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-2 text-left pt-2">
@@ -471,13 +518,13 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquire }) => {
 
                 <div className="space-y-3 max-h-[560px] overflow-y-auto pr-1">
                   {VIDEO_STORIES.map((v, idx) => {
-                    const isPlaying = activeVideo.id === v.id;
+                    const isSelected = activeVideo.id === v.id;
                     return (
                       <div
                         key={v.id}
-                        onClick={() => setActiveVideo(v)}
+                        onClick={() => handleSelectPlaylistVideo(v)}
                         className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex items-center gap-3.5 ${
-                          isPlaying
+                          isSelected
                             ? 'bg-gradient-to-r from-[#0F2C59] to-[#0A1E3F] border-[#E87500] shadow-lg ring-1 ring-orange-500/40 scale-[1.02]'
                             : 'bg-white/05 border-white/10 hover:bg-white/10 hover:border-amber-400/40'
                         }`}
@@ -492,7 +539,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquire }) => {
                             <source src={v.webmUrl} type="video/webm" />
                             <source src={v.mp4Url} type="video/mp4" />
                           </video>
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center shadow-md ${isPlaying ? 'bg-[#E87500] text-white' : 'bg-white/50 text-white'}`}>
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center shadow-md ${isSelected && isVideoPlaying ? 'bg-[#E87500] text-white' : 'bg-white/50 text-white'}`}>
                             <Play className="w-3 h-3 fill-current ml-0.5" />
                           </div>
                         </div>
