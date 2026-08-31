@@ -11,48 +11,53 @@ interface FacultyMember {
   credential: string;
   icon: React.ElementType;
   color: string;
+  imageUrl?: string;
 }
 
 const FACULTY: FacultyMember[] = [
   {
     name: 'Capt. Anurag Singh',
     rank: 'Master Mariner (FG)',
-    specialization: 'DNS & IMU-CET Strategy, Sponsorship Interview Coaching',
+    specialization: 'DNS & IMU-CET Strategy, Sponsorship Interview Coaching & Seamanship',
     seaTime: '15+ Years at Sea',
     companies: 'Synergy, Fleet Management, Thome',
     credential: 'Founder & MD — Officers Wing',
     icon: Anchor,
     color: '#C8922A',
+    imageUrl: '/images/founder.jpg',
   },
   {
-    name: 'Ch. Eng. S. K. Sharma',
-    rank: 'Chief Engineer (Class 1)',
-    specialization: 'Marine Engineering, GME & ETO Technical Coaching',
-    seaTime: '18+ Years at Sea',
-    companies: 'Scorpio, Columbia, OM Ship Mgmt',
-    credential: 'Senior Marine Engineering Faculty',
-    icon: Award,
-    color: '#E87500',
-  },
-  {
-    name: 'Lt. Cdr. R. V. Verma (Retd.)',
-    rank: 'Lieutenant Commander — Indian Navy',
-    specialization: 'Personality Development, Company Interview & SSB Prep',
-    seaTime: '22 Years Naval Service',
-    companies: 'Indian Navy — Western Command',
-    credential: 'Personality & Interview Specialist',
+    name: 'Mr. Yogesh Dobhal',
+    rank: 'MA in Psychology (10+ Yrs Exp)',
+    specialization: 'Psychology & Mental Conditioning, Emotional Balance, Psychometric Tests & Interview Confidence',
+    seaTime: '10+ Years Experience',
+    companies: 'Counseling & Career Guidance',
+    credential: 'Psychologist & Mental Mentor',
     icon: ShieldCheck,
-    color: '#0F2C59',
+    color: '#0A1E3F',
+    imageUrl: '/images/yogesh_dobhal_faculty.jpg',
   },
   {
-    name: 'Ms. Priya Nair',
-    rank: 'M.Sc Mathematics (IIT Roorkee)',
-    specialization: 'Applied Mathematics for IMU-CET, Physics & Aptitude',
-    seaTime: '8 Years Teaching',
-    companies: 'IIT Coaching & Maritime Academics',
-    credential: 'IMU-CET Maths Specialist',
+    name: 'Mr. Amit Dev',
+    rank: 'Senior Faculty — Reasoning Aptitude',
+    specialization: 'Logical & Analytical Reasoning, Verbal/Non-Verbal, Puzzles, Coding-Decoding & IMU-CET Speed',
+    seaTime: '9+ Years Experience',
+    companies: 'Aptitude & Competitive Exams',
+    credential: 'Lead Aptitude Faculty',
     icon: Compass,
-    color: '#0A1E3F',
+    color: '#E87500',
+    imageUrl: '/images/amit_dev_faculty.jpg',
+  },
+  {
+    name: 'Senior Marine Faculty',
+    rank: 'Chief Engineer & Technical Lead',
+    specialization: 'Marine Engineering, GME & ETO Technical Coaching & Marine Machinery Operations',
+    seaTime: '18+ Years Maritime Experience',
+    companies: 'Scorpio, Columbia, OM Ship Mgmt',
+    credential: 'Lead Marine Faculty',
+    icon: Award,
+    color: '#0F2C59',
+    imageUrl: '/images/faculty_office.jpg',
   },
 ];
 
@@ -123,41 +128,62 @@ export const FacultySection: React.FC = () => {
               <div
                 key={idx}
                 style={{ opacity: 0 }}
-                className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1.5"
+                className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1.5 flex flex-col justify-between"
               >
                 {/* Color top bar */}
                 <div className="h-1.5" style={{ background: `linear-gradient(90deg, ${member.color}, #E87500)` }} />
 
-                {/* Icon Avatar */}
-                <div className="px-5 pt-6 pb-4 flex flex-col items-start gap-4">
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md"
-                    style={{ background: `linear-gradient(135deg, ${member.color}22, ${member.color}44)`, border: `2px solid ${member.color}40` }}
-                  >
-                    <Icon className="w-7 h-7" style={{ color: member.color }} />
+                {/* Photo or Icon Avatar Banner */}
+                <div className="relative h-48 w-full overflow-hidden bg-slate-100 shrink-0">
+                  {member.imageUrl ? (
+                    <img
+                      src={member.imageUrl}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div
+                      className="w-full h-full flex flex-col items-center justify-center gap-2"
+                      style={{ background: `linear-gradient(135deg, ${member.color}15, ${member.color}35)` }}
+                    >
+                      <div
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md"
+                        style={{ background: `linear-gradient(135deg, ${member.color}22, ${member.color}55)`, border: `2px solid ${member.color}40` }}
+                      >
+                        <Icon className="w-7 h-7" style={{ color: member.color }} />
+                      </div>
+                    </div>
+                  )}
+                  {/* Floating role badge */}
+                  <div className="absolute bottom-2.5 left-3">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold text-white bg-[#0A1E3F]/90 backdrop-blur-md border border-white/20 shadow-sm">
+                      <Icon className="w-3 h-3 text-[#C8922A]" />
+                      {member.credential}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-5 flex flex-col items-start gap-3 flex-1 justify-between">
+                  <div className="space-y-1.5 text-left w-full">
+                    <div>
+                      <h3 className="font-display text-base font-black text-[#0A1E3F] leading-tight">{member.name}</h3>
+                      <p className="text-[11px] font-bold text-[#E87500] mt-0.5">{member.rank}</p>
+                    </div>
+
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {member.specialization}
+                    </p>
                   </div>
 
-                  <div>
-                    <h3 className="font-display text-base font-black text-[#0A1E3F] leading-tight">{member.name}</h3>
-                    <p className="text-[11px] font-bold text-[#E87500] mt-0.5">{member.rank}</p>
-                  </div>
-
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {member.specialization}
-                  </p>
-
-                  <div className="w-full space-y-1.5 pt-2 border-t border-slate-100">
+                  <div className="w-full space-y-1.5 pt-2 border-t border-slate-100 text-left">
                     <div className="flex items-start gap-2 text-[10px]">
-                      <span className="font-bold text-slate-400 uppercase tracking-wider w-14 shrink-0">Sea Time</span>
+                      <span className="font-bold text-slate-400 uppercase tracking-wider w-14 shrink-0">Experience</span>
                       <span className="font-semibold text-slate-700">{member.seaTime}</span>
                     </div>
                     <div className="flex items-start gap-2 text-[10px]">
                       <span className="font-bold text-slate-400 uppercase tracking-wider w-14 shrink-0">Sailed</span>
                       <span className="font-semibold text-slate-700">{member.companies}</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-[10px]">
-                      <span className="font-bold text-[#C8922A] uppercase tracking-wider w-14 shrink-0">Role</span>
-                      <span className="font-bold text-[#0A1E3F]">{member.credential}</span>
                     </div>
                   </div>
                 </div>

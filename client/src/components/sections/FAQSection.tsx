@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HelpCircle, ChevronDown, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,7 +26,7 @@ const FAQS: FAQItem[] = [
   },
   {
     question: 'Can I join the Merchant Navy right after passing 10th Standard?',
-    answer: 'Yes! After 10th standard, you can enrol in the 6-Month General Purpose (GP) Rating pre-sea course. Upon completion, you join cargo ships as a Trainee Rating/Motorman with initial sea salaries ranging from ₹35,000 to ₹60,000/month.',
+    answer: 'Yes! After 10th standard (minimum 40% in Maths & Science, 40% in English, age 17.5–25 years, and 6/6 eyesight), you can enrol in the 6-Month General Purpose (GP) Rating pre-sea course. Upon completion, you join commercial ships as a Trainee Rating/Motorman with initial sea salaries ranging from ₹35,000 to ₹60,000/month.',
     category: 'Eligibility'
   },
   {
@@ -43,6 +43,38 @@ const FAQS: FAQItem[] = [
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  // Inject FAQPage JSON-LD Schema for AI Answer Engine Citations (ChatGPT, Gemini, Perplexity)
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': FAQS.map((faq) => ({
+        '@type': 'Question',
+        'name': faq.question,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': faq.answer
+        }
+      }))
+    };
+
+    let script = document.getElementById('faq-jsonld-schema') as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'faq-jsonld-schema';
+      document.head.appendChild(script);
+    }
+    script.text = JSON.stringify(faqSchema);
+
+    return () => {
+      const existingScript = document.getElementById('faq-jsonld-schema');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -116,8 +148,19 @@ export const FAQSection: React.FC = () => {
           })}
         </div>
 
+        {/* View All FAQs Link Banner */}
+        <div className="mt-8 text-center">
+          <a
+            href="/faq"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-slate-300 hover:border-[#0A1E3F] text-[#0A1E3F] hover:text-[#E87500] text-xs sm:text-sm font-bold shadow-sm hover:shadow-md transition-all cursor-pointer"
+          >
+            <span>Explore All 25+ FAQs in Dedicated Knowledge Hub</span>
+            <span className="text-[#E87500]">→</span>
+          </a>
+        </div>
+
         {/* Helpline Card */}
-        <div className="mt-10 p-5 rounded-2xl bg-[#0A1E3F] text-white flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="mt-8 p-5 rounded-2xl bg-[#0A1E3F] text-white flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#E87500] flex items-center justify-center shrink-0">
               <MessageSquare className="w-5 h-5 text-white" />

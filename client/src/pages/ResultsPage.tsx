@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/common/SEO';
 import { PlacementsSection } from '../components/sections/PlacementsSection';
 import { Footer } from '../components/layout/Footer';
 import { Trophy, Award, Building2, CheckCircle2 } from 'lucide-react';
@@ -6,6 +7,11 @@ import { Trophy, Award, Building2, CheckCircle2 } from 'lucide-react';
 export const ResultsPage: React.FC = () => {
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-white text-slate-800">
+      <SEO
+        title="Selection Wall & Placements | Officers Wing Academy Alumni Results"
+        description="See Officers Wing Academy cadet selections at Fleet Management, Synergy, Thome, ESM & leading international shipping lines."
+        keywords="merchant navy placements, Officers Wing selection wall, Fleet Management sponsorship, Synergy cadet selection"
+      />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -27,7 +33,7 @@ export const ResultsPage: React.FC = () => {
       </div>
 
       {/* Embedded Placements Wall */}
-      <PlacementsSection />
+      <PlacementsSection hideHeader />
 
       {/* Batch Placement Highlights */}
       <div className="py-16 sm:py-20 bg-[#F8FAFC] border-t border-slate-200 text-left">

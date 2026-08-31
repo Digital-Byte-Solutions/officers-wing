@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Calendar, Clock, Users, ChevronRight, AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { animate, stagger } from 'animejs';
 
 interface Batch {
@@ -14,21 +15,21 @@ interface Batch {
 
 const BATCHES: Batch[] = [
   {
-    course: 'DNS / IMU-CET 2027 — Full Course',
+    course: 'DNS & Sponsorship (IMU-CET 2027)',
     startDate: 'Sep 5, 2026',
     seatsTotal: 20,
     seatsLeft: 3,
     duration: '12 Months',
-    mode: 'Classroom + Online',
+    mode: 'Classroom + Simulator',
     urgency: 'critical',
   },
   {
-    course: 'GP Rating (After 10th)',
-    startDate: 'Aug 28, 2026',
-    seatsTotal: 15,
-    seatsLeft: 6,
-    duration: '6 Months',
-    mode: 'Classroom',
+    course: 'B.Sc Nautical Science & B.Tech Entrance',
+    startDate: 'Sep 12, 2026',
+    seatsTotal: 20,
+    seatsLeft: 5,
+    duration: '12 Months',
+    mode: 'Classroom + Online',
     urgency: 'high',
   },
   {
@@ -36,8 +37,8 @@ const BATCHES: Batch[] = [
     startDate: 'Sep 25, 2026',
     seatsTotal: 10,
     seatsLeft: 7,
-    duration: '1 Year',
-    mode: 'Classroom',
+    duration: '1 Year Conversion',
+    mode: 'Classroom + Lab',
     urgency: 'medium',
   },
   {
@@ -46,15 +47,24 @@ const BATCHES: Batch[] = [
     seatsTotal: 12,
     seatsLeft: 10,
     duration: '4 Months',
-    mode: 'Classroom + Simulator',
+    mode: 'Classroom + High Voltage Lab',
     urgency: 'open',
+  },
+  {
+    course: 'GP Rating (After 10th Standard)',
+    startDate: 'Aug 28, 2026',
+    seatsTotal: 15,
+    seatsLeft: 6,
+    duration: '6 Months',
+    mode: 'Classroom & Workshop',
+    urgency: 'high',
   },
   {
     course: 'IMU-CET Fast Track (Crash Course)',
     startDate: 'Sep 1, 2026',
     seatsTotal: 15,
     seatsLeft: 4,
-    duration: '3 Months',
+    duration: '3 Months Intensive',
     mode: 'Intensive Classroom',
     urgency: 'critical',
   },
@@ -175,10 +185,10 @@ export const BatchCalendar: React.FC = () => {
                   </div>
                 </div>
 
-                {/* CTA */}
+                {/* CTA Redirect to Courses Page */}
                 <div className="shrink-0">
-                  <a
-                    href="/admission"
+                  <Link
+                    to="/courses"
                     className={`inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2.5 rounded-lg cursor-pointer transition-all duration-300 whitespace-nowrap ${
                       batch.urgency === 'critical' || batch.urgency === 'high'
                         ? 'bg-[#E87500] hover:bg-amber-500 text-white shadow-md hover:shadow-lg'
@@ -186,7 +196,7 @@ export const BatchCalendar: React.FC = () => {
                     }`}
                   >
                     Apply Now <ChevronRight className="w-3.5 h-3.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             );

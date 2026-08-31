@@ -1,45 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { blogPosts } from '../data/blogData';
 import { Footer } from '../components/layout/Footer';
-import { BookOpen, Calendar, User } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
+import { BookOpen, User, ChevronRight, Clock } from 'lucide-react';
 
 export const BlogPage: React.FC = () => {
-  const posts = [
-    {
-      id: 1,
-      title: 'How to Join Merchant Navy After 12th — Complete 2026 Guide',
-      category: 'IMU-CET & DNS',
-      date: '10th August 2026',
-      author: 'Capt. Anurag Singh',
-      excerpt: 'Step-by-step roadmap to clear IMU-CET written examination, secure leading company sponsorships, and pass DG Shipping pre-sea medical tests.'
-    },
-    {
-      id: 2,
-      title: 'What is IMU-CET? Eligibility, Syllabus & Preparation Tips',
-      category: 'Entrance Exams',
-      date: '5th August 2026',
-      author: 'Officers Wing Faculty',
-      excerpt: 'Comprehensive analysis of Physics, Chemistry, Maths, English, and General Aptitude pattern for Indian Maritime University Common Entrance Test.'
-    },
-    {
-      id: 3,
-      title: 'GP Rating Course After 10th: Eligibility, Duration & Career Path',
-      category: 'Career Guidance',
-      date: '28th July 2026',
-      author: 'Capt. Anurag Singh',
-      excerpt: 'Detailed overview of 6-month General Purpose rating course for 10th pass students aiming for early marine careers.'
-    },
-    {
-      id: 4,
-      title: 'Merchant Navy Salary in India — Rank-wise Breakdown 2026',
-      category: 'Salaries & Benefits',
-      date: '15th July 2026',
-      author: 'Officers Wing Faculty',
-      excerpt: 'Explore tax-free income structures from Deck Cadet to Master Captain and Junior Engineer to Chief Engineer on commercial fleets.'
-    }
-  ];
+  const navigate = useNavigate();
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800">
+      <SEO
+        title="Merchant Navy Blog & IMU-CET Exam Guidance | Officers Wing Dehradun"
+        description="Read expert guides, IMU-CET preparation strategies, career roadmaps, and salary insights written by Master Mariners at Officers Wing Academy."
+        keywords="how to join merchant navy after 12th, IMUCET preparation guide, GP rating salary, merchant navy exam tips"
+      />
       {/* Top Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -63,18 +38,27 @@ export const BlogPage: React.FC = () => {
       {/* Blog Cards Grid */}
       <div className="max-w-6xl mx-auto px-4 sm:px-8 py-10 sm:py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {posts.map((post) => (
-            <article key={post.id} className="bg-white p-7 rounded-xl border border-slate-200 card-hover-effect flex flex-col justify-between space-y-4 text-left">
+          {blogPosts.map((post) => (
+            <article
+              key={post.id}
+              onClick={() => navigate(`/blog/${post.slug}`)}
+              className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#E87500]/50 transition-all duration-300 flex flex-col justify-between space-y-4 text-left cursor-pointer group"
+            >
               <div className="space-y-3">
-                <span className="text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full">
-                  {post.category}
-                </span>
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full">
+                    {post.category}
+                  </span>
+                  <span className="text-[10px] font-semibold text-slate-400 flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-amber-500" /> {post.readTime}
+                  </span>
+                </div>
 
-                <h2 className="text-xl font-bold text-[#0F2C59] font-serif-heading hover:text-[#E87500] cursor-pointer transition-colors leading-snug">
+                <h2 className="text-xl font-bold text-[#0F2C59] font-serif-heading group-hover:text-[#E87500] transition-colors leading-snug">
                   {post.title}
                 </h2>
 
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
                   {post.excerpt}
                 </p>
               </div>
@@ -82,11 +66,11 @@ export const BlogPage: React.FC = () => {
               <div className="pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
                 <div className="flex items-center gap-1.5">
                   <User className="w-3.5 h-3.5 text-[#0F2C59]" />
-                  <span>{post.author}</span>
+                  <span className="font-semibold text-slate-700">{post.author}</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-[#E87500]" />
-                  <span>{post.date}</span>
+                <div className="flex items-center gap-1 text-[#E87500] font-bold group-hover:translate-x-1 transition-transform">
+                  <span>Read Article</span>
+                  <ChevronRight className="w-4 h-4" />
                 </div>
               </div>
             </article>
@@ -98,4 +82,3 @@ export const BlogPage: React.FC = () => {
     </div>
   );
 };
-

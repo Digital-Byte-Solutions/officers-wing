@@ -12,40 +12,52 @@ interface GalleryItem {
 
 const GALLERY_ITEMS: GalleryItem[] = [
   {
-    title: 'Bridge Navigational Simulator Lab',
-    category: 'Simulator Training',
-    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&auto=format&fit=crop&q=80',
-    description: 'Cadets practicing radar navigation and vessel maneuvering on state-of-the-art marine bridge simulators.'
+    title: 'IMU-CET & Sponsorship Preparation Classroom Batch',
+    category: 'Smart Classrooms',
+    imageUrl: '/images/officers_wing_classroom_batch.jpg',
+    description: 'Cadets attending disciplined interactive lectures in our spacious Dehradun classroom for IMU-CET and sponsorship exam preparation.'
   },
   {
-    title: 'Seamanship & Ropework Practical Workshop',
-    category: 'Practical Drills',
-    imageUrl: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&auto=format&fit=crop&q=80',
-    description: 'Hands-on training in nautical knotting, rigging, wire splicing, and deck safety operations.'
+    title: 'Drug-Free Awareness Session by Narcotics Department',
+    category: 'Academy Events',
+    imageUrl: '/images/narcotics_awareness_session.jpg',
+    description: 'Informative drug-free awareness and youth leadership session conducted by the Narcotics Department for Officers Wing cadets.'
   },
   {
-    title: 'Dehradun Campus Hostel & Mess Facilities',
-    category: 'Campus Life',
-    imageUrl: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&auto=format&fit=crop&q=80',
-    description: 'Disciplined residential environment with hygienic dining hall, study lounges, and 24/7 security.'
+    title: 'IMU-CET 2027 & Sponsorship Exam Batch',
+    category: 'Academy Batches',
+    imageUrl: '/images/imu_cet_batch_classroom.jpg',
+    description: 'Cadets in uniform attending induction & comprehensive exam preparation at Officers Wing Academy Dehradun.'
   },
   {
-    title: 'Physical Endurance & Parade Grounds',
-    category: 'Fitness & Discipline',
-    imageUrl: 'https://images.unsplash.com/photo-1517649763962-0c623266010b?w=800&auto=format&fit=crop&q=80',
-    description: 'Daily morning physical conditioning, march drills, and obstacle courses guided by ex-Naval physical instructors.'
+    title: 'Daily Meditation & Focus Routine Before Class',
+    category: 'Mindfulness & Focus',
+    imageUrl: '/images/meditation_before_class.jpg',
+    description: 'Cadets practicing mindful mental conditioning and focus enhancement before beginning daily academic lectures.'
   },
   {
-    title: 'IMU-CET Classroom & Computer Labs',
-    category: 'Academics',
-    imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80',
-    description: 'Modern air-conditioned smart classrooms equipped for online CBT mock tests and company aptitude prep.'
+    title: 'Interactive Smart Board Problem Solving & Aptitude',
+    category: 'Digital Smart Classes',
+    imageUrl: '/images/smart_classroom_lecture.jpg',
+    description: 'Live interactive classes with digital smart boards, live camera recording, and hands-on aptitude problem-solving.'
   },
   {
-    title: 'Fire Safety & STCW Water Survival Drills',
-    category: 'Safety Certification',
-    imageUrl: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800&auto=format&fit=crop&q=80',
-    description: 'STCW safety orientation including life raft deployment, marine firefighting, and personal survival techniques.'
+    title: 'Maritime Mentorship & Strategy Lectures',
+    category: 'Classroom Mentorship',
+    imageUrl: '/images/interactive_classroom_session.jpg',
+    description: 'Faculty-led interactive lectures covering merchant navy syllabus, interview techniques, and career pathways.'
+  },
+  {
+    title: 'English Communication & Interview Prep Cubicle',
+    category: 'English & Soft Skills',
+    imageUrl: '/images/english_cubicle_smart_class.jpg',
+    description: 'Specialized English communication, grammar, and personality development sessions conducted by expert faculty.'
+  },
+  {
+    title: 'Foundation Course Batch (After 10th)',
+    category: 'Foundation Training',
+    imageUrl: '/images/foundation_course_poster.jpg',
+    description: 'Early grooming program for 10th-pass students targeting DNS, B.Sc Nautical Science, and B.Tech Marine Engineering.'
   }
 ];
 
@@ -146,7 +158,7 @@ export const CampusLifeGallery: React.FC = () => {
                 <img
                   src={selectedImage.imageUrl}
                   alt={selectedImage.title}
-                  className="w-full max-h-[60vh] object-cover"
+                  className="w-full max-h-[65vh] object-contain bg-black/90 mx-auto"
                 />
                 <div className="p-6">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-[#D4A840]">
@@ -163,6 +175,17 @@ export const CampusLifeGallery: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* View Full Gallery Link Banner */}
+        <div className="mt-10 text-center">
+          <a
+            href="/gallery"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-[#0A1E3F] hover:bg-[#0F2C59] border border-amber-400/40 text-amber-300 hover:text-white text-xs sm:text-sm font-extrabold shadow-lg hover:shadow-amber-500/20 transition-all cursor-pointer"
+          >
+            <span>Explore Full Campus Photo &amp; Video Testimonials Hub</span>
+            <span className="text-[#E87500]">→</span>
+          </a>
+        </div>
 
       </div>
     </section>

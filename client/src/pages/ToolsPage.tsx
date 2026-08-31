@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Footer } from '../components/layout/Footer';
+import { SEO } from '../components/common/SEO';
 import { Calculator, CheckCircle2, AlertTriangle, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { submitLeadToGoogleSheet } from '../services/leadService';
 
 export const ToolsPage: React.FC = () => {
   // Eligibility Calculator State
+  const [honeypot, setHoneypot] = useState('');
   const [eligibilityData, setEligibilityData] = useState({
     age: 18,
-    qualification: '12th',
+    qualification: '12th_pcm',
     pcm: 65,
     name: '',
     phone: ''
@@ -27,24 +30,40 @@ export const ToolsPage: React.FC = () => {
   const bmi = calculateBMI();
   const isBmiPass = bmi >= 17.0 && bmi <= 27.0;
 
-  const handleEligibilitySubmit = (e: React.FormEvent) => {
+  const handleEligibilitySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { age, qualification, pcm } = eligibilityData;
+    if (honeypot) return; // Honeypot check
+    const { age, qualification, pcm, name, phone } = eligibilityData;
 
     let res = '';
-    if (qualification === '10th' && age >= 15 && age <= 25) {
-      res = 'Qualified for GP Rating / Deck Rating Course (6 Months)';
-    } else if (qualification === '12th' && pcm >= 60 && age <= 25) {
-      res = 'Qualified for DNS / B.Sc Nautical Science (IMU-CET)';
-    } else if (qualification === 'graduate' && age <= 28) {
-      res = 'Qualified for GME (Graduate Marine Engineering)';
-    } else if (qualification === 'btech_marine' && age <= 28) {
-      res = 'Qualified for ETO (Electro-Technical Officer)';
+    if (qualification === '10th' && age >= 17 && age <= 25) {
+      res = 'Eligible for GP Rating (General Purpose Deck & Engine Rating — 6 Months Pre-Sea). 10th pass min 40% Maths/Sci & 40% English, 6/6 Eyesight.';
+    } else if (qualification === '12th_pcm' && pcm >= 60 && age <= 25) {
+      res = 'Eligible for DNS (Diploma in Nautical Science — 1 Year + Sponsorship), B.Sc Nautical Science (3-Year Degree), & B.Tech Marine Engineering (4-Year Degree).';
+    } else if (qualification === 'graduate_mech' && age <= 28) {
+      res = 'Eligible for GME (Graduate Marine Engineering — 1 Year Conversion Course for Mechanical / Naval Architecture Engineers).';
+    } else if (qualification === 'graduate_ee' && age <= 35) {
+      res = 'Eligible for ETO (Electro-Technical Officer — 4 Months Course for Electrical, Electronics, EEE, ECE & Instrumentation Engineers).';
     } else {
-      res = 'Personalized Counselling Required — Contact our admissions team for custom routing.';
+      res = 'Personalized Counselling Required — Contact our senior Master Mariner admissions team for specialized entry routing.';
     }
 
     setEligibilityResult(res);
+
+    // If phone is entered, submit lead to Google Sheet
+    if (phone) {
+      await submitLeadToGoogleSheet({
+        name: name || 'Prospective Cadet',
+        phone: phone,
+        qualification: qualification,
+        age: age,
+        pcm: pcm,
+        message: `Eligibility Tool Result: ${res}`,
+        formType: 'Eligibility Checker',
+        source: 'Calculators & Tools Page',
+        honeypot: honeypot
+      });
+    }
 
     // Fire canvas-confetti celebration
     confetti({
@@ -57,6 +76,12 @@ export const ToolsPage: React.FC = () => {
 
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-[#F8FAFC] text-slate-800 text-left">
+      <SEO
+        title="Merchant Navy Eligibility & DG Shipping BMI Calculator | Officers Wing"
+        description="Free online Merchant Navy eligibility checker and DG Shipping BMI calculator. Check age, PCM marks, and eyesight requirements instantly."
+        keywords="merchant navy eligibility checker, DG Shipping BMI calculator, IMUCET eligibility tool, eyesight requirements merchant navy"
+        canonicalUrl="https://officerswing.com/tools"
+      />
       {/* Header Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -113,10 +138,10 @@ export const ToolsPage: React.FC = () => {
                 onChange={(e) => setEligibilityData({ ...eligibilityData, qualification: e.target.value })}
                 className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59] bg-white"
               >
-                <option value="10th">Passed 10th Standard</option>
-                <option value="12th">Passed / Appearing 12th (PCM)</option>
-                <option value="graduate">Graduate (Mechanical Eng / General)</option>
-                <option value="btech_marine">B.Tech / Electrical Engineering</option>
+                <option value="10th">Passed 10th Standard (GP Rating)</option>
+                <option value="12th_pcm">Passed / Appearing 12th PCM (DNS, B.Sc, B.Tech)</option>
+                <option value="graduate_mech">B.E. / B.Tech Mechanical / Naval Arch (GME)</option>
+                <option value="graduate_ee">Degree / Diploma Electrical, EEE, ECE, Instrumentation (ETO)</option>
               </select>
             </div>
 
@@ -132,13 +157,49 @@ export const ToolsPage: React.FC = () => {
               />
             </div>
 
-            <div className="md:col-span-3 pt-2">
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Your Name (Optional)</label>
+              <input
+                type="text"
+                placeholder="Candidate name"
+                value={eligibilityData.name}
+                onChange={(e) => setEligibilityData({ ...eligibilityData, name: e.target.value })}
+                className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Phone / WhatsApp (Optional)</label>
+              <input
+                type="tel"
+                placeholder="10-digit mobile number"
+                value={eligibilityData.phone}
+                onChange={(e) => setEligibilityData({ ...eligibilityData, phone: e.target.value })}
+                className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#0F2C59]"
+              />
+            </div>
+
+            {/* Honeypot Spam Trap Input */}
+            <input
+              type="text"
+              name="website_url_hp"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+            />
+
+            <div className="md:col-span-3 pt-2 space-y-2">
               <button
                 type="submit"
                 className="w-full sm:w-auto bg-[#0F2C59] hover:bg-[#1A3D73] text-white text-xs font-bold px-8 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <Sparkles className="w-4 h-4 text-amber-300" /> Evaluate Eligibility Now
               </button>
+              <div className="text-[10px] text-slate-400 flex items-center gap-1">
+                <span>🔒 Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield</span>
+              </div>
             </div>
           </form>
 

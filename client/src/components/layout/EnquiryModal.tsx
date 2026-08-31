@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { X, Send, CheckCircle2, User, Phone, BookOpen, MessageSquare } from 'lucide-react';
+import { X, Send, CheckCircle2, User, Phone, BookOpen, MessageSquare, Loader2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitLeadToGoogleSheet } from '../../services/leadService';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -10,6 +11,8 @@ interface EnquiryModalProps {
 
 export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -32,9 +35,25 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      await submitLeadToGoogleSheet({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        course: formData.course,
+        message: formData.message,
+        formType: 'Enquiry Modal',
+        honeypot: honeypot
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
 
     // Fire celebratory confetti burst
     confetti({
@@ -142,10 +161,12 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
                     onChange={(e) => setFormData({ ...formData, course: e.target.value })}
                     className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A1E3F] focus:border-transparent transition-all bg-slate-50/50"
                   >
-                    <option>After 10th (GP Rating / Deck Rating)</option>
-                    <option>After 12th (DNS / IMU-CET Coaching)</option>
-                    <option>Graduate / B.Tech (GME Conversion)</option>
-                    <option>Graduate / B.Tech (ETO Specialization)</option>
+                    <option>After 12th — DNS (Diploma in Nautical Science)</option>
+                    <option>After 12th — B.Sc Nautical Science</option>
+                    <option>After 12th — B.Tech Marine Engineering</option>
+                    <option>Graduate / B.Tech — GME (Graduate Marine Engineering)</option>
+                    <option>Graduate / Diploma — ETO (Electro-Technical Officer)</option>
+                    <option>After 10th — GP Rating (General Purpose)</option>
                   </select>
                 </div>
 
@@ -163,13 +184,39 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) =
                   ></textarea>
                 </div>
 
+                {/* Honeypot Spam Trap Input (Hidden from human users) */}
+                <input
+                  type="text"
+                  name="website_url_hp"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+                />
+
                 <button
                   type="submit"
-                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full btn-glow-orange text-white text-xs font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit for Free Guidance</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>Verifying &amp; Submitting...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Submit Enquiry Now</span>
+                    </>
+                  )}
                 </button>
+
+                {/* reCAPTCHA v3 & Spam Shield Badge */}
+                <div className="text-[10px] text-slate-400 text-center flex items-center justify-center gap-1 pt-1">
+                  <span>🔒 Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield</span>
+                </div>
               </form>
             )}
           </div>

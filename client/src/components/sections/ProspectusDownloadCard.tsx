@@ -1,23 +1,40 @@
 import React, { useState } from 'react';
 import { Download, FileText, CheckCircle, Sparkles, Send } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { submitLeadToGoogleSheet } from '../../services/leadService';
 
 export const ProspectusDownloadCard: React.FC = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [downloaded, setDownloaded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phone) return;
 
+    setIsSubmitting(true);
+
+    await submitLeadToGoogleSheet({
+      phone: phone,
+      email: email,
+      formType: 'Prospectus Download',
+      course: 'IMU-CET Prep Guide & Prospectus',
+      source: 'Prospectus Download Card',
+      honeypot: honeypot
+    });
+
+    setIsSubmitting(false);
     setDownloaded(true);
+
     confetti({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.6 }
     });
   };
+
 
   return (
     <section className="w-full bg-white py-16 sm:py-20 border-y border-slate-200">
@@ -99,15 +116,28 @@ export const ProspectusDownloadCard: React.FC = () => {
                     />
                   </div>
 
+                  {/* Honeypot Spam Trap Input */}
+                  <input
+                    type="text"
+                    name="website_url_hp"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden opacity-0 pointer-events-none absolute -z-50 w-0 h-0"
+                  />
+
                   <button
                     type="submit"
-                    className="w-full btn-glow-orange font-bold text-xs sm:text-sm py-3 rounded-xl cursor-pointer flex items-center justify-center gap-2 shadow-lg"
+                    disabled={isSubmitting}
+                    className="w-full btn-glow-orange font-bold text-xs sm:text-sm py-3 rounded-xl cursor-pointer flex items-center justify-center gap-2 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <Download className="w-4 h-4" /> Download Prospectus PDF
+                    <Download className="w-4 h-4" />
+                    <span>{isSubmitting ? 'Preparing Prospectus...' : 'Download Prospectus PDF'}</span>
                   </button>
 
                   <p className="text-[10px] text-slate-400 text-center">
-                    🔒 100% Privacy. Instant WhatsApp &amp; PDF access.
+                    🔒 100% Privacy. Protected by reCAPTCHA v3 &amp; Honeypot Anti-Spam Shield.
                   </p>
                 </form>
               ) : (

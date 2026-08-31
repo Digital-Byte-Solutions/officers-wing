@@ -26,10 +26,10 @@ const PATHWAYS: Pathway[] = [
     label: 'After 10th',
     icon: Anchor,
     color: '#C8922A',
-    eligibility: 'Pass 10th Std • Age 15–25 • 40% aggregate',
+    eligibility: '10th with min 40% in Maths & Science • 40% English • Age 17.5–25 (SC/ST +5 yrs) • Eyesight 6/6',
     streams: [
-      { name: 'GP Rating (Deck)', tag: 'Most Accessible', salary: '₹35,000–₹60,000/mo', duration: '6 Months', exam: 'DG Shipping Medical', badge: 'DG Approved' },
-      { name: 'Saloon / Engine Rating', tag: 'Engine Track', salary: '₹30,000–₹50,000/mo', duration: '6 Months', exam: 'Board Test' },
+      { name: 'GP Rating (Deck/Engine)', tag: 'Most Accessible', salary: '₹35,000–₹60,000/mo', duration: '6 Months', exam: '10th Board + DG Medical', badge: 'DG Approved' },
+      { name: 'Saloon / Rating Track', tag: 'Rating Track', salary: '₹30,000–₹50,000/mo', duration: '6 Months', exam: 'DG Shipping Medical' },
     ],
   },
   {
@@ -39,8 +39,9 @@ const PATHWAYS: Pathway[] = [
     color: '#E87500',
     eligibility: '10+2 PCM ≥60% • English ≥50% • Age 17–25',
     streams: [
-      { name: 'DNS / B.Sc Nautical Science', tag: '⭐ Most Popular', salary: '₹1,00,000–₹2,50,000/mo', duration: '3 Years (IMU-CET)', exam: 'IMU-CET + Company Sponsorship', badge: 'Highest Demand' },
-      { name: 'B.Tech Marine Engineering', tag: 'Engineering Track', salary: '₹85,000–₹2,00,000/mo', duration: '4 Years', exam: 'IMU-CET' },
+      { name: 'DNS (Diploma in Nautical Science)', tag: '⭐ Most Popular', salary: '₹1,20,000–₹2,80,000/mo', duration: '1 Year + 18 Mo Sea Time', exam: 'IMU-CET + Company Sponsorship', badge: 'Sponsored Entry' },
+      { name: 'B.Sc Nautical Science', tag: '3-Yr Degree', salary: '₹1,00,000–₹2,50,000/mo', duration: '3 Years Degree', exam: 'IMU-CET Exam', badge: 'Degree Route' },
+      { name: 'B.Tech Marine Engineering', tag: 'Engineering Track', salary: '₹1,10,000–₹3,00,000/mo', duration: '4 Years Degree', exam: 'IMU-CET Exam', badge: 'Chief Engineer Path' },
     ],
   },
   {

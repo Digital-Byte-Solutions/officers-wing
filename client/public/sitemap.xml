@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
+  <url>
+    <loc>https://officerswing.com/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://officerswing.com/images/officers_wing_banner.jpg</image:loc>
+      <image:title>Officers Wing Academy Dehradun</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://officerswing.com/images/logo.png</image:loc>
+      <image:title>Officers Wing Logo</image:title>
+    </image:image>
+  </url>
+
+  <!-- Courses Hub Page -->
+  <url>
+    <loc>https://officerswing.com/courses</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Location-Targeted Course Landing Pages -->
+  <url>
+    <loc>https://officerswing.com/courses/dns-course-dehradun</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/courses/bsc-nautical-science-dehradun</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/courses/btech-marine-engineering-dehradun</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/courses/after-graduation-gme-dehradun</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/courses/after-btech-eto-dehradun</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/courses/after-10th-gp-rating-dehradun</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Eligibility Checker & Tools -->
+  <url>
+    <loc>https://officerswing.com/tools</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/calculators</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Selection Wall & Placement Results -->
+  <url>
+    <loc>https://officerswing.com/results</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Us & Founder Section -->
+  <url>
+    <loc>https://officerswing.com/about</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://officerswing.com/images/founder.jpg</image:loc>
+      <image:title>Capt. Anurag Singh — Founder, Officers Wing</image:title>
+    </image:image>
+  </url>
+
+  <!-- Admissions & Batch Schedule -->
+  <url>
+    <loc>https://officerswing.com/admission</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog & Knowledge Hub -->
+  <url>
+    <loc>https://officerswing.com/blog</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Articles (Long-Tail & AEO Engines) -->
+  <url>
+    <loc>https://officerswing.com/blog/how-to-join-merchant-navy-after-12th</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/blog/what-is-imu-cet-eligibility-syllabus-preparation</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/blog/gp-rating-course-after-10th-eligibility-duration-career-path</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://officerswing.com/blog/merchant-navy-salary-in-india-rank-wise-breakdown</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Dedicated Standalone FAQ Page (AEO Citation Hub) -->
+  <url>
+    <loc>https://officerswing.com/faq</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Dedicated Standalone Campus Gallery & Video Stories -->
+  <url>
+    <loc>https://officerswing.com/gallery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://officerswing.com/images/imu_cet_batch_classroom.jpg</image:loc>
+      <image:title>Officers Wing Academy Classroom Batch</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://officerswing.com/images/smart_classroom_lecture.jpg</image:loc>
+      <image:title>Officers Wing Smart Digital Lecture</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contact Us -->
+  <url>
+    <loc>https://officerswing.com/contact</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

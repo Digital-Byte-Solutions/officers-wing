@@ -1,9 +1,62 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Quote, Building2, Star, ShieldCheck, CheckCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Building2, Star, ShieldCheck, CheckCircle, Play, Video, Sparkles, Award } from 'lucide-react';
 import { shippingCompanies, testimonialsData } from '../../data/placementsData';
 
-export const PlacementsSection: React.FC = () => {
+interface AlumniVideo {
+  id: string;
+  title: string;
+  cadetName: string;
+  fleetCompany: string;
+  course: string;
+  webmUrl: string;
+  mp4Url: string;
+  badge: string;
+  quote: string;
+}
+
+const ALUMNI_VIDEOS: AlumniVideo[] = [
+  {
+    id: 'v4',
+    title: 'Cadet Sponsorship Interview Coaching & Selection Story',
+    cadetName: 'Officer Cadet Batch 2024',
+    fleetCompany: 'Synergy Marine & Fleet Mgmt',
+    course: 'DNS & IMU-CET Sponsorship',
+    webmUrl: '/videos/v4.webm',
+    mp4Url: '/videos/v4.mp4',
+    badge: '100% Sponsorship Selection',
+    quote: 'Officers Wing guided me step-by-step through technical round mock interviews, Psychometric testing, and IMU-CET preparation to secure my dream shipping sponsorship.',
+  },
+  {
+    id: 'v1',
+    title: 'Cadet Maritime Practical Training & Seamanship Drills',
+    cadetName: 'Pre-Sea Cadets Batch',
+    fleetCompany: 'Top International Fleets',
+    course: 'Pre-Sea Nautical Science',
+    webmUrl: '/videos/v1.webm',
+    mp4Url: '/videos/v1.mp4',
+    badge: 'Hands-On Practical Training',
+    quote: 'Hands-on seamanship laboratory training and chart work at Officers Wing gave us the confidence needed to clear shipping company interviews with ease.',
+  },
+  {
+    id: 'v2',
+    title: 'Life at Sea & International Commercial Voyages',
+    cadetName: 'Alumni Officer Cadets',
+    fleetCompany: 'Maersk, Synergy & Fleet Mgmt',
+    course: 'Merchant Navy Sailing',
+    webmUrl: '/videos/v2.webm',
+    mp4Url: '/videos/v2.mp4',
+    badge: 'Worldwide Sea Voyages',
+    quote: 'From classroom mentoring in Dehradun to navigating across international waters — proud to be part of the Officers Wing alumni family.',
+  }
+];
+
+interface PlacementsSectionProps {
+  hideHeader?: boolean;
+}
+
+export const PlacementsSection: React.FC<PlacementsSectionProps> = ({ hideHeader = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeVideo, setActiveVideo] = useState<AlumniVideo>(ALUMNI_VIDEOS[0]);
   const totalSlides = testimonialsData.length;
 
   const handlePrev = () => {
@@ -29,23 +82,25 @@ export const PlacementsSection: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* ── Section Heading ── */}
-        <div className="text-center mb-12 sm:mb-16 space-y-3">
-          <div>
-            <span className="section-label section-label-dark">
-              <Building2 className="w-3.5 h-3.5 text-amber-400" />
-              Verified Cadet Success
-            </span>
+        {!hideHeader && (
+          <div className="text-center mb-12 sm:mb-16 space-y-3">
+            <div>
+              <span className="section-label section-label-dark">
+                <Building2 className="w-3.5 h-3.5 text-amber-400" />
+                Verified Cadet Success
+              </span>
+            </div>
+            <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight">
+              Alumni Selections &amp; Placements
+            </h2>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+              Cadets trained at Officers Wing are sailing worldwide with premier international shipping fleets.
+            </p>
           </div>
-          <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight">
-            Alumni Selections &amp; Placements
-          </h2>
-          <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
-            Cadets trained at Officers Wing are sailing worldwide with premier international shipping fleets.
-          </p>
-        </div>
+        )}
 
         {/* ── Partner Shipping Companies Marquee ── */}
-        <div className="mb-14 sm:mb-16 overflow-hidden py-4 border-y border-white/10 relative">
+        <div className="mb-12 sm:mb-14 overflow-hidden py-4 border-y border-white/10 relative">
           <div className="animate-marquee flex items-center gap-4 sm:gap-6">
             {[...shippingCompanies, ...shippingCompanies].map((company, idx) => (
               <div
@@ -56,6 +111,94 @@ export const PlacementsSection: React.FC = () => {
                 <span>{company.logoText}</span>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* ── FEATURED ALUMNI VIDEO SHOWCASE CARD ── */}
+        <div className="mb-14 sm:mb-16 rounded-3xl bg-gradient-to-br from-[#0A1E3F] via-[#081730] to-[#040C1A] border-2 border-amber-400/40 p-5 sm:p-8 shadow-2xl relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+            
+            {/* Left Column: Video Player */}
+            <div className="lg:col-span-7">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-white/20 shadow-2xl">
+                <video
+                  key={activeVideo.id}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                >
+                  <source src={activeVideo.webmUrl} type="video/webm" />
+                  <source src={activeVideo.mp4Url} type="video/mp4" />
+                  Your browser does not support HTML5 video.
+                </video>
+
+                {/* Floating Tag */}
+                <div className="absolute top-3 left-3 pointer-events-none">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-300 bg-[#060F1E]/90 backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/40 shadow-md flex items-center gap-1.5">
+                    <Sparkles className="w-3 h-3 text-amber-400" /> {activeVideo.badge}
+                  </span>
+                </div>
+              </div>
+
+              {/* Video Selector Tabs */}
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <span className="text-[10px] uppercase font-bold text-[#C8922A] mr-1 flex items-center gap-1">
+                  <Video className="w-3 h-3 text-[#E87500]" /> Watch Video:
+                </span>
+                {ALUMNI_VIDEOS.map((v) => {
+                  const isSelected = activeVideo.id === v.id;
+                  return (
+                    <button
+                      key={v.id}
+                      onClick={() => setActiveVideo(v)}
+                      className={`px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        isSelected
+                          ? 'bg-[#E87500] text-white shadow-md'
+                          : 'bg-white/05 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
+                      }`}
+                    >
+                      <Play className={`w-2.5 h-2.5 ${isSelected ? 'fill-current' : 'text-[#D4A840]'}`} />
+                      <span>{v.title.split('&')[0]}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Column: Cadet Story Information */}
+            <div className="lg:col-span-5 text-left space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wider uppercase border border-amber-400/30 bg-amber-400/10 text-amber-300">
+                <Award className="w-3.5 h-3.5 text-amber-400" />
+                Alumni Video Testimonial
+              </div>
+
+              <h3 className="font-display text-xl sm:text-2xl font-black text-white leading-snug">
+                {activeVideo.title}
+              </h3>
+
+              <div className="p-4 rounded-2xl bg-white/05 border border-white/10 relative">
+                <Quote className="w-6 h-6 text-amber-400/30 absolute top-3 right-3" />
+                <p className="font-display text-xs sm:text-sm italic text-slate-200 leading-relaxed pr-6">
+                  "{activeVideo.quote}"
+                </p>
+              </div>
+
+              <div className="pt-2 flex items-center justify-between border-t border-white/10 text-xs">
+                <div>
+                  <div className="font-bold text-white flex items-center gap-1.5">
+                    <span>{activeVideo.cadetName}</span>
+                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                  </div>
+                  <div className="text-[11px] text-slate-400">{activeVideo.course}</div>
+                </div>
+
+                <span className="text-[10px] font-bold text-amber-300 bg-amber-400/15 border border-amber-400/30 px-2.5 py-1 rounded-lg">
+                  {activeVideo.fleetCompany}
+                </span>
+              </div>
+            </div>
+
           </div>
         </div>
 

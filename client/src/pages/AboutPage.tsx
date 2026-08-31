@@ -1,5 +1,8 @@
 import React from 'react';
+import { SEO } from '../components/common/SEO';
 import { FounderSection } from '../components/sections/FounderSection';
+import { CampusLifeGallery } from '../components/sections/CampusLifeGallery';
+import { FacultySection } from '../components/sections/FacultySection';
 import { StatsCounterBar } from '../components/sections/StatsCounterBar';
 import { Footer } from '../components/layout/Footer';
 import { Compass, Target, Award, Users, CheckCircle2 } from 'lucide-react';
@@ -7,6 +10,11 @@ import { Compass, Target, Award, Users, CheckCircle2 } from 'lucide-react';
 export const AboutPage: React.FC = () => {
   return (
     <div className="pt-20 sm:pt-24 min-h-screen bg-white text-slate-800">
+      <SEO
+        title="About Capt. Anurag Sir & Officers Wing Academy | Merchant Navy Coaching Dehradun"
+        description="Learn about Officers Wing Academy, founded in 2016 in Dehradun. Guided by Capt. Anurag Singh with hundreds of cadets placed at top global shipping companies."
+        keywords="Capt Anurag Singh Merchant Navy, Officers Wing Dehradun founder, best merchant navy mentorship, merchant navy academy Sahastradhara Road Dehradun"
+      />
       {/* Header Banner */}
       <div className="page-banner bg-[#050B14] text-white py-16 sm:py-20 px-4 sm:px-8 text-center relative overflow-hidden">
         <div
@@ -89,6 +97,12 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Classroom Culture & Training Gallery */}
+      <CampusLifeGallery />
+
+      {/* Faculty Section */}
+      <FacultySection />
 
       <Footer />
     </div>
